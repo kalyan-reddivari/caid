@@ -1,0 +1,163 @@
+import { Link } from 'react-router-dom';
+import IntegrationDiagram from '../../components/IntegrationDiagram.jsx';
+import { LearnMiniArt, LoopMiniArt, SpecMiniArt, StackBoard } from '../../components/AIGraphics.jsx';
+import { IconTile } from '../../components/Icons.jsx';
+import MediaClip from '../../components/MediaClip.jsx';
+import Reveal from '../../components/Reveal.jsx';
+import MEDIA, { hasMedia } from '../../media.js';
+
+const SERVICES = [
+  { icon: 'app', title: 'Custom applications', text: 'Web, mobile and internal tools designed around how your teams already work.' },
+  { icon: 'link', title: 'Systems integration', text: 'ERP, CRM, payments and legacy systems connected through clean, observable APIs.' },
+  { icon: 'ai', title: 'AI adoption', ai: true, text: 'Assistants, document automation and retrieval built into the tools people use daily.' },
+  { icon: 'cube', title: 'Product development', text: 'From discovery to launch for founders and business units building something new.' },
+  { icon: 'cloud', title: 'Cloud and DevOps', text: 'Pipelines, containers and infrastructure that keep releases routine.' },
+  { icon: 'bulb', title: 'Technology consulting', text: 'Architecture reviews, modernization roadmaps and hands-on technical leadership.' },
+];
+
+const STEPS = [
+  { title: 'Discover', text: 'We map your systems, data and goals in a live session, with AI drafting the notes and questions.' },
+  { title: 'Specify', text: 'A written spec and architecture you approve, with a first release small enough to ship in weeks.' },
+  { title: 'Build', text: 'Our in-house team and AI agents deliver in short bolts you can review every few days.' },
+  { title: 'Adopt', text: 'Training, measurement and support so the new tools actually get used.' },
+];
+
+const AI_NATIVE = [
+  { Art: LoopMiniArt, title: 'AI-driven lifecycle', text: 'Inception, construction and operations with AI in every phase and people at every gate.', to: '/ai-engineering#aidlc', cta: 'Explore the AIDLC' },
+  { Art: SpecMiniArt, title: 'Spec-driven development', text: 'Requirements, design and tasks written first, so agents build exactly what you approved.', to: '/ai-engineering', cta: 'See how specs steer the work' },
+  { Art: LearnMiniArt, title: 'A trained team', text: 'Everyone at CAID, from analysts to engineers, climbs our four-level AI Academy.', to: '/ai-academy', cta: 'Visit the AI Academy' },
+];
+
+export default function Home() {
+  return (
+    <>
+      <section className="hero">
+        <div className="wrap">
+          <div>
+            <ul className="acronym" aria-label="CAID stands for Custom Application and Integration Development">
+              <li><b>C</b>ustom</li>
+              <li className="is-ai"><b>A</b>pplication</li>
+              <li className="and">and</li>
+              <li className="is-ai"><b>I</b>ntegration</li>
+              <li><b>D</b>evelopment</li>
+            </ul>
+            <h1>Software that connects your business, with AI at the center.</h1>
+            <p className="lede">
+              CAID designs and builds custom applications, integrates the systems you already rely on,
+              and helps your teams put AI to work where it pays off.
+            </p>
+            <div className="hero-actions">
+              <Link className="btn btn-primary" to="/contact">Book a discovery call</Link>
+              <Link className="btn btn-ghost" to="/services">See our services</Link>
+            </div>
+          </div>
+          <IntegrationDiagram />
+        </div>
+      </section>
+
+      <section className="section section-alt">
+        <div className="wrap">
+          <Reveal className="section-head">
+            <h2>What we build</h2>
+            <p className="muted">Consulting and delivery under one roof, so advice turns into working software.</p>
+          </Reveal>
+          <div className="service-list">
+            {SERVICES.map((s, i) => (
+              <Reveal as="article" key={s.title} delay={(i % 3) * 110}>
+                <IconTile name={s.icon} tone={s.ai ? 'amber' : 'teal'} />
+                <h3>{s.title}{s.ai && <span className="tag-ai">AI</span>}</h3>
+                <p>{s.text}</p>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="wrap">
+          <Reveal className="section-head">
+            <div>
+              <h2>AI-native by default</h2>
+              <p className="muted">Every project we take in-house runs on the same AI-driven way of working.</p>
+            </div>
+            <Link className="btn btn-ghost" to="/ai-engineering">How we build</Link>
+          </Reveal>
+          <div className="feature-cards">
+            {AI_NATIVE.map(({ Art, ...f }, i) => (
+              <Reveal as="article" key={f.title} className="feature-card" delay={i * 120}>
+                <div className="feature-art"><Art /></div>
+                <h3>{f.title}</h3>
+                <p>{f.text}</p>
+                <Link to={f.to}>{f.cta} →</Link>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section section-ink">
+        <div className="wrap">
+          <Reveal className="section-head">
+            <div>
+              <h2>How an engagement runs</h2>
+              <p className="muted">Four stages, with a working release at the end of each one.</p>
+            </div>
+            <Link className="btn btn-ghost" to="/process">See the full process</Link>
+          </Reveal>
+          <ol className="steps">
+            {STEPS.map((s) => (
+              <li key={s.title}>
+                <h3>{s.title}</h3>
+                <p>{s.text}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <section className="section section-alt">
+        <div className="wrap">
+          <Reveal className="section-head">
+            <div>
+              <h2>One in-house team, every stack</h2>
+              <p className="muted">
+                Bring us the project, not a staffing plan. We assemble the right mix of people from our own bench
+                and run the whole delivery under one roof.
+              </p>
+            </div>
+          </Reveal>
+          <Reveal><StackBoard /></Reveal>
+          {hasMedia(MEDIA.teamIntro) && (
+            <Reveal className="team-video"><MediaClip {...MEDIA.teamIntro} /></Reveal>
+          )}
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="wrap split">
+          <Reveal>
+            <h2>Why <span className="ai-mark">{'{'}<b>Ai</b>{'}'}</span> sits in the middle of our name</h2>
+            <p className="muted">
+              Most AI projects stall because the model is not connected to real systems and real workflows.
+              Integration is our core skill, so AI becomes part of your applications instead of a separate experiment.
+            </p>
+            <Link className="btn btn-ink" to="/ai-adoption">Explore AI adoption</Link>
+          </Reveal>
+          <Reveal as="dl" className="facts" delay={120}>
+            <div><dt>Weeks</dt><dd>to a first production release, not quarters</dd></div>
+            <div><dt>One team</dt><dd>for strategy, engineering and support</dd></div>
+            <div><dt>Your IP</dt><dd>code and models you own outright</dd></div>
+            <div><dt>Measured</dt><dd>every AI feature ships with evaluation and monitoring</dd></div>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="cta-band">
+        <div className="wrap">
+          <h2>Have systems that should talk to each other? Tell us about them.</h2>
+          <Link className="btn" to="/contact">Start a conversation</Link>
+        </div>
+      </section>
+    </>
+  );
+}
