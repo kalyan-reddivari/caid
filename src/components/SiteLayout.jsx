@@ -72,11 +72,27 @@ export default function SiteLayout() {
   const { pathname, hash } = useLocation();
   usePageMeta(pathname);
 
+  // Scroll to #section links. Pages load on demand, so the target may appear a moment after
+  // navigation; keep looking briefly, and stop as soon as the visitor scrolls themselves.
   useEffect(() => {
     setOpen(false);
-    const target = hash && document.getElementById(hash.slice(1));
-    if (target) target.scrollIntoView();
-    else window.scrollTo(0, 0);
+    if (!hash) { window.scrollTo(0, 0); return undefined; }
+    const id = decodeURIComponent(hash.slice(1));
+    let stopped = false;
+    const stop = () => { stopped = true; };
+    const timers = [0, 120, 400, 900, 1600].map((ms) => setTimeout(() => {
+      const target = !stopped && document.getElementById(id);
+      if (target) target.scrollIntoView();
+    }, ms));
+    window.addEventListener('wheel', stop, { passive: true, once: true });
+    window.addEventListener('touchstart', stop, { passive: true, once: true });
+    window.addEventListener('keydown', stop, { once: true });
+    return () => {
+      timers.forEach(clearTimeout);
+      window.removeEventListener('wheel', stop);
+      window.removeEventListener('touchstart', stop);
+      window.removeEventListener('keydown', stop);
+    };
   }, [pathname, hash]);
 
   const onContact = pathname.startsWith('/contact');
