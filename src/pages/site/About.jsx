@@ -1,4 +1,7 @@
 import { Link } from 'react-router-dom';
+import CallButton from '../../components/CallButton.jsx';
+import { PlaceholderTag } from '../../components/Proof.jsx';
+import { COMPANY_FACTS, TEAM, live } from '../../content/proof.js';
 import { AboutOrbitArt } from '../../components/Graphics.jsx';
 import { IconTile } from '../../components/Icons.jsx';
 import Reveal from '../../components/Reveal.jsx';
@@ -22,8 +25,9 @@ export default function About() {
       <section className="page-hero has-art">
         <div className="wrap">
           <div>
-            <h1>About CAID</h1>
-            <p>A consulting and product development firm for organizations whose systems need to work together.</p>
+            <span className="eyebrow">About CAID</span>
+            <h1>An integration firm that put AI at the center</h1>
+            <p>CAID LLC is a consulting and product development firm in Atlanta for organizations whose systems need to work together.</p>
           </div>
           <div className="hero-art"><AboutOrbitArt /></div>
         </div>
@@ -72,6 +76,8 @@ export default function About() {
         </div>
       </section>
 
+      <LeadershipSection />
+
       <section className="cta-band">
         <div className="wrap">
           <h2>We are hiring engineers who like hard integration problems.</h2>
@@ -79,5 +85,47 @@ export default function About() {
         </div>
       </section>
     </>
+  );
+}
+
+function LeadershipSection() {
+  const team = live(TEAM);
+  const facts = COMPANY_FACTS.filter((f) => f.value || (f.placeholder && live([f]).length));
+  if (!team.length && !facts.length) return null;
+  return (
+    <section className="section">
+      <div className="wrap">
+        <Reveal className="section-head">
+          <div>
+            <h2>{team.length ? 'The people you will work with' : 'CAID at a glance'}</h2>
+            <p className="muted">Senior people lead every engagement, from the first call to handover.</p>
+          </div>
+          <CallButton className="btn btn-ghost" from="about-team">Talk to one of us</CallButton>
+        </Reveal>
+        {team.length > 0 && (
+          <div className="team-grid">
+            {team.map((p, i) => (
+              <Reveal as="article" key={i} className={`team-card${p.placeholder ? ' is-placeholder' : ''}`} delay={i * 100}>
+                {p.placeholder && <PlaceholderTag />}
+                <span className="team-avatar" aria-hidden="true">{p.initials}</span>
+                <h3>{p.name}</h3>
+                <span className="team-role">{p.role}</span>
+                <p>{p.bio}</p>
+              </Reveal>
+            ))}
+          </div>
+        )}
+        {facts.length > 0 && (
+          <dl className="company-facts">
+            {facts.map((f) => (
+              <div key={f.label}>
+                <dt>{f.label}</dt>
+                <dd>{f.value || <span className="placeholder-inline">To confirm</span>}</dd>
+              </div>
+            ))}
+          </dl>
+        )}
+      </div>
+    </section>
   );
 }

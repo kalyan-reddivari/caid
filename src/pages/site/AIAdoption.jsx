@@ -25,14 +25,19 @@ export default function AIAdoption() {
       <section className="page-hero has-art">
         <div className="wrap">
           <div>
+            <span className="eyebrow">AI adoption</span>
             <h1>AI adoption that reaches production</h1>
             <p>We connect AI to the systems and data your business already runs on, then measure whether it helps.</p>
+            <div className="hero-actions">
+              <Link className="btn btn-primary" to="/contact?interest=AI%20adoption#book" data-track="assessment:ai-hero">Ask about the readiness assessment</Link>
+              <a className="btn btn-ghost" href="#path">See the four stages</a>
+            </div>
           </div>
           <div className="hero-art"><NeuralArt /></div>
         </div>
       </section>
 
-      <section className="section section-ink">
+      <section className="section section-ink" id="path">
         <div className="wrap">
           <div className="section-head"><h2>Our adoption path</h2></div>
           <Reveal><AdoptionPathArt /></Reveal>
@@ -63,7 +68,7 @@ export default function AIAdoption() {
       <section className="cta-band">
         <div className="wrap">
           <h2>Ask about our six-week AI readiness assessment.</h2>
-          <Link className="btn" to="/contact?interest=AI%20adoption">Request an assessment</Link>
+          <Link className="btn" to="/contact?interest=AI%20adoption#book" data-track="assessment:ai-band">Request an assessment</Link>
         </div>
       </section>
     </>

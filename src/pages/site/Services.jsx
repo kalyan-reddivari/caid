@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom';
+import CallButton from '../../components/CallButton.jsx';
+import { CaseStudies } from '../../components/Proof.jsx';
 import { FlowBand, ServicesArt } from '../../components/Graphics.jsx';
 import { IconTile } from '../../components/Icons.jsx';
 import Reveal from '../../components/Reveal.jsx';
@@ -49,8 +51,13 @@ export default function Services() {
       <section className="page-hero has-art">
         <div className="wrap">
           <div>
-            <h1>Services</h1>
-            <p>Advice, engineering and ongoing support from one team that knows your systems.</p>
+            <span className="eyebrow">Services</span>
+            <h1>Custom software and systems integration, from one team</h1>
+            <p>Advice, engineering and ongoing support from people who know your systems, with AI built in where it helps.</p>
+            <div className="hero-actions">
+              <CallButton from="services-hero" />
+              <Link className="btn btn-ghost" to="/process#brief" data-track="brief:services-hero">Send a project brief</Link>
+            </div>
           </div>
           <div className="hero-art"><ServicesArt /></div>
         </div>
@@ -82,10 +89,12 @@ export default function Services() {
         </div>
       </section>
 
+      <CaseStudies heading="Results from recent projects" intro="Each one started with a free 30-minute call." />
+
       <section className="cta-band">
         <div className="wrap">
           <h2>Not sure which service fits? Start with a free 30-minute call.</h2>
-          <Link className="btn" to="/contact">Book a call</Link>
+          <CallButton className="btn" from="services-band">Book a free call</CallButton>
         </div>
       </section>
     </>

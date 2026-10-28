@@ -24,7 +24,7 @@ const TRACKS = [
   },
   {
     role: 'Business analysts', icon: 'doc',
-    modules: ['Running mob elaboration', 'Writing EARS acceptance criteria', 'Turning interviews into specs with AI', 'Spotting gaps and conflicts', 'Prioritising bolts with clients'],
+    modules: ['Running mob elaboration', 'Writing EARS acceptance criteria', 'Turning interviews into specs with AI', 'Spotting gaps and conflicts', 'Prioritizing build cycles with clients'],
   },
   {
     role: 'Cloud and DevOps', icon: 'cloud',
@@ -154,7 +154,7 @@ export default function Academy() {
           <Reveal className="section-head">
             <div>
               <h2>Inside a lab</h2>
-              <p className="muted">Trainees practise spec-driven development on sandbox projects, with a coach and an AI pair.</p>
+              <p className="muted">Trainees practice spec-driven development on sandbox projects, with a coach and an AI pair.</p>
             </div>
           </Reveal>
           <Reveal>

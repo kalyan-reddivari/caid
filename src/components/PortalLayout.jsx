@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import Wordmark from './Wordmark.jsx';
 import { useAuth } from '../context/AuthContext.jsx';
@@ -76,7 +76,7 @@ export default function PortalLayout() {
           </div>
         </div>
         <div className="portal-body">
-          <Outlet />
+          <Suspense fallback={<div className="portal-loading">Loading…</div>}><Outlet /></Suspense>
         </div>
       </div>
     </div>

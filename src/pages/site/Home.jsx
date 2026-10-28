@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom';
-import IntegrationDiagram from '../../components/IntegrationDiagram.jsx';
 import { LearnMiniArt, LoopMiniArt, SpecMiniArt, StackBoard } from '../../components/AIGraphics.jsx';
+import CallButton from '../../components/CallButton.jsx';
 import { IconTile } from '../../components/Icons.jsx';
 import MediaClip from '../../components/MediaClip.jsx';
+import { CaseStudies, ClientStrip, Testimonial } from '../../components/Proof.jsx';
 import Reveal from '../../components/Reveal.jsx';
+import StackMap from '../../components/StackMap.jsx';
 import MEDIA, { hasMedia } from '../../media.js';
 
 const SERVICES = [
@@ -18,12 +20,12 @@ const SERVICES = [
 const STEPS = [
   { title: 'Discover', text: 'We map your systems, data and goals in a live session, with AI drafting the notes and questions.' },
   { title: 'Specify', text: 'A written spec and architecture you approve, with a first release small enough to ship in weeks.' },
-  { title: 'Build', text: 'Our in-house team and AI agents deliver in short bolts you can review every few days.' },
+  { title: 'Build', text: 'Our in-house team and AI agents deliver in short build cycles you can review every few days.' },
   { title: 'Adopt', text: 'Training, measurement and support so the new tools actually get used.' },
 ];
 
 const AI_NATIVE = [
-  { Art: LoopMiniArt, title: 'AI-driven lifecycle', text: 'Inception, construction and operations with AI in every phase and people at every gate.', to: '/ai-engineering#aidlc', cta: 'Explore the AIDLC' },
+  { Art: LoopMiniArt, title: 'AI-driven lifecycle', text: 'Inception, construction and operations with AI in every phase and people at every gate.', to: '/ai-engineering#aidlc', cta: 'See the lifecycle' },
   { Art: SpecMiniArt, title: 'Spec-driven development', text: 'Requirements, design and tasks written first, so agents build exactly what you approved.', to: '/ai-engineering', cta: 'See how specs steer the work' },
   { Art: LearnMiniArt, title: 'A trained team', text: 'Everyone at CAID, from analysts to engineers, climbs our four-level AI Academy.', to: '/ai-academy', cta: 'Visit the AI Academy' },
 ];
@@ -31,27 +33,29 @@ const AI_NATIVE = [
 export default function Home() {
   return (
     <>
-      <section className="hero">
+      <section className="hero hero-map">
         <div className="wrap">
-          <div>
-            <ul className="acronym" aria-label="CAID stands for Custom Application and Integration Development">
-              <li><b>C</b>ustom</li>
-              <li className="is-ai"><b>A</b>pplication</li>
-              <li className="and">and</li>
-              <li className="is-ai"><b>I</b>ntegration</li>
-              <li><b>D</b>evelopment</li>
-            </ul>
-            <h1>Software that connects your business, with AI at the center.</h1>
+          <div className="hero-copy">
+            <p className="eyebrow">Custom Application and Integration Development</p>
+            <h1>Connect the systems you already run. Then put AI to work across them.</h1>
+          </div>
+          <div className="hero-side">
             <p className="lede">
-              CAID designs and builds custom applications, integrates the systems you already rely on,
-              and helps your teams put AI to work where it pays off.
+              CAID is an Atlanta software firm for companies whose ERP, CRM, HR and finance systems don't talk to
+              each other. One in-house team integrates them, builds the apps your people need, and adds AI where it pays off.
             </p>
             <div className="hero-actions">
-              <Link className="btn btn-primary" to="/contact">Book a discovery call</Link>
-              <Link className="btn btn-ghost" to="/services">See our services</Link>
+              <CallButton from="home-hero" />
+              <Link className="btn btn-ghost" to="/process" data-track="process:home-hero">See how a project runs</Link>
             </div>
+            <ul className="assurances">
+              <li>Free first call with a senior consultant</li>
+              <li>NDA on request</li>
+              <li>You own all code</li>
+            </ul>
           </div>
-          <IntegrationDiagram />
+          <StackMap />
+          <ClientStrip />
         </div>
       </section>
 
@@ -72,6 +76,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <CaseStudies />
 
       <section className="section">
         <div className="wrap">
@@ -134,6 +140,9 @@ export default function Home() {
       </section>
 
       <section className="section">
+        <div className="wrap">
+          <Testimonial />
+        </div>
         <div className="wrap split">
           <Reveal>
             <h2>Why <span className="ai-mark">{'{'}<b>Ai</b>{'}'}</span> sits in the middle of our name</h2>
@@ -144,7 +153,7 @@ export default function Home() {
             <Link className="btn btn-ink" to="/ai-adoption">Explore AI adoption</Link>
           </Reveal>
           <Reveal as="dl" className="facts" delay={120}>
-            <div><dt>Weeks</dt><dd>to a first production release, not quarters</dd></div>
+            <div><dt>Weeks</dt><dd>to a first production release, not quarters. <Link to="/process">See a typical 12-week plan</Link></dd></div>
             <div><dt>One team</dt><dd>for strategy, engineering and support</dd></div>
             <div><dt>Your IP</dt><dd>code and models you own outright</dd></div>
             <div><dt>Measured</dt><dd>every AI feature ships with evaluation and monitoring</dd></div>
@@ -155,7 +164,10 @@ export default function Home() {
       <section className="cta-band">
         <div className="wrap">
           <h2>Have systems that should talk to each other? Tell us about them.</h2>
-          <Link className="btn" to="/contact">Start a conversation</Link>
+          <div className="cta-actions">
+            <CallButton className="btn" from="home-band" />
+            <Link className="btn btn-outline-light" to="/process#brief" data-track="brief:home-band">Send a project brief</Link>
+          </div>
         </div>
       </section>
     </>

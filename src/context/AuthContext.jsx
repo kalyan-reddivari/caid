@@ -3,7 +3,10 @@ import api, { ACCESS_KEY, TOKEN_KEY, USER_KEY } from '../api/client.js';
 
 const AuthContext = createContext(null);
 
+const hasStorage = () => typeof window !== 'undefined' && !!window.localStorage;
+
 function readStored(key) {
+  if (!hasStorage()) return null;
   try {
     return JSON.parse(localStorage.getItem(key)) || null;
   } catch {
@@ -20,7 +23,8 @@ const NO_ACCESS = { permissions: [], assignableRoles: [] };
  * every request against the user's role, so hiding a button here never grants or removes real access.
  */
 export function AuthProvider({ children }) {
-  const signedIn = !!localStorage.getItem(TOKEN_KEY);
+  // No storage while the public pages are prerendered at build time, so nobody is signed in there.
+  const signedIn = hasStorage() && !!localStorage.getItem(TOKEN_KEY);
   const [user, setUser] = useState(() => (signedIn ? readStored(USER_KEY) : null));
   // { permissions: string[], assignableRoles: string[] } or null while it has not been loaded yet.
   const [access, setAccess] = useState(() => (signedIn ? readStored(ACCESS_KEY) : null));

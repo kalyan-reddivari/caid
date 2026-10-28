@@ -43,7 +43,7 @@ const PRODUCTS = [
       { icon: 'flask', title: 'Agent evaluations', text: 'Datasets, assertions and human review to check agents before and after they ship.' },
       { icon: 'app', title: 'Golden paths', text: 'Software templates and service scorecards in a developer portal, so new services start right.' },
       { icon: 'trend', title: 'Observatory', text: 'Monitoring coverage, SLOs and error budgets across every service.' },
-      { icon: 'cloud', title: 'FinOps, including AI', text: 'Cost allocation and optimisation tracking, with AI spend counted alongside cloud spend.' },
+      { icon: 'cloud', title: 'FinOps, including AI', text: 'Cost allocation and optimization tracking, with AI spend counted alongside cloud spend.' },
     ],
     integrations: ['Terraform', 'Kubernetes', 'GitHub', 'GitLab', 'OpenTelemetry', 'MCP'],
     note: 'In beta. Features and availability may change.',
@@ -61,7 +61,7 @@ export default function Products() {
             <span className="eyebrow">Products</span>
             <h1>Software we build and run ourselves</h1>
             <p>
-              Two products from the CAID team for organisations putting AI agents to work: one keeps proof
+              Two products from the CAID team for organizations putting AI agents to work: one keeps proof
               of every action an agent takes, the other gives platform teams agents that work within guardrails.
             </p>
             <div className="hero-actions">
@@ -110,12 +110,12 @@ export default function Products() {
               )}
 
               <Reveal className="showcase-actions">
-                <a className="btn btn-primary" href={p.url} target="_blank" rel="noopener noreferrer">
+                <a className="btn btn-primary" href={p.url} target="_blank" rel="noopener noreferrer" data-track={`product-site:${p.id}`}>
                   {p.cta} <span aria-hidden="true">↗</span><span className="sr-only">(opens {p.url.replace('https://', '')} in a new tab)</span>
                 </a>
-                <a className="btn btn-ghost" href={p.url} target="_blank" rel="noopener noreferrer">
-                  Visit {p.url.replace('https://', '')}
-                </a>
+                <Link className="btn btn-ghost" to={`/contact?interest=Products#book`} data-track={`product-talk:${p.id}`}>
+                  Talk to us about {p.name}
+                </Link>
                 <span className="small muted">{p.note}</span>
               </Reveal>
             </div>
