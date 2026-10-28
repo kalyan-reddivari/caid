@@ -6,6 +6,7 @@ import MediaClip from '../../components/MediaClip.jsx';
 import { CaseStudies, ClientStrip, Testimonial } from '../../components/Proof.jsx';
 import Reveal from '../../components/Reveal.jsx';
 import StackMap from '../../components/StackMap.jsx';
+import NetworkGlobe from '../../components/fx/NetworkGlobe.jsx';
 import MEDIA, { hasMedia } from '../../media.js';
 
 const SERVICES = [
@@ -37,16 +38,14 @@ export default function Home() {
         <div className="wrap">
           <div className="hero-copy">
             <p className="eyebrow">Custom Application and Integration Development</p>
-            <h1>Connect the systems you already run. Then put AI to work across them.</h1>
-          </div>
-          <div className="hero-side">
+            <h1>Connect the systems you already run. Then <span className="hl">put AI to work</span> across them.</h1>
             <p className="lede">
               CAID is an Atlanta software firm for companies whose ERP, CRM, HR and finance systems don't talk to
               each other. One in-house team integrates them, builds the apps your people need, and adds AI where it pays off.
             </p>
             <div className="hero-actions">
               <CallButton from="home-hero" />
-              <Link className="btn btn-ghost" to="/process" data-track="process:home-hero">See how a project runs</Link>
+              <a className="btn btn-ghost" href="#map" data-track="map:home-hero">Map your stack ↓</a>
             </div>
             <ul className="assurances">
               <li>Free first call with a senior consultant</li>
@@ -54,7 +53,8 @@ export default function Home() {
               <li>You own all code</li>
             </ul>
           </div>
-          <StackMap />
+          <div className="hero-globe"><NetworkGlobe /></div>
+          <div className="hero-map-slot" id="map"><StackMap /></div>
           <ClientStrip />
         </div>
       </section>

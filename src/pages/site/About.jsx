@@ -5,6 +5,7 @@ import { COMPANY_FACTS, TEAM, live } from '../../content/proof.js';
 import { AboutOrbitArt } from '../../components/Graphics.jsx';
 import { IconTile } from '../../components/Icons.jsx';
 import Reveal from '../../components/Reveal.jsx';
+import DotTerrain from '../../components/fx/DotTerrain.jsx';
 
 const VALUES = [
   { icon: 'send', title: 'Ship early', text: 'A small release in real hands teaches more than a long plan.' },
@@ -23,6 +24,7 @@ export default function About() {
   return (
     <>
       <section className="page-hero has-art">
+        <DotTerrain />
         <div className="wrap">
           <div>
             <span className="eyebrow">About CAID</span>

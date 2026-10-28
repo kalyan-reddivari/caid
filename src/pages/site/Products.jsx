@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { IconTile } from '../../components/Icons.jsx';
 import { OrbitwardArt, ProductsHeroArt, UnderwritArt } from '../../components/ProductGraphics.jsx';
 import Reveal from '../../components/Reveal.jsx';
+import DotTerrain from '../../components/fx/DotTerrain.jsx';
 
 const PRODUCTS = [
   {
@@ -56,6 +57,7 @@ export default function Products() {
   return (
     <>
       <section className="page-hero has-art">
+        <DotTerrain />
         <div className="wrap">
           <div>
             <span className="eyebrow">Products</span>

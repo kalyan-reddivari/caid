@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App.jsx';
 import { AuthProvider } from './context/AuthContext.jsx';
 import { preloadAll } from '@site-pages';
+import { installMotion } from './utils/motion.js';
 import { installClickTracking } from './utils/track.js';
 import './styles.css';
 
@@ -29,4 +30,5 @@ if (root.dataset.prerendered === path) {
 }
 
 installClickTracking();
+installMotion();
 preloadAll();

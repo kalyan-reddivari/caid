@@ -5,6 +5,7 @@ import CallButton from '../../components/CallButton.jsx';
 import NextSteps from '../../components/NextSteps.jsx';
 import SITE, { hasBooking } from '../../site.config.js';
 import { track, trackStart } from '../../utils/track.js';
+import DotTerrain from '../../components/fx/DotTerrain.jsx';
 
 const INTERESTS = ['Discovery call', 'Custom applications', 'Systems integration', 'New project brief', 'AI-native delivery', 'AI adoption', 'Product development', 'Products', 'Something else'];
 const EMPTY = { name: '', email: '', company: '', interest: INTERESTS[0], message: '' };
@@ -39,6 +40,7 @@ export default function Contact() {
   return (
     <>
       <section className="page-hero contact-hero">
+        <DotTerrain />
         <div className="wrap">
           <span className="eyebrow">Contact</span>
           <h1>Talk to a senior consultant</h1>

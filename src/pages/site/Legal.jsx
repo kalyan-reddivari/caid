@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import SITE from '../../site.config.js';
+import DotTerrain from '../../components/fx/DotTerrain.jsx';
 
 // Plain-language privacy policy and website terms. Have them reviewed by counsel before launch (see CONTENT-TODO.md).
 const UPDATED = '28 October 2026';
@@ -8,6 +9,7 @@ function LegalPage({ title, intro, children }) {
   return (
     <>
       <section className="page-hero">
+        <DotTerrain />
         <div className="wrap">
           <span className="eyebrow">Legal</span>
           <h1>{title}</h1>

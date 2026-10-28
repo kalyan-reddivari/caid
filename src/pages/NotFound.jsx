@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom';
+import DotTerrain from '../components/fx/DotTerrain.jsx';
 
 export default function NotFound() {
   return (
     <section className="page-hero" style={{ borderBottom: 0, minHeight: '50vh' }}>
+        <DotTerrain />
       <div className="wrap">
         <h1>Page not found</h1>
         <p>The address may be mistyped, or the page has moved. These are the pages most people look for:</p>

@@ -8,6 +8,7 @@ import { track, trackStart } from '../../utils/track.js';
 import { IconTile } from '../../components/Icons.jsx';
 import { JourneyArt, PlanGantt } from '../../components/ProcessGraphics.jsx';
 import Reveal from '../../components/Reveal.jsx';
+import DotTerrain from '../../components/fx/DotTerrain.jsx';
 
 const STAGES = [
   {
@@ -252,6 +253,7 @@ export default function Process() {
   return (
     <>
       <section className="page-hero has-art">
+        <DotTerrain />
         <div className="wrap">
           <div>
             <span className="eyebrow">Our process</span>

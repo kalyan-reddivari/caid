@@ -7,6 +7,7 @@ import { LearnMiniArt } from '../../components/AIGraphics.jsx';
 import SITE from '../../site.config.js';
 import { track } from '../../utils/track.js';
 import { date, label } from '../../utils/format.js';
+import DotTerrain from '../../components/fx/DotTerrain.jsx';
 
 const EMPTY = { fullName: '', email: '', phone: '', profileUrl: '', coverLetter: '' };
 
@@ -54,6 +55,7 @@ export default function Careers() {
   return (
     <>
       <section className="page-hero has-art">
+        <DotTerrain />
         <div className="wrap">
           <div>
             <h1>Careers at CAID</h1>

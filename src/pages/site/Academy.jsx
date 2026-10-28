@@ -5,6 +5,7 @@ import { IconTile } from '../../components/Icons.jsx';
 import MediaClip from '../../components/MediaClip.jsx';
 import Reveal from '../../components/Reveal.jsx';
 import MEDIA from '../../media.js';
+import DotTerrain from '../../components/fx/DotTerrain.jsx';
 
 const LEVEL_INFO = [
   { who: 'Everyone, first 30 days', text: 'How AI models work, where they fail, and our responsible-use policy. Safe prompting with approved tools.', proof: 'Policy quiz + 3 guided labs' },
@@ -63,6 +64,7 @@ export default function Academy() {
   return (
     <>
       <section className="page-hero has-art">
+        <DotTerrain />
         <div className="wrap">
           <div>
             <span className="eyebrow">CAID AI Academy</span>

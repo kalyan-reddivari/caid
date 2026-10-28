@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { AdoptionPathArt, NeuralArt } from '../../components/Graphics.jsx';
 import { IconTile } from '../../components/Icons.jsx';
 import Reveal from '../../components/Reveal.jsx';
+import DotTerrain from '../../components/fx/DotTerrain.jsx';
 
 const STAGES = [
   { title: 'Assess', text: 'Review data quality, systems and processes, then rank use cases by value and risk.' },
@@ -23,6 +24,7 @@ export default function AIAdoption() {
   return (
     <>
       <section className="page-hero has-art">
+        <DotTerrain />
         <div className="wrap">
           <div>
             <span className="eyebrow">AI adoption</span>

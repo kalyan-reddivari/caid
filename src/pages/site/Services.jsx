@@ -4,6 +4,7 @@ import { CaseStudies } from '../../components/Proof.jsx';
 import { FlowBand, ServicesArt } from '../../components/Graphics.jsx';
 import { IconTile } from '../../components/Icons.jsx';
 import Reveal from '../../components/Reveal.jsx';
+import DotTerrain from '../../components/fx/DotTerrain.jsx';
 
 const SERVICES = [
   {
@@ -49,6 +50,7 @@ export default function Services() {
   return (
     <>
       <section className="page-hero has-art">
+        <DotTerrain />
         <div className="wrap">
           <div>
             <span className="eyebrow">Services</span>
