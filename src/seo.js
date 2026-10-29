@@ -33,7 +33,7 @@ export const ROUTE_META = {
   },
   '/products': {
     title: 'Underwrit and Orbitward: products built by CAID',
-    description: 'Underwrit keeps signed proof of every action an AI agent takes. Orbitward gives platform teams agents that work inside guardrails.',
+    description: 'Underwrit keeps signed proof of every action an AI agent takes. Orbitward gives platform teams agents that work inside guardrails. Five more products are in design.',
   },
   '/about': {
     title: 'About CAID, a systems integration and software firm in Atlanta',

@@ -53,6 +53,57 @@ const PRODUCTS = [
   },
 ];
 
+// Products we are designing next. Each one turns work we already do for clients into software.
+const PIPELINE = [
+  {
+    id: 'bridgehead',
+    name: 'Bridgehead',
+    icon: 'link',
+    category: 'GenAI integration',
+    problem: 'Every team wiring an assistant to SAP, Salesforce or Workday rebuilds the same connector, and most of them run with a service account that can see everything.',
+    text: 'A governed MCP gateway for systems of record. Ready-made tools for SAP, Salesforce, Workday and ServiceNow that act as the signed-in user, with field-level scoping, rate limits and a write path that hands risky actions to Underwrit.',
+    buyers: ['Enterprise architects', 'Integration teams', 'AI platform teams'],
+  },
+  {
+    id: 'groundline',
+    name: 'Groundline',
+    icon: 'layers',
+    tone: 'amber',
+    category: 'Retrieval and RAG',
+    problem: 'Assistants answer from stale copies of documents and records, and the copies ignore who was allowed to read the originals.',
+    text: 'Retrieval indexes kept in step with the source systems through change data capture, carrying each record\'s access rules into every answer. Built-in evaluation sets show when answer quality drops after a source changes.',
+    buyers: ['Teams building assistants', 'Data engineering', 'Security'],
+  },
+  {
+    id: 'driftwatch',
+    name: 'Driftwatch',
+    icon: 'check',
+    category: 'Integration DevOps',
+    problem: 'Salesforce ships three releases a year and Workday two. Schema and API changes break integrations in production, usually on a Monday.',
+    text: 'Contract tests generated from the integrations you already run, checked against vendor sandboxes and preview releases in CI. A failing contract opens a pull request with the change and the flows it touches.',
+    buyers: ['Integration teams', 'Platform engineering', 'Release managers'],
+  },
+  {
+    id: 'pagewise',
+    name: 'Pagewise',
+    icon: 'trend',
+    tone: 'amber',
+    category: 'SRE',
+    problem: 'Incidents in ERP-heavy estates cross failed IDocs, MuleSoft flows, Kafka lag and cloud alerts, and no single tool sees all of them.',
+    text: 'An incident agent that joins OpenTelemetry signals, recent deploys and integration job failures into one timeline, drafts the first response and the postmortem, and runs remediation steps only through approved runbooks.',
+    buyers: ['SRE and operations', 'Integration support', 'IT service management'],
+  },
+  {
+    id: 'modelyard',
+    name: 'Modelyard',
+    icon: 'flask',
+    category: 'MLOps',
+    problem: 'Forecasting, churn and anomaly models built on ERP and CRM data stall in notebooks, because nobody owns training, monitoring and write-back.',
+    text: 'A packaged MLOps path for business data: features drawn from the systems of record, a model registry, drift and accuracy monitoring, and predictions written back to SAP or Salesforce where planners already work.',
+    buyers: ['Finance and supply chain analytics', 'Data science', 'ML platform teams'],
+  },
+];
+
 export default function Products() {
   return (
     <>
@@ -65,11 +116,13 @@ export default function Products() {
             <p>
               Two products from the CAID team for organizations putting AI agents to work: one keeps proof
               of every action an agent takes, the other gives platform teams agents that work within guardrails.
+              Five more are in design.
             </p>
             <div className="hero-actions">
               {PRODUCTS.map((p, i) => (
                 <a key={p.id} className={`btn ${i ? 'btn-ghost' : 'btn-primary'}`} href={`#${p.id}`}>{p.name}</a>
               ))}
+              <a className="btn btn-ghost" href="#next">What's next</a>
             </div>
           </div>
           <div className="hero-art art-dark"><ProductsHeroArt /></div>
@@ -128,6 +181,34 @@ export default function Products() {
           </div>
         </section>
       ))}
+
+      <section id="next" className="section section-alt">
+        <div className="wrap">
+          <Reveal className="section-head">
+            <div>
+              <h2>What we are building next</h2>
+              <p className="muted">Ideas from the integration, platform and AI work we do for clients. None is for sale yet; design partners shape what ships first.</p>
+            </div>
+          </Reveal>
+          <div className="pipeline-cards">
+            {PIPELINE.map((p, i) => (
+              <Reveal as="article" key={p.id} id={p.id} className="feature-card pipeline-card" delay={(i % 3) * 120}>
+                <div className="pipeline-head">
+                  <IconTile name={p.icon} tone={p.tone || 'teal'} />
+                  <div>
+                    <h3>{p.name}</h3>
+                    <span className="pill info">{p.category}</span>
+                  </div>
+                </div>
+                <p className="pipeline-problem">{p.problem}</p>
+                <p>{p.text}</p>
+                <div className="chips">{p.buyers.map((b) => <span className="chip" key={b}>{b}</span>)}</div>
+                <Link to="/contact?interest=Products#book" data-track={`product-partner:${p.id}`}>Become a design partner →</Link>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <section className="cta-band">
         <div className="wrap">
