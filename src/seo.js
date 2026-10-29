@@ -32,8 +32,12 @@ export const ROUTE_META = {
     description: 'A four-level path with labs, mentors and paid certification time that every analyst, engineer and lead at CAID completes.',
   },
   '/products': {
-    title: 'Underwrit and Orbitward: products built by CAID',
-    description: 'Underwrit keeps signed proof of every action an AI agent takes. Orbitward gives platform teams agents that work inside guardrails. Five more products are in design.',
+    title: 'Products by CAID: Underwrit, Orbitward, Agentcraft Studio, Dryva and more',
+    description: 'Underwrit approves and proves AI agent actions, Orbitward runs platform engineering with agents, Agentcraft Studio designs agent workflows for free, Dryva rehearses them against failures, and five more are in development.',
+  },
+  '/platform': {
+    title: 'How the CAID stack works: agents on systems of record, with proof | CAID',
+    description: 'See one request travel through the CAID stack: designed in Agentcraft Studio, rehearsed in Dryva, run through Bridgehead as the signed-in person, approved in Underwrit and recorded in a signed receipt.',
   },
   '/about': {
     title: 'About CAID, a systems integration and software firm in Atlanta',

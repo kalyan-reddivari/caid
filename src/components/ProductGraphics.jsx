@@ -198,3 +198,90 @@ export function ProductsHeroArt() {
     </svg>
   );
 }
+
+/* -------------------------------------------------------------------------
+   Agentcraft Studio: a workflow drawn as connected steps on a canvas,
+   with a human review step and a run that flows through it
+   ------------------------------------------------------------------------- */
+const STUDIO_NODES = [
+  { x: 60, y: 90, label: 'Intake', kind: 'Template' },
+  { x: 210, y: 60, label: 'Look up order', kind: 'Tool' },
+  { x: 210, y: 170, label: 'Policy docs', kind: 'Knowledge' },
+  { x: 360, y: 115, label: 'Draft refund', kind: 'Agent' },
+  { x: 360, y: 250, label: 'Human review', kind: 'Approval', amber: true },
+  { x: 210, y: 300, label: 'Issue refund', kind: 'MCP action' },
+];
+
+export function AgentcraftArt() {
+  const W = 120;
+  const H = 46;
+  const mid = (n, side) => ({ x: side === 'r' ? n.x + W : n.x, y: n.y + H / 2 });
+  const link = (a, b) => {
+    const p = mid(STUDIO_NODES[a], 'r');
+    const q = mid(STUDIO_NODES[b], 'l');
+    const back = q.x < p.x;
+    return back
+      ? `M${STUDIO_NODES[a].x + W / 2} ${STUDIO_NODES[a].y + H} C ${STUDIO_NODES[a].x + W / 2} ${STUDIO_NODES[a].y + 90}, ${STUDIO_NODES[b].x + W + 60} ${q.y}, ${STUDIO_NODES[b].x + W} ${q.y}`
+      : `M${p.x} ${p.y} C ${p.x + 30} ${p.y}, ${q.x - 30} ${q.y}, ${q.x} ${q.y}`;
+  };
+  const LINKS = [[0, 1], [0, 2], [1, 3], [2, 3], [3, 4], [4, 5]];
+  return (
+    <svg className="art" viewBox="0 0 520 380" role="img"
+      aria-label="Agentcraft Studio: a refund workflow drawn on a canvas, from intake to an order lookup and policy documents, an agent drafting the refund, a human review, and an MCP action that issues it">
+      <rect x="20" y="20" width="480" height="340" rx="14" fill="none" stroke="var(--line)" strokeDasharray="3 7" />
+      {Array.from({ length: 8 }).map((_, i) => Array.from({ length: 6 }).map((__, j) => (
+        <circle key={`${i}-${j}`} cx={40 + i * 62} cy={40 + j * 60} r="1.4" fill="var(--line)" />
+      )))}
+      {LINKS.map(([a, b], k) => <Wire key={k} d={link(a, b)} speed={2.6} delay={k * 0.35} tone={b === 4 ? 'amber' : 'teal'} />)}
+      {STUDIO_NODES.map((n, i) => (
+        <g key={n.label} className="anim-float" style={{ '--d': `${i * 0.4}s`, '--dur': '6s' }}>
+          <rect x={n.x} y={n.y} width={W} height={H} rx="9" fill={n.amber ? 'var(--amber)' : SOLID} />
+          <text x={n.x + 10} y={n.y + 19} fontSize="12.5" fontWeight="700" fill={n.amber ? 'var(--ink)' : '#fff'} style={FONT}>{n.label}</text>
+          <text x={n.x + 10} y={n.y + 35} fontSize="10" fill={n.amber ? 'var(--ink)' : '#9fe3da'} style={MONO}>{n.kind}</text>
+        </g>
+      ))}
+      <g className="blink" style={{ '--d': '1s' }}>
+        <rect x="390" y="320" width="100" height="24" rx="12" fill="var(--teal)" />
+        <text x="440" y="336" textAnchor="middle" fontSize="11" fontWeight="700" fill="#fff" style={FONT}>Free · open source</text>
+      </g>
+    </svg>
+  );
+}
+
+/* -------------------------------------------------------------------------
+   Dryva: the same workflow rehearsed under eight kinds of failure,
+   the naive version fails most of them, the fixed version passes all
+   ------------------------------------------------------------------------- */
+const FAULTS = ['Healthy', 'Commit then timeout', 'Duplicate delivery', 'Transient outage', 'Permission denied',
+  'Worker restart', 'Timeout and duplicate', 'Reordered plan'];
+
+export function DryvaArt() {
+  // Dryva's built-in cancellation example: the first version passes 4 of 24 cases, the fixed one 24 of 24.
+  const naive = [true, false, false, false, false, false, false, false];
+  return (
+    <svg className="art" viewBox="0 0 520 400" role="img"
+      aria-label="Dryva rehearses a cancellation workflow under eight kinds of failure across three seeds. The first version passes 4 of 24 cases, failing under every kind of fault; the idempotent fixed version passes 24 of 24.">
+      <text x="40" y="44" fontSize="13" fontWeight="700" fill={FG} style={DISPLAY}>Rehearsal: cancel and refund</text>
+      <text x="300" y="70" textAnchor="middle" fontSize="11" fill={FG} style={FONT}>First version</text>
+      <text x="430" y="70" textAnchor="middle" fontSize="11" fill={FG} style={FONT}>Fixed version</text>
+      {FAULTS.map((f, i) => {
+        const y = 92 + i * 36;
+        return (
+          <g key={f}>
+            <text x="40" y={y + 5} fontSize="12" fill={FG} style={FONT}>{f}</text>
+            <g className="anim-pop svg-box" style={{ '--d': `${i * 0.35}s` }}>
+              <rect x="262" y={y - 12} width="76" height="24" rx="12" fill={naive[i] ? 'var(--teal)' : 'var(--danger)'} />
+              <text x="300" y={y + 4} textAnchor="middle" fontSize="11" fontWeight="700" fill="#fff" style={FONT}>{naive[i] ? 'correct' : 'fails'}</text>
+            </g>
+            <g className="anim-pop svg-box" style={{ '--d': `${2.8 + i * 0.35}s` }}>
+              <rect x="392" y={y - 12} width="76" height="24" rx="12" fill="var(--teal)" />
+              <text x="430" y={y + 4} textAnchor="middle" fontSize="11" fontWeight="700" fill="#fff" style={FONT}>correct</text>
+            </g>
+          </g>
+        );
+      })}
+      <text x="300" y="388" textAnchor="middle" fontSize="12" fontWeight="700" fill="var(--danger)" style={FONT}>4 of 24 cases</text>
+      <text x="430" y="388" textAnchor="middle" fontSize="12" fontWeight="700" fill="var(--teal)" style={FONT}>24 of 24 cases</text>
+    </svg>
+  );
+}

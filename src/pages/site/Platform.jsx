@@ -1,0 +1,189 @@
+import { Link } from 'react-router-dom';
+import Reveal from '../../components/Reveal.jsx';
+import StackFlow, { LifecycleLoop } from '../../components/StackFlow.jsx';
+import DotTerrain from '../../components/fx/DotTerrain.jsx';
+
+const LAYERS = [
+  {
+    kicker: 'Design and rehearse',
+    name: 'Agentcraft Studio and Dryva',
+    text: 'Build agent workflows visually, then prove they leave the business in a correct state before they ship.',
+    points: ['Visual workflow designer on LangGraph, free and open source', 'Fault rehearsals: timeouts, duplicates, outages, denied permissions', 'Release passports that pin the version that passed'],
+  },
+  {
+    kicker: 'Act',
+    name: 'Bridgehead on CAID Core',
+    text: 'Governed MCP tools for Salesforce, ServiceNow, Workday and SAP that act as the signed-in person.',
+    points: ['Token exchange per person and system, no shared account', 'Risk tiers set by the values in each call', 'Vendor MCP servers wrapped under the same policy'],
+  },
+  {
+    kicker: 'Approve and prove',
+    name: 'Underwrit and signed receipts',
+    text: 'Risky actions wait for a person who sees exactly what changes, and every write leaves proof anyone can check.',
+    points: ['The record before and after, the blast radius, the user\'s request', 'Approvals bound to the exact values, used once', 'Receipts signed with the customer\'s own key'],
+  },
+  {
+    kicker: 'Alongside every call',
+    name: 'Groundline, Driftwatch, Pagewise, Modelyard',
+    text: 'The rest of the life of an integration: what agents may know, what vendors change, what breaks, what to predict.',
+    points: ['Answers filtered by what every reader may see', 'Contract tests against vendor preview releases', 'Incident evidence and approved runbooks', 'Predictions written back with approval'],
+  },
+];
+
+const PROOF = [
+  { title: 'Acts as the person', text: 'Every call uses the signed-in person\'s own access in the source system. Their sharing rules and field security still apply.' },
+  { title: 'Approves the values, not the tool', text: 'An approval covers one call with exact values. A changed value, another user or a second use is refused.' },
+  { title: 'Checks against the request', text: 'What the user asked for is recorded before the agent reads anything, so text planted in a record cannot widen the task.' },
+  { title: 'Blocks changed tools', text: 'Tool definitions are pinned. A changed description, a common way to mislead agents, waits for an admin to approve it.' },
+  { title: 'Signs every write', text: 'A receipt links the request, the values, the policy and the approver, signed so auditors can verify it without trusting us.' },
+  { title: 'Tested against attacks', text: 'A red-team suite of 19 attack types runs on every change, from tool poisoning to replayed approvals. All 19 are blocked today.' },
+];
+
+// Months from November 2026 (index 0) to April 2028 (17). From the product build plan.
+const MONTHS = ['Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr'];
+const ROADMAP = [
+  { name: 'CAID Core', note: 'shared platform', start: 0, end: 5, marks: [[5, 'foundation']] },
+  { name: 'Bridgehead', note: 'MCP connectors', start: 0, end: 8, marks: [[3, 'alpha'], [5, 'beta'], [8, 'GA']] },
+  { name: 'Groundline', note: 'permission-aware RAG', start: 3, end: 11, marks: [[6, 'alpha'], [8, 'beta'], [11, 'GA']] },
+  { name: 'Driftwatch', note: 'release contract tests', start: 4, end: 12, marks: [[7, 'alpha'], [9, 'beta'], [12, 'GA']] },
+  { name: 'Pagewise', note: 'incident agent', start: 7, end: 16, marks: [[10, 'alpha'], [13, 'beta'], [16, 'GA']] },
+  { name: 'Modelyard', note: 'ERP and CRM MLOps', start: 8, end: 17, marks: [[11, 'alpha'], [14, 'beta'], [17, 'GA']] },
+];
+
+function Roadmap() {
+  return (
+    <Reveal className="roadmap">
+      <div className="roadmap-grid" role="table" aria-label="Product roadmap, November 2026 to April 2028">
+        <div role="columnheader" />
+        {MONTHS.map((m, i) => (
+          <div key={i} className="roadmap-month" role="columnheader">{m}{i === 0 || m === 'Jan' ? <><br />{i < 2 ? '2026' : i < 14 ? '2027' : '2028'}</> : null}</div>
+        ))}
+        {ROADMAP.map((r, k) => (
+          <div key={r.name} role="row" style={{ display: 'contents' }}>
+            <div className="roadmap-name" role="rowheader" style={{ gridRow: k + 2, gridColumn: 1 }}>{r.name}<small>{r.note}</small></div>
+            <div style={{ gridRow: k + 2, gridColumn: `${r.start + 2} / ${r.end + 3}` }} role="cell">
+              <div className="roadmap-bar" style={{ '--d': `${k * 0.12}s` }}>
+                {r.marks.map(([m, label]) => {
+                  const pct = ((m - r.start + 0.5) / (r.end - r.start + 1)) * 100;
+                  return <span key={label} className={`roadmap-dot${label === 'GA' ? ' ga' : ''}`} style={{ left: `${pct}%` }}><span>{label}</span></span>;
+                })}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div className="roadmap-legend">
+        <span>Available now: Underwrit (public beta), Orbitward (beta), Agentcraft Studio (alpha, free), Dryva (release candidate).</span>
+        <span>Dates are targets, shaped by design partners. GA means generally available.</span>
+      </div>
+    </Reveal>
+  );
+}
+
+export default function Platform() {
+  return (
+    <>
+      <section className="page-hero">
+        <DotTerrain />
+        <div className="wrap">
+          <div>
+            <span className="eyebrow">How the stack works</span>
+            <h1>Let agents act on your systems of record, and prove every action was meant</h1>
+            <p>
+              The CAID stack takes an agent workflow from design to production: designed in Agentcraft Studio, rehearsed
+              in Dryva, run through Bridgehead as the signed-in person, approved in Underwrit when it matters, and
+              recorded in a receipt anyone can check. Pick a walkthrough below to see one request travel through it.
+            </p>
+            <div className="hero-actions">
+              <a className="btn btn-primary" href="#walkthrough">See a request travel</a>
+              <Link className="btn btn-ghost" to="/products">All products</Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="walkthrough" className="section">
+        <div className="wrap">
+          <Reveal className="section-head">
+            <div>
+              <h2>One request, step by step</h2>
+              <p className="muted">Each walkthrough lights up the path through the stack. Pause it, or pick a step to read it at your own pace.</p>
+            </div>
+          </Reveal>
+          <StackFlow />
+        </div>
+      </section>
+
+      <section className="section section-alt">
+        <div className="wrap">
+          <Reveal className="section-head">
+            <div>
+              <h2>Four layers, one path</h2>
+              <p className="muted">Products never call a customer system directly. Everything goes through the same identity, policy, approval and audit.</p>
+            </div>
+          </Reveal>
+          <div className="layer-grid">
+            {LAYERS.map((l, i) => (
+              <Reveal as="article" key={l.name} className="layer-card" delay={(i % 4) * 90}>
+                <span className="layer-kicker">{l.kicker}</span>
+                <h3>{l.name}</h3>
+                <p className="muted">{l.text}</p>
+                <ul>{l.points.map((p) => <li key={p}>{p}</li>)}</ul>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="wrap">
+          <Reveal className="section-head">
+            <div>
+              <h2>The life of a workflow</h2>
+              <p className="muted">Each product covers one stage, and the loop starts again with every change.</p>
+            </div>
+          </Reveal>
+          <Reveal><LifecycleLoop /></Reveal>
+        </div>
+      </section>
+
+      <section className="section section-ink">
+        <div className="wrap">
+          <Reveal className="section-head">
+            <div>
+              <h2>What a security team can check for itself</h2>
+              <p className="muted">Gateways and connectors are now common. What sets this stack apart is proof that each action was intended, approved and allowed.</p>
+            </div>
+          </Reveal>
+          <div className="proof-list">
+            {PROOF.map((p, i) => (
+              <Reveal key={p.title} delay={(i % 3) * 90}>
+                <h3>{p.title}</h3>
+                <p>{p.text}</p>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="roadmap" className="section">
+        <div className="wrap">
+          <Reveal className="section-head">
+            <div>
+              <h2>Roadmap</h2>
+              <p className="muted">The shared platform comes first; each product then reuses what the one before it built.</p>
+            </div>
+          </Reveal>
+          <Roadmap />
+        </div>
+      </section>
+
+      <section className="cta-band">
+        <div className="wrap">
+          <h2>Running agents on Salesforce, ServiceNow, Workday or SAP? Help shape what ships first.</h2>
+          <Link className="btn" to="/contact?interest=Products#book" data-track="platform:design-partner">Become a design partner</Link>
+        </div>
+      </section>
+    </>
+  );
+}

@@ -4,7 +4,7 @@ import SiteLayout from './components/SiteLayout.jsx';
 import ProtectedRoute from './components/ProtectedRoute.jsx';
 
 import {
-  About, Academy, AIAdoption, AIEngineering, Careers, Contact, Home, Privacy, Process, Products, Services, Terms,
+  About, Academy, AIAdoption, AIEngineering, Careers, Contact, Home, Platform, Privacy, Process, Products, Services, Terms,
 } from '@site-pages';
 import NotFound from './pages/NotFound.jsx';
 
@@ -38,6 +38,7 @@ export default function App() {
         <Route path="ai-adoption" element={<AIAdoption />} />
         <Route path="ai-academy" element={<Academy />} />
         <Route path="products" element={<Products />} />
+        <Route path="platform" element={<Platform />} />
         <Route path="about" element={<About />} />
         <Route path="careers" element={<Careers />} />
         <Route path="contact" element={<Contact />} />

@@ -17,7 +17,13 @@ const NAV = [
       { to: '/ai-academy', label: 'AI Academy', note: 'How our whole team is trained' },
     ],
   },
-  { to: '/products', label: 'Products' },
+  {
+    label: 'Products',
+    items: [
+      { to: '/products', label: 'All products', note: 'Live, free and in development' },
+      { to: '/platform', label: 'How the stack works', note: 'One request, step by step' },
+    ],
+  },
   {
     label: 'Company',
     items: [
@@ -150,6 +156,7 @@ export default function SiteLayout() {
             <Link to="/services">Services</Link>
             <Link to="/process">Process</Link>
             <Link to="/products">Products</Link>
+            <Link to="/platform">How the stack works</Link>
           </div>
           <div>
             <h2 className="footer-h">AI</h2>

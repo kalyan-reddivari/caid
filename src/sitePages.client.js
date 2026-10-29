@@ -17,6 +17,7 @@ export const AIEngineering = page(() => import('./pages/site/AIEngineering.jsx')
 export const Process = page(() => import('./pages/site/Process.jsx'));
 export const Academy = page(() => import('./pages/site/Academy.jsx'));
 export const Products = page(() => import('./pages/site/Products.jsx'));
+export const Platform = page(() => import('./pages/site/Platform.jsx'));
 export const About = page(() => import('./pages/site/About.jsx'));
 export const Careers = page(() => import('./pages/site/Careers.jsx'));
 export const Contact = page(() => import('./pages/site/Contact.jsx'));

@@ -101,6 +101,41 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="section">
+        <div className="wrap">
+          <Reveal className="section-head">
+            <div>
+              <h2>Our products: agents on your systems of record, with proof</h2>
+              <p className="muted">
+                Software we build from the same work: design a workflow in Agentcraft Studio (free), rehearse it in Dryva,
+                approve and prove each risky action with Underwrit, and run it through governed connectors that act as
+                the signed-in person.
+              </p>
+            </div>
+            <Link className="btn btn-ghost" to="/platform" data-track="home:stack">See how the stack works</Link>
+          </Reveal>
+          <div className="home-stack">
+            {[
+              ['Design', 'Agentcraft Studio', 'Free'],
+              ['Rehearse', 'Dryva', 'Release candidate'],
+              ['Approve and prove', 'Underwrit', 'Public beta'],
+              ['Run on your platform', 'Orbitward', 'Beta'],
+              ['Act on SAP, Salesforce, Workday', 'Bridgehead', 'In development'],
+              ['Know, watch, fix, predict', 'Groundline · Driftwatch · Pagewise · Modelyard', 'In development'],
+            ].map(([stage, name, state], i) => (
+              <Reveal key={name} className="home-stack-step" delay={(i % 3) * 90}>
+                <span className="home-stack-n">{i + 1}</span>
+                <div>
+                  <span className="small muted">{stage}</span>
+                  <h3>{name}</h3>
+                  <span className="pill info">{state}</span>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="section section-ink">
         <div className="wrap">
           <Reveal className="section-head">

@@ -6,6 +6,7 @@ export { default as AIEngineering } from './pages/site/AIEngineering.jsx';
 export { default as Process } from './pages/site/Process.jsx';
 export { default as Academy } from './pages/site/Academy.jsx';
 export { default as Products } from './pages/site/Products.jsx';
+export { default as Platform } from './pages/site/Platform.jsx';
 export { default as About } from './pages/site/About.jsx';
 export { default as Careers } from './pages/site/Careers.jsx';
 export { default as Contact } from './pages/site/Contact.jsx';
