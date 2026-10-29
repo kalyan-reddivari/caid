@@ -3,7 +3,7 @@ import { LearnMiniArt, LoopMiniArt, SpecMiniArt, StackBoard } from '../../compon
 import CallButton from '../../components/CallButton.jsx';
 import { IconTile } from '../../components/Icons.jsx';
 import MediaClip from '../../components/MediaClip.jsx';
-import { CaseStudies, ClientStrip, Testimonial } from '../../components/Proof.jsx';
+import { ClientStrip, Testimonial } from '../../components/Proof.jsx';
 import Reveal from '../../components/Reveal.jsx';
 import StackMap from '../../components/StackMap.jsx';
 import NetworkGlobe from '../../components/fx/NetworkGlobe.jsx';
@@ -76,8 +76,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      <CaseStudies />
 
       <section className="section">
         <div className="wrap">

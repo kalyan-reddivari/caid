@@ -11,6 +11,7 @@ const GROUPS = [
   { key: 'crm', label: 'CRM and commerce', systems: ['Salesforce', 'HubSpot', 'Shopify'] },
   { key: 'hr', label: 'HR and payroll', systems: ['Workday', 'ADP'] },
   { key: 'ops', label: 'Service and IT', systems: ['ServiceNow', 'Jira'] },
+  { key: 'apps', label: 'Apps and middleware', systems: ['Java Spring Boot', 'Python services', 'MuleSoft'] },
   { key: 'data', label: 'Data', systems: ['Snowflake', 'SQL Server', 'Legacy database'] },
   { key: 'chat', label: 'Where people work', systems: ['Slack', 'Microsoft Teams', 'SharePoint'] },
 ];
@@ -23,6 +24,7 @@ const IDEAS = [
   { needs: ['erp', 'crm'], title: 'Quote-to-cash sync', text: (s) => `Customers, orders and invoices move once between ${s.crm} and ${s.erp}, so sales and finance stop rekeying.` },
   { needs: ['legacy'], title: 'Modernize without a rewrite', text: () => 'Wrap the legacy database in clean, documented APIs so new apps can use its data safely.' },
   { needs: ['hr'], title: 'Hands-free onboarding', text: (s) => `A new hire in ${s.hr} gets accounts, equipment requests and payroll set up automatically.` },
+  { needs: ['apps'], title: 'AI inside your own apps', text: (s) => `Assistants and document automation added to ${s.apps} through clean APIs, with no rewrite.` },
   { needs: ['data'], title: 'Ask-your-data assistant', text: (s) => `Plain-English questions answered from ${s.data}, with the source of every number shown.` },
   { needs: ['ops'], title: 'AI ticket triage', text: (s) => `New tickets in ${s.ops} are routed and drafted with an answer that an agent approves.` },
   { needs: ['erp'], title: 'Invoice automation', text: (s) => `AI reads supplier invoices and enters them in ${s.erp}, with a person approving anything unusual.` },

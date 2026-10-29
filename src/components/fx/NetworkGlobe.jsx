@@ -4,7 +4,7 @@ import useCanvasLoop from './useCanvasLoop.js';
 // Home hero: a slowly turning 3D globe of connected systems. Data packets run along the links
 // and through the {Ai} core; the globe leans toward the pointer. Drawn with Canvas 2D, no library.
 
-const LABELS = ['SAP', 'Salesforce', 'Workday', 'NetSuite', 'Snowflake', 'Slack', 'ServiceNow', 'HubSpot', 'Teams', 'Shopify', 'SQL Server', 'ADP', 'Jira', 'Dynamics'];
+const LABELS = ['SAP', 'Salesforce', 'Workday', 'NetSuite', 'Snowflake', 'Slack', 'ServiceNow', 'HubSpot', 'Teams', 'Shopify', 'SQL Server', 'ADP', 'Jira', 'Dynamics', 'Spring Boot', 'Python', 'MuleSoft'];
 const N = 150;
 const TEAL = [14, 124, 115];
 const AMBER = [240, 169, 59];

@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import CallButton from '../../components/CallButton.jsx';
-import { CaseStudies } from '../../components/Proof.jsx';
 import { FlowBand, ServicesArt } from '../../components/Graphics.jsx';
 import { IconTile } from '../../components/Icons.jsx';
 import Reveal from '../../components/Reveal.jsx';
@@ -90,8 +89,6 @@ export default function Services() {
           <Reveal delay={120}><FlowBand /></Reveal>
         </div>
       </section>
-
-      <CaseStudies heading="Results from recent projects" intro="Each one started with a free 30-minute call." />
 
       <section className="cta-band">
         <div className="wrap">
