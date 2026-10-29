@@ -7,3 +7,5 @@ dist/
 .idea/frontend.iml
 .idea/misc.xml
 .idea/modules.xml
+dist-ssr/
+.DS_Store

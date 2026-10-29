@@ -5,6 +5,7 @@ import { IconTile } from '../../components/Icons.jsx';
 import MediaClip from '../../components/MediaClip.jsx';
 import Reveal from '../../components/Reveal.jsx';
 import MEDIA from '../../media.js';
+import DotTerrain from '../../components/fx/DotTerrain.jsx';
 
 const LEVEL_INFO = [
   { who: 'Everyone, first 30 days', text: 'How AI models work, where they fail, and our responsible-use policy. Safe prompting with approved tools.', proof: 'Policy quiz + 3 guided labs' },
@@ -24,7 +25,7 @@ const TRACKS = [
   },
   {
     role: 'Business analysts', icon: 'doc',
-    modules: ['Running mob elaboration', 'Writing EARS acceptance criteria', 'Turning interviews into specs with AI', 'Spotting gaps and conflicts', 'Prioritising bolts with clients'],
+    modules: ['Running mob elaboration', 'Writing EARS acceptance criteria', 'Turning interviews into specs with AI', 'Spotting gaps and conflicts', 'Prioritizing build cycles with clients'],
   },
   {
     role: 'Cloud and DevOps', icon: 'cloud',
@@ -63,6 +64,7 @@ export default function Academy() {
   return (
     <>
       <section className="page-hero has-art">
+        <DotTerrain />
         <div className="wrap">
           <div>
             <span className="eyebrow">CAID AI Academy</span>
@@ -154,7 +156,7 @@ export default function Academy() {
           <Reveal className="section-head">
             <div>
               <h2>Inside a lab</h2>
-              <p className="muted">Trainees practise spec-driven development on sandbox projects, with a coach and an AI pair.</p>
+              <p className="muted">Trainees practice spec-driven development on sandbox projects, with a coach and an AI pair.</p>
             </div>
           </Reveal>
           <Reveal>

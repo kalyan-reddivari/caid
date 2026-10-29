@@ -13,10 +13,12 @@ const DISPLAY = { fontFamily: 'var(--font-display)' };
    ------------------------------------------------------------------------- */
 export function usePrefersReducedMotion() {
   const query = '(prefers-reduced-motion: reduce)';
-  const [reduced, setReduced] = useState(() => typeof window !== 'undefined' && !!window.matchMedia && window.matchMedia(query).matches);
+  // Starts false so prerendered HTML and the first browser render match; the effect then reads the setting.
+  const [reduced, setReduced] = useState(false);
   useEffect(() => {
     if (!window.matchMedia) return undefined;
     const mq = window.matchMedia(query);
+    setReduced(mq.matches);
     const onChange = () => setReduced(mq.matches);
     mq.addEventListener('change', onChange);
     return () => mq.removeEventListener('change', onChange);

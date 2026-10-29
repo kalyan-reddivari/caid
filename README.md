@@ -7,7 +7,8 @@ It talks to the separate **caid-backend** project (Spring Boot API) over `/api`.
 
 ## Pages
 
-* **Public site:** Home, Services, AI adoption, Products, About, Careers (live jobs + apply), Contact.
+* **Public site:** Home (with the interactive stack map), Services, Process, How we build, AI adoption, AI Academy,
+  Products, About, Careers (live jobs + apply), Contact, Privacy policy, Terms of use.
 * **Portal:** Login, Dashboard, My profile, Documents, Payroll and payslips, Projects, Clients,
   Inquiries, Employees, Skills, Job postings and applications. Menu items and buttons show according to the permissions of the user's role (eleven roles; see the backend README). The server enforces the same rules, so hiding something here is only a convenience.
 
@@ -35,7 +36,10 @@ somewhere else, copy `.env.example` to `.env` and change `DEV_API_PROXY`.
 npm run build
 ```
 
-This creates a `dist/` folder of static files you can host on any web server. There are two ways
+This creates a `dist/` folder of static files you can host on any web server. The build also
+prerenders every public page (`dist/services/index.html` and so on, through `scripts/prerender.mjs`),
+so search engines and link previews get real HTML with each page's own title, description and share
+tags, and writes `sitemap.xml` and `robots.txt`. Set `VITE_SITE_URL` if the site is not at https://caid.com. There are two ways
 to connect it to the backend:
 
 * **Same domain (simplest).** Configure your web server (IIS, Apache, nginx…) to serve `dist/`
@@ -50,8 +54,12 @@ to connect it to the backend:
   $env:VITE_API_URL="https://api.caid.com/api"; npm run build
   ```
 
-Either way, the web server must send unknown paths (like `/portal/projects`) to `index.html`,
-because this is a single-page app.
+Either way, serve a path's own `index.html` when it exists, and send every other path (like
+`/portal/projects`) to `app.html`, the plain single-page shell. For nginx:
+
+```nginx
+location / { try_files $uri $uri/index.html /app.html; }
+```
 
 To preview the production build on your machine: `npm run preview`.
 
@@ -59,9 +67,13 @@ To preview the production build on your machine: `npm run preview`.
 
 | What | Where |
 |---|---|
+| Company details, booking link, phone | `src/site.config.js` |
+| Case studies, testimonials, clients, team | `src/content/proof.js` (see `CONTENT-TODO.md`) |
+| Page titles, descriptions, share text | `src/seo.js` |
+| Analytics events | `src/utils/track.js` |
 | Colors, fonts, spacing | `src/styles.css` (tokens at the top) |
 | Currency and date format | `src/utils/format.js` |
-| Contact details, footer | `src/components/SiteLayout.jsx`, `src/pages/site/Contact.jsx` |
+| Menu and footer | `src/components/SiteLayout.jsx` |
 | Site copy | `src/pages/site/*.jsx` |
 | Portal menu and page access (by permission) | `src/components/PortalLayout.jsx`, `src/App.jsx` |
 | Demo-account links on login | `src/pages/portal/Login.jsx` (remove before going live) |

@@ -5,6 +5,7 @@ import { IconTile } from '../../components/Icons.jsx';
 import MediaClip from '../../components/MediaClip.jsx';
 import Reveal from '../../components/Reveal.jsx';
 import MEDIA from '../../media.js';
+import DotTerrain from '../../components/fx/DotTerrain.jsx';
 
 const PHASES = [
   {
@@ -71,6 +72,7 @@ export default function AIEngineering() {
   return (
     <>
       <section className="page-hero has-art">
+        <DotTerrain />
         <div className="wrap">
           <div>
             <span className="eyebrow">How we build</span>

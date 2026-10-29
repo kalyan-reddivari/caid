@@ -1,9 +1,14 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useRef, useState } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
 import api, { errorMessage } from '../../api/client.js';
+import CallButton from '../../components/CallButton.jsx';
+import NextSteps from '../../components/NextSteps.jsx';
+import SITE from '../../site.config.js';
+import { track, trackStart } from '../../utils/track.js';
 import { IconTile } from '../../components/Icons.jsx';
 import { JourneyArt, PlanGantt } from '../../components/ProcessGraphics.jsx';
 import Reveal from '../../components/Reveal.jsx';
+import DotTerrain from '../../components/fx/DotTerrain.jsx';
 
 const STAGES = [
   {
@@ -23,7 +28,7 @@ const STAGES = [
     summary: 'Workshops with your stakeholders to map processes, systems and data. AI drafts the requirements live, so you see them take shape.',
     you: ['Make key people available for 2–3 workshops', 'Give read access to relevant documents and systems'],
     we: ['Run the workshops and system walkthroughs', 'Draft requirements and acceptance criteria', 'Identify risks, integrations and quick wins'],
-    get: ['Requirements spec you can keep', 'Solution outline and architecture', 'Prioritised list of features'],
+    get: ['Requirements spec you can keep', 'Solution outline and architecture', 'Prioritized list of features'],
     decision: 'Do we agree on what the first release must do?',
   },
   {
@@ -71,7 +76,7 @@ const STAGES = [
     when: 'Ongoing',
     cost: 'Optional support plan',
     summary: 'A period of hypercare after launch, then either a full handover to your team or an ongoing support and improvement plan.',
-    you: ['Choose: take it in-house, or keep us on', 'Prioritise the next improvements'],
+    you: ['Choose: take it in-house, or keep us on', 'Prioritize the next improvements'],
     we: ['Fix any launch defects at no charge during the warranty period', 'Hand over code, specs and runbooks', 'Offer support with agreed response times'],
     get: ['All source code, specs and documentation', 'Knowledge-transfer sessions', 'Support plan with response times'],
     decision: 'What should the next release be?',
@@ -117,7 +122,7 @@ const PREPARE = [
   'Who will make decisions on your side',
 ];
 
-const FAQ = [
+export const FAQ = [
   { q: 'How quickly can you start?', a: 'Usually within two weeks of the first conversation for discovery, and one to two weeks after the agreement for delivery. We tell you up front if a specific skill needs longer to staff.' },
   { q: 'Who owns the code and the designs?', a: 'You do, outright, once invoices are paid. That includes source code, specifications, designs and documentation. There is no lock-in.' },
   { q: 'What if our requirements change during the project?', a: 'They usually do, and that is fine. Every change is written into the spec with its cost and timing impact, and nothing changes until you approve it.' },
@@ -130,15 +135,33 @@ const BRIEF = {
   name: '', email: '', company: '', type: 'New application', stage: 'Just an idea',
   timeline: 'In 1–3 months', budget: 'Not sure yet', systems: '', goals: '',
 };
-const TYPES = ['New application', 'Modernise an existing system', 'Systems integration', 'AI feature or assistant', 'Mobile app', 'Rescue a struggling project', 'Other'];
+const TYPES = ['New application', 'Modernize an existing system', 'Systems integration', 'AI feature or assistant', 'Mobile app', 'Rescue a struggling project', 'Other'];
 const STAGE_OPTS = ['Just an idea', 'Requirements written', 'Designs ready', 'Existing system in use'];
 const TIMELINES = ['As soon as possible', 'In 1–3 months', 'In 3–6 months', 'Later this year', 'Exploring for now'];
 const BUDGETS = ['Under $50k', '$50k–$150k', '$150k–$500k', 'Over $500k', 'Not sure yet'];
 
+const onBriefStart = trackStart('project-brief');
+
 function ProjectBrief() {
+  const [params] = useSearchParams();
   const [form, setForm] = useState(BRIEF);
+  const [fromMap, setFromMap] = useState(false);
   const [state, setState] = useState({ sending: false, error: '', done: false });
   const set = (k) => (e) => setForm({ ...form, [k]: e.target.value });
+
+  // A stack map from the home page arrives as ?systems=…&idea=…; fill in what it tells us.
+  useEffect(() => {
+    const systems = params.get('systems');
+    if (!systems) return;
+    const idea = params.get('idea');
+    setFromMap(true);
+    setForm((f) => ({
+      ...f,
+      type: 'Systems integration',
+      systems: systems.slice(0, 300),
+      goals: f.goals || (idea ? `Interested in: ${idea}.\n\n` : ''),
+    }));
+  }, [params]);
 
   // The brief is sent through the normal contact endpoint, so it lands in the portal's Inquiries list.
   const submit = async (e) => {
@@ -156,9 +179,14 @@ function ProjectBrief() {
       await api.post('/public/contact', {
         name: form.name, email: form.email, company: form.company, interest: 'New project brief', message,
       });
+      track('form_submit', { form: 'project-brief', type: form.type, budget: form.budget });
       setState({ sending: false, error: '', done: true });
     } catch (err) {
-      setState({ sending: false, error: errorMessage(err), done: false });
+      setState({
+        sending: false,
+        error: err.response ? errorMessage(err) : `We couldn't send your brief just now. Please try again, or email ${SITE.email}.`,
+        done: false,
+      });
     }
   };
 
@@ -167,21 +195,18 @@ function ProjectBrief() {
       <div className="brief-done">
         <IconTile name="check" />
         <h3>Thank you. Your brief is with us.</h3>
-        <ol className="next-list">
-          <li><b>Within 1 business day</b> a senior consultant replies to {form.email}.</li>
-          <li><b>Within a week</b> we hold the free first conversation.</li>
-          <li><b>Then</b> we suggest a discovery plan, or tell you honestly if we are not the right fit.</li>
-        </ol>
+        <NextSteps email={form.email} />
       </div>
     );
   }
 
   return (
-    <form className="form-grid" onSubmit={submit}>
-      {state.error && <div className="alert alert-error full">{state.error}</div>}
-      <label className="field"><span>Name *</span><input required value={form.name} onChange={set('name')} /></label>
-      <label className="field"><span>Work email *</span><input type="email" required value={form.email} onChange={set('email')} /></label>
-      <label className="field"><span>Company</span><input value={form.company} onChange={set('company')} /></label>
+    <form className="form-grid" onSubmit={submit} onFocus={onBriefStart}>
+      {fromMap && <div className="alert alert-ok full">We added the systems from your stack map. Change anything you like.</div>}
+      {state.error && <div className="alert alert-error full" role="alert">{state.error}</div>}
+      <label className="field"><span>Name *</span><input required autoComplete="name" value={form.name} onChange={set('name')} /></label>
+      <label className="field"><span>Work email *</span><input type="email" required autoComplete="email" value={form.email} onChange={set('email')} /></label>
+      <label className="field"><span>Company</span><input autoComplete="organization" value={form.company} onChange={set('company')} /></label>
       <label className="field"><span>What do you need?</span>
         <select value={form.type} onChange={set('type')}>{TYPES.map((o) => <option key={o}>{o}</option>)}</select>
       </label>
@@ -203,7 +228,7 @@ function ProjectBrief() {
       </label>
       <div className="full brief-foot">
         <button className="btn btn-primary" disabled={state.sending}>{state.sending ? 'Sending…' : 'Send project brief'}</button>
-        <span className="small muted">No obligation. We reply within one business day.</span>
+        <span className="small muted">No obligation. We reply within one business day. <Link to="/privacy">Privacy policy</Link></span>
       </div>
     </form>
   );
@@ -211,11 +236,24 @@ function ProjectBrief() {
 
 export default function Process() {
   const [active, setActive] = useState(0);
+  const tabs = useRef([]);
   const s = STAGES[active];
+
+  // Arrow keys move between stages, as in any tab list.
+  const onTabKey = (e) => {
+    const last = STAGES.length - 1;
+    const next = { ArrowRight: active + 1, ArrowDown: active + 1, ArrowLeft: active - 1, ArrowUp: active - 1, Home: 0, End: last }[e.key];
+    if (next === undefined) return;
+    e.preventDefault();
+    const i = Math.min(Math.max(next, 0), last);
+    setActive(i);
+    tabs.current[i]?.focus();
+  };
 
   return (
     <>
       <section className="page-hero has-art">
+        <DotTerrain />
         <div className="wrap">
           <div>
             <span className="eyebrow">Our process</span>
@@ -225,8 +263,8 @@ export default function Process() {
               what you receive, and what it costs to get started.
             </p>
             <div className="hero-actions">
-              <a className="btn btn-primary" href="#brief">Start a project brief</a>
-              <a className="btn btn-ghost" href="#stages">See the seven stages</a>
+              <a className="btn btn-primary" href="#brief" data-track="brief:process-hero">Start a project brief</a>
+              <CallButton className="btn btn-ghost" from="process-hero">Book a call instead</CallButton>
             </div>
           </div>
           <div className="hero-art"><JourneyArt /></div>
@@ -253,9 +291,10 @@ export default function Process() {
             </div>
           </Reveal>
 
-          <Reveal className="stage-rail" role="tablist" aria-label="Project stages">
+          <Reveal className="stage-rail" role="tablist" aria-label="Project stages" onKeyDown={onTabKey}>
             {STAGES.map((st, i) => (
-              <button key={st.name} role="tab" aria-selected={active === i}
+              <button key={st.name} role="tab" id={`stage-tab-${i}`} aria-selected={active === i} aria-controls="stage-panel"
+                tabIndex={active === i ? 0 : -1} ref={(el) => { tabs.current[i] = el; }}
                 className={`${active === i ? 'active' : ''}${i < active ? ' past' : ''}`} onClick={() => setActive(i)}>
                 <span className="stage-dot">{i + 1}</span>
                 <span className="stage-name">{st.name}</span>
@@ -264,7 +303,7 @@ export default function Process() {
             ))}
           </Reveal>
 
-          <div className="stage-panel" key={s.name} role="tabpanel">
+          <div className="stage-panel" key={s.name} role="tabpanel" id="stage-panel" aria-labelledby={`stage-tab-${active}`}>
             <div className="stage-intro">
               <div className="chips">
                 <span className="pill info">{s.when}</span>
@@ -385,7 +424,10 @@ export default function Process() {
       <section className="cta-band">
         <div className="wrap">
           <h2>Ready when you are. The first conversation is free.</h2>
-          <a className="btn" href="#brief">Start a project brief</a>
+          <div className="cta-actions">
+            <a className="btn" href="#brief" data-track="brief:process-band">Start a project brief</a>
+            <CallButton className="btn btn-outline-light" from="process-band">Book a free call</CallButton>
+          </div>
         </div>
       </section>
     </>

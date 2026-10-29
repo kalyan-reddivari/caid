@@ -4,7 +4,10 @@ import Modal from '../../components/Modal.jsx';
 import { Link } from 'react-router-dom';
 import { CareersArt } from '../../components/Graphics.jsx';
 import { LearnMiniArt } from '../../components/AIGraphics.jsx';
+import SITE from '../../site.config.js';
+import { track } from '../../utils/track.js';
 import { date, label } from '../../utils/format.js';
+import DotTerrain from '../../components/fx/DotTerrain.jsx';
 
 const EMPTY = { fullName: '', email: '', phone: '', profileUrl: '', coverLetter: '' };
 
@@ -20,7 +23,7 @@ export default function Careers() {
   useEffect(() => {
     api.get('/public/jobs')
       .then((r) => setJobs(r.data))
-      .catch((e) => setError(errorMessage(e)))
+      .catch(() => setError('unavailable'))
       .finally(() => setLoading(false));
   }, []);
 
@@ -36,9 +39,14 @@ export default function Careers() {
     setStatus({ sending: true, error: '', done: false });
     try {
       await api.post(`/public/jobs/${viewing.id}/apply`, form);
+      track('form_submit', { form: 'job-application', job: viewing.title });
       setStatus({ sending: false, error: '', done: true });
     } catch (err) {
-      setStatus({ sending: false, error: errorMessage(err), done: false });
+      setStatus({
+        sending: false,
+        error: err.response ? errorMessage(err) : `We couldn't send your application just now. Please try again, or email ${SITE.careersEmail}.`,
+        done: false,
+      });
     }
   };
 
@@ -47,6 +55,7 @@ export default function Careers() {
   return (
     <>
       <section className="page-hero has-art">
+        <DotTerrain />
         <div className="wrap">
           <div>
             <h1>Careers at CAID</h1>
@@ -73,9 +82,16 @@ export default function Careers() {
         <div className="wrap">
           <h2>Open roles</h2>
           {loading && <p className="muted">Loading roles…</p>}
-          {error && <div className="alert alert-error">{error}</div>}
-          {!loading && !error && jobs.length === 0 && (
-            <p className="muted">No roles are open right now. Send your profile to careers@caid.com and we will keep it on file.</p>
+          {!loading && (error || jobs.length === 0) && (
+            <div className="empty-roles">
+              <p>
+                {error
+                  ? "We couldn't load open roles right now."
+                  : 'No roles are open right now.'}{' '}
+                Send your profile to <a href={`mailto:${SITE.careersEmail}`}>{SITE.careersEmail}</a> and
+                we will get back to you, or keep it on file for the next opening.
+              </p>
+            </div>
           )}
           <div>
             {jobs.map((j) => (
@@ -118,11 +134,12 @@ export default function Careers() {
           ) : applying ? (
             <form id="apply-form" className="form-grid" onSubmit={submit}>
               {status.error && <div className="alert alert-error full">{status.error}</div>}
-              <label className="field"><span>Full name *</span><input required value={form.fullName} onChange={set('fullName')} /></label>
-              <label className="field"><span>Email *</span><input type="email" required value={form.email} onChange={set('email')} /></label>
-              <label className="field"><span>Phone</span><input type="tel" value={form.phone} onChange={set('phone')} /></label>
-              <label className="field"><span>Resume or LinkedIn link</span><input type="url" placeholder="https://" value={form.profileUrl} onChange={set('profileUrl')} /></label>
+              <label className="field"><span>Full name *</span><input required autoComplete="name" value={form.fullName} onChange={set('fullName')} /></label>
+              <label className="field"><span>Email *</span><input type="email" required autoComplete="email" value={form.email} onChange={set('email')} /></label>
+              <label className="field"><span>Phone</span><input type="tel" autoComplete="tel" value={form.phone} onChange={set('phone')} /></label>
+              <label className="field"><span>Resume or LinkedIn link</span><input type="url" autoComplete="url" placeholder="https://" value={form.profileUrl} onChange={set('profileUrl')} /></label>
               <label className="field full"><span>Why this role?</span><textarea value={form.coverLetter} onChange={set('coverLetter')} /></label>
+              <p className="full small muted">We use your details only to consider you for roles at CAID. <Link to="/privacy">Privacy policy</Link></p>
             </form>
           ) : (
             <>

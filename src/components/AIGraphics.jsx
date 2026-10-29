@@ -497,7 +497,7 @@ export const ACADEMY_SESSION = {
    ------------------------------------------------------------------------- */
 export const STACKS = [
   { group: 'Frontend', items: ['React', 'Angular', 'Vue', 'Next.js', 'TypeScript'] },
-  { group: 'Backend', items: ['Java / Spring', '.NET', 'Node.js', 'Python', 'Go'] },
+  { group: 'Backend', items: ['Java / Spring Boot', '.NET', 'Node.js', 'Python', 'Go'] },
   { group: 'Mobile', items: ['React Native', 'Flutter', 'Swift', 'Kotlin'] },
   { group: 'Integration', items: ['MuleSoft', 'Kafka', 'SAP', 'Salesforce', 'REST / GraphQL'] },
   { group: 'Cloud & DevOps', items: ['AWS', 'Azure', 'GCP', 'Kubernetes', 'Terraform'] },
