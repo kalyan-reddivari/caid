@@ -13,7 +13,7 @@ const LAYERS = [
   {
     kicker: 'Act',
     name: 'Bridgehead on CAID Core',
-    text: 'Governed MCP tools for Salesforce, ServiceNow, Workday and SAP that act as the signed-in person.',
+    text: 'Governed MCP tools for twelve business systems, from Salesforce and SAP to Dynamics 365, Oracle and Zendesk, that act as the signed-in person.',
     points: ['Token exchange per person and system, no shared account', 'Risk tiers set by the values in each call', 'Vendor MCP servers wrapped under the same policy'],
   },
   {
@@ -28,6 +28,25 @@ const LAYERS = [
     text: 'The rest of the life of an integration: what agents may know, what vendors change, what breaks, what to predict.',
     points: ['Answers filtered by what every reader may see', 'Contract tests against vendor preview releases', 'Incident evidence and approved runbooks', 'Predictions written back with approval'],
   },
+];
+
+// What each product connects to today, built and tested in each product's own repository.
+const INTEGRATIONS = [
+  { name: 'Act on systems of record', product: 'Bridgehead', items: ['Salesforce', 'ServiceNow', 'Workday', 'SAP S/4HANA',
+    'Microsoft Dynamics 365', 'Oracle Fusion Cloud ERP', 'Oracle NetSuite', 'SAP SuccessFactors', 'HubSpot', 'Coupa',
+    'Jira Service Management', 'Zendesk', 'Any vendor MCP server'] },
+  { name: 'Ground answers in permitted data', product: 'Groundline', items: ['Salesforce', 'ServiceNow knowledge',
+    'Confluence', 'SharePoint and OneDrive', 'Google Drive', 'Box', 'Notion', 'Jira', 'Snowflake tables'] },
+  { name: 'Test vendor releases', product: 'Driftwatch', items: ['Salesforce', 'Workday', 'ServiceNow', 'SAP OData services',
+    'Any OpenAPI spec', 'MuleSoft', 'Boomi', 'Informatica'] },
+  { name: 'Gather incident evidence', product: 'Pagewise', items: ['SAP IDocs, jobs and dumps', 'SAP Integration Suite',
+    'MuleSoft', 'Kafka', 'GitHub', 'Argo CD', 'Prometheus', 'Tempo', 'Datadog', 'Splunk', 'Dynatrace', 'New Relic',
+    'Azure Monitor', 'Amazon CloudWatch', 'Alerts from PagerDuty, Opsgenie, Datadog and Azure Monitor'] },
+  { name: 'Predict where people work', product: 'Modelyard', items: ['Databricks', 'Snowflake', 'Salesforce Data Cloud',
+    'MLflow', 'Amazon SageMaker', 'Vertex AI', 'Write-back to Salesforce and SAP'] },
+  { name: 'Run in your estate', product: 'CAID Core', items: ['Okta', 'Microsoft Entra ID', 'PingOne and PingFederate',
+    'Google Workspace', 'AWS KMS', 'Azure Key Vault', 'Google Cloud KMS', 'HashiCorp Vault', 'Audit to Splunk, Sentinel and Datadog',
+    'Approvals in Slack and Teams'] },
 ];
 
 const PROOF = [
@@ -136,7 +155,27 @@ export default function Platform() {
         </div>
       </section>
 
-      <section className="section">
+      <section id="integrations" className="section">
+        <div className="wrap">
+          <Reveal className="section-head">
+            <div>
+              <h2>What it connects to</h2>
+              <p className="muted">Every connection runs as the signed-in person or a read-only identity the customer controls, through the same policy, approvals and audit.</p>
+            </div>
+          </Reveal>
+          <div className="int-grid">
+            {INTEGRATIONS.map((g, i) => (
+              <Reveal as="article" key={g.name} className="int-card" delay={(i % 3) * 90}>
+                <span className="layer-kicker">{g.product}</span>
+                <h3>{g.name}</h3>
+                <ul className="int-chips">{g.items.map((x) => <li key={x}>{x}</li>)}</ul>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section section-alt">
         <div className="wrap">
           <Reveal className="section-head">
             <div>

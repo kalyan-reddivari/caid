@@ -105,10 +105,10 @@ const PIPELINE = [
     icon: 'link',
     category: 'GenAI integration',
     problem: 'Every team wiring an assistant to SAP, Salesforce or Workday rebuilds the same connector, and most of them run with a service account that can see everything.',
-    text: 'A governed MCP gateway for systems of record. Ready-made tools for SAP, Salesforce, Workday and ServiceNow that act as the signed-in user, with field-level scoping, rate limits and a write path that hands risky actions to Underwrit.',
+    text: 'A governed MCP gateway for systems of record. Ready-made tools for SAP, Salesforce, Workday, ServiceNow, Dynamics 365, Oracle Fusion, NetSuite, SuccessFactors, HubSpot, Coupa, Jira Service Management and Zendesk that act as the signed-in user, with field-level scoping, rate limits and a write path that hands risky actions to Underwrit.',
     buyers: ['Enterprise architects', 'Integration teams', 'AI platform teams'],
     ga: 'mid-December 2026',
-    built: ['Salesforce, ServiceNow, Workday and SAP tools that act as the signed-in person', 'Approvals that show the record before and after, bound to the exact values', 'Signed receipts, pinned tool definitions, Okta and Entra agent sign-in'],
+    built: ['Tools for twelve business systems that act as the signed-in person', 'Approvals that show the record before and after, bound to the exact values', 'Signed receipts, pinned tool definitions, Okta and Entra agent sign-in'],
   },
   {
     id: 'groundline',
@@ -120,7 +120,7 @@ const PIPELINE = [
     text: 'Retrieval indexes kept in step with the source systems through change data capture, carrying each record\'s access rules into every answer. Built-in evaluation sets show when answer quality drops after a source changes.',
     buyers: ['Teams building assistants', 'Data engineering', 'Security'],
     ga: 'late December 2026',
-    built: ['Permissions applied inside the search, never after it', 'Shared answers limited to what every reader may see', 'A published leak test, Salesforce role hierarchy, OpenSearch at scale'],
+    built: ['Permissions applied inside the search, never after it', 'Shared answers limited to what every reader may see', 'Nine sources, from Salesforce and SharePoint to Google Drive, Box, Notion and Snowflake'],
   },
   {
     id: 'driftwatch',
@@ -131,7 +131,7 @@ const PIPELINE = [
     text: 'Contract tests generated from the integrations you already run, checked against vendor sandboxes and preview releases in CI. A failing contract opens a pull request with the change and the flows it touches.',
     buyers: ['Integration teams', 'Platform engineering', 'Release managers'],
     ga: 'early January 2027',
-    built: ['Contracts built from traffic, code and MuleSoft mappings', 'Checks against preview sandboxes, including recorded responses', 'GitHub checks and draft fix pull requests; open-source command line'],
+    built: ['Contracts built from traffic, code and MuleSoft, Boomi or Informatica mappings', 'Checks against preview sandboxes, including recorded responses', 'GitHub checks and draft fix pull requests; open-source command line'],
   },
   {
     id: 'pagewise',
@@ -143,7 +143,7 @@ const PIPELINE = [
     text: 'An incident agent that joins OpenTelemetry signals, recent deploys and integration job failures into one timeline, drafts the first response and the postmortem, and runs remediation steps only through approved runbooks.',
     buyers: ['SRE and operations', 'Integration support', 'IT service management'],
     ga: 'mid-January 2027',
-    built: ['Evidence from SAP IDocs, jobs and dumps, MuleSoft, Kafka, deploys and traces', 'Causes graded by their evidence, with gaps in monitoring named first', 'Runbooks only from an approved catalog, verified after they run'],
+    built: ['Evidence from SAP, MuleSoft, Kafka, Datadog, Splunk, Dynatrace, New Relic, Azure Monitor and CloudWatch', 'Causes graded by their evidence, with gaps in monitoring named first', 'Runbooks only from an approved catalog, verified after they run'],
   },
   {
     id: 'modelyard',
@@ -154,7 +154,7 @@ const PIPELINE = [
     text: 'A packaged MLOps path for business data: features drawn from the systems of record, a model registry, drift and accuracy monitoring, and predictions written back to SAP or Salesforce where planners already work.',
     buyers: ['Finance and supply chain analytics', 'Data science', 'ML platform teams'],
     ga: 'late January 2027',
-    built: ['Churn, demand forecast and posting-anomaly templates with plain reasons', 'Shadow mode, approval on first deploy, rollback of written scores', "Runs on the customer's Databricks or Data Cloud, with outcome tracking"],
+    built: ['Churn, demand forecast and posting-anomaly templates with plain reasons', 'Shadow mode, approval on first deploy, rollback of written scores', "Runs on the customer's Databricks, Snowflake or Data Cloud, mirrored to MLflow, SageMaker or Vertex AI"],
   },
 ];
 
