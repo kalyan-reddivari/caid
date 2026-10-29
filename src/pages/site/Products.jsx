@@ -107,7 +107,7 @@ const PIPELINE = [
     problem: 'Every team wiring an assistant to SAP, Salesforce or Workday rebuilds the same connector, and most of them run with a service account that can see everything.',
     text: 'A governed MCP gateway for systems of record. Ready-made tools for SAP, Salesforce, Workday and ServiceNow that act as the signed-in user, with field-level scoping, rate limits and a write path that hands risky actions to Underwrit.',
     buyers: ['Enterprise architects', 'Integration teams', 'AI platform teams'],
-    ga: 'Jul 2027',
+    ga: 'mid-December 2026',
     built: ['Salesforce, ServiceNow, Workday and SAP tools that act as the signed-in person', 'Approvals that show the record before and after, bound to the exact values', 'Signed receipts, pinned tool definitions, Okta and Entra agent sign-in'],
   },
   {
@@ -119,7 +119,7 @@ const PIPELINE = [
     problem: 'Assistants answer from stale copies of documents and records, and the copies ignore who was allowed to read the originals.',
     text: 'Retrieval indexes kept in step with the source systems through change data capture, carrying each record\'s access rules into every answer. Built-in evaluation sets show when answer quality drops after a source changes.',
     buyers: ['Teams building assistants', 'Data engineering', 'Security'],
-    ga: 'Oct 2027',
+    ga: 'late December 2026',
     built: ['Permissions applied inside the search, never after it', 'Shared answers limited to what every reader may see', 'A published leak test, Salesforce role hierarchy, OpenSearch at scale'],
   },
   {
@@ -130,7 +130,7 @@ const PIPELINE = [
     problem: 'Salesforce ships three releases a year and Workday two. Schema and API changes break integrations in production, usually on a Monday.',
     text: 'Contract tests generated from the integrations you already run, checked against vendor sandboxes and preview releases in CI. A failing contract opens a pull request with the change and the flows it touches.',
     buyers: ['Integration teams', 'Platform engineering', 'Release managers'],
-    ga: 'Nov 2027',
+    ga: 'early January 2027',
     built: ['Contracts built from traffic, code and MuleSoft mappings', 'Checks against preview sandboxes, including recorded responses', 'GitHub checks and draft fix pull requests; open-source command line'],
   },
   {
@@ -142,7 +142,7 @@ const PIPELINE = [
     problem: 'Incidents in ERP-heavy estates cross failed IDocs, MuleSoft flows, Kafka lag and cloud alerts, and no single tool sees all of them.',
     text: 'An incident agent that joins OpenTelemetry signals, recent deploys and integration job failures into one timeline, drafts the first response and the postmortem, and runs remediation steps only through approved runbooks.',
     buyers: ['SRE and operations', 'Integration support', 'IT service management'],
-    ga: 'Mar 2028',
+    ga: 'mid-January 2027',
     built: ['Evidence from SAP IDocs, jobs and dumps, MuleSoft, Kafka, deploys and traces', 'Causes graded by their evidence, with gaps in monitoring named first', 'Runbooks only from an approved catalog, verified after they run'],
   },
   {
@@ -153,7 +153,7 @@ const PIPELINE = [
     problem: 'Forecasting, churn and anomaly models built on ERP and CRM data stall in notebooks, because nobody owns training, monitoring and write-back.',
     text: 'A packaged MLOps path for business data: features drawn from the systems of record, a model registry, drift and accuracy monitoring, and predictions written back to SAP or Salesforce where planners already work.',
     buyers: ['Finance and supply chain analytics', 'Data science', 'ML platform teams'],
-    ga: 'Apr 2028',
+    ga: 'late January 2027',
     built: ['Churn, demand forecast and posting-anomaly templates with plain reasons', 'Shadow mode, approval on first deploy, rollback of written scores', "Runs on the customer's Databricks or Data Cloud, with outcome tracking"],
   },
 ];

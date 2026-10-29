@@ -39,25 +39,26 @@ const PROOF = [
   { title: 'Tested against attacks', text: 'A red-team suite of 19 attack types runs on every change, from tool poisoning to replayed approvals. All 19 are blocked today.' },
 ];
 
-// Months from November 2026 (index 0) to April 2028 (17). From the product build plan.
-const MONTHS = ['Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr'];
+// The next three months, week by week: weeks start on Mondays, from 2 November 2026 (index 0) to 25 January 2027 (12).
+const WEEKS = [[2, 'Nov 2026'], [9], [16], [23], [30, 'Dec'], [7], [14], [21], [28], [4, 'Jan 2027'], [11], [18], [25]];
 const ROADMAP = [
-  { name: 'CAID Core', note: 'shared platform', start: 0, end: 5, marks: [[5, 'foundation']] },
-  { name: 'Bridgehead', note: 'MCP connectors', start: 0, end: 8, marks: [[3, 'alpha'], [5, 'beta'], [8, 'GA']] },
-  { name: 'Groundline', note: 'permission-aware RAG', start: 3, end: 11, marks: [[6, 'alpha'], [8, 'beta'], [11, 'GA']] },
-  { name: 'Driftwatch', note: 'release contract tests', start: 4, end: 12, marks: [[7, 'alpha'], [9, 'beta'], [12, 'GA']] },
-  { name: 'Pagewise', note: 'incident agent', start: 7, end: 16, marks: [[10, 'alpha'], [13, 'beta'], [16, 'GA']] },
-  { name: 'Modelyard', note: 'ERP and CRM MLOps', start: 8, end: 17, marks: [[11, 'alpha'], [14, 'beta'], [17, 'GA']] },
+  { name: 'CAID Core', note: 'shared platform', start: 0, end: 3, marks: [[3, 'foundation']] },
+  { name: 'Bridgehead', note: 'MCP connectors', start: 0, end: 6, marks: [[2, 'alpha'], [4, 'beta'], [6, 'GA']] },
+  { name: 'Groundline', note: 'permission-aware RAG', start: 2, end: 8, marks: [[4, 'alpha'], [6, 'beta'], [8, 'GA']] },
+  { name: 'Driftwatch', note: 'release contract tests', start: 3, end: 9, marks: [[5, 'alpha'], [7, 'beta'], [9, 'GA']] },
+  { name: 'Pagewise', note: 'incident agent', start: 5, end: 11, marks: [[7, 'alpha'], [9, 'beta'], [11, 'GA']] },
+  { name: 'Modelyard', note: 'ERP and CRM MLOps', start: 6, end: 12, marks: [[8, 'alpha'], [10, 'beta'], [12, 'GA']] },
 ];
 
 function Roadmap() {
   return (
     <Reveal className="roadmap">
-      <div className="roadmap-grid" role="table" aria-label="Product roadmap, November 2026 to April 2028">
+      <div className="roadmap-grid" role="table" aria-label="Product roadmap for the next three months, week by week, November 2026 to January 2027">
         <div role="columnheader" />
-        {MONTHS.map((m, i) => (
-          <div key={i} className="roadmap-month" role="columnheader">{m}{i === 0 || m === 'Jan' ? <><br />{i < 2 ? '2026' : i < 14 ? '2027' : '2028'}</> : null}</div>
+        {WEEKS.map(([day, month], i) => (
+          <div key={i} className={`roadmap-month${month ? ' is-month' : ''}`} role="columnheader">{month ? <b>{month}</b> : <br />}<br />{day}</div>
         ))}
+        <div className="roadmap-today" style={{ gridRow: `2 / ${ROADMAP.length + 2}`, gridColumn: 2 }} aria-hidden="true"><span>now</span></div>
         {ROADMAP.map((r, k) => (
           <div key={r.name} role="row" style={{ display: 'contents' }}>
             <div className="roadmap-name" role="rowheader" style={{ gridRow: k + 2, gridColumn: 1 }}>{r.name}<small>{r.note}</small></div>
@@ -74,7 +75,7 @@ function Roadmap() {
       </div>
       <div className="roadmap-legend">
         <span>Available now: Underwrit (public beta), Orbitward (beta), Agentcraft Studio (alpha, free), Dryva (release candidate).</span>
-        <span>Dates are targets, shaped by design partners. GA means generally available.</span>
+        <span>Every product reaches general availability (GA) within the next three months. Dates are targets, shaped by design partners.</span>
       </div>
     </Reveal>
   );
@@ -171,7 +172,7 @@ export default function Platform() {
           <Reveal className="section-head">
             <div>
               <h2>Roadmap</h2>
-              <p className="muted">The shared platform comes first; each product then reuses what the one before it built.</p>
+              <p className="muted">The next three months, week by week. The shared platform comes first, and each product then reuses what the one before it built.</p>
             </div>
           </Reveal>
           <Roadmap />
