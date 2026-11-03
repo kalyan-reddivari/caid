@@ -4,7 +4,7 @@ import SiteLayout from './components/SiteLayout.jsx';
 import ProtectedRoute from './components/ProtectedRoute.jsx';
 
 import {
-  About, AcademyCertifications, AcademyOverview, AcademyPaths, AcademyResources, AcademyTeam,
+  About, AcademyCertifications, AcademyOverview, AcademyPaths, AcademyResources, AcademyTeam, AcademyVerify,
   AIAdoption, AIEngineering, Careers, Contact, Home, Platform, Privacy, Process, Products, Services, Terms,
 } from '@site-pages';
 import AcademyLayout from './pages/site/academy/AcademyLayout.jsx';
@@ -43,6 +43,7 @@ export default function App() {
           <Route path="paths" element={<AcademyPaths />} />
           <Route path="certifications" element={<AcademyCertifications />} />
           <Route path="resources" element={<AcademyResources />} />
+          <Route path="verify" element={<AcademyVerify />} />
           <Route path="team" element={<AcademyTeam />} />
         </Route>
         <Route path="products" element={<Products />} />

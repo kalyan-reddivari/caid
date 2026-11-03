@@ -1817,3 +1817,30 @@ main:focus { outline: none; }
   .cred-meta { grid-template-columns: 1fr; gap: .7rem; }
   .cred-holder { padding-inline: .5rem; }
 }
+
+/* Credential verification */
+.verify-form { display: grid; gap: .5rem; max-width: 640px; margin-bottom: 1.5rem; }
+.verify-form label { font-weight: 600; }
+.verify-row { display: flex; gap: .75rem; flex-wrap: wrap; }
+.verify-row input {
+  flex: 1 1 260px; font-size: 1rem; padding: .7rem .9rem; letter-spacing: .03em;
+  border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--surface); color: var(--ink);
+}
+.verify-row input:focus { outline: none; border-color: var(--teal); box-shadow: var(--focus); }
+.verify-result {
+  display: grid; grid-template-columns: 200px 1fr; gap: 2rem; align-items: start;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 1.8rem 2rem; animation: rise .3s ease-out;
+}
+.verify-result .cred-badge { max-width: 200px; }
+.verify-result .pill + .pill { margin-left: .4rem; }
+.verify-result h2 { font-size: var(--t-lg); margin: .7rem 0 .3rem; }
+.verify-result .exam-facts { margin: 1.2rem 0 1.4rem; }
+.verify-notes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; border-top: 1px solid var(--line); padding-top: 2rem; }
+.verify-notes h3 { font-size: 1.05rem; margin-bottom: .3rem; }
+.verify-notes p { color: var(--ink-soft); font-size: .93rem; margin: 0; }
+@media (max-width: 960px) {
+  .verify-result { grid-template-columns: 1fr; }
+  .verify-result .cred-badge { max-width: 160px; margin: 0; }
+  .verify-notes { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) { .verify-result { padding: 1.3rem; } }

@@ -9,6 +9,7 @@ export { default as AcademyPaths } from './pages/site/academy/Paths.jsx';
 export { default as AcademyCertifications } from './pages/site/academy/Certifications.jsx';
 export { default as AcademyResources } from './pages/site/academy/Resources.jsx';
 export { default as AcademyTeam } from './pages/site/academy/Team.jsx';
+export { default as AcademyVerify } from './pages/site/academy/Verify.jsx';
 export { default as Products } from './pages/site/Products.jsx';
 export { default as Platform } from './pages/site/Platform.jsx';
 export { default as About } from './pages/site/About.jsx';

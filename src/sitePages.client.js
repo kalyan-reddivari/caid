@@ -20,6 +20,7 @@ export const AcademyPaths = page(() => import('./pages/site/academy/Paths.jsx'))
 export const AcademyCertifications = page(() => import('./pages/site/academy/Certifications.jsx'));
 export const AcademyResources = page(() => import('./pages/site/academy/Resources.jsx'));
 export const AcademyTeam = page(() => import('./pages/site/academy/Team.jsx'));
+export const AcademyVerify = page(() => import('./pages/site/academy/Verify.jsx'));
 export const Products = page(() => import('./pages/site/Products.jsx'));
 export const Platform = page(() => import('./pages/site/Platform.jsx'));
 export const About = page(() => import('./pages/site/About.jsx'));

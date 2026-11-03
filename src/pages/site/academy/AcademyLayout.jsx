@@ -5,6 +5,7 @@ const TABS = [
   { to: '/ai-academy/paths', label: 'Learning paths' },
   { to: '/ai-academy/certifications', label: 'Certifications' },
   { to: '/ai-academy/resources', label: 'Resources' },
+  { to: '/ai-academy/verify', label: 'Verify' },
   { to: '/ai-academy/team', label: 'Our team' },
 ];
 

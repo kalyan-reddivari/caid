@@ -172,6 +172,7 @@ export default function SiteLayout() {
             <Link to="/ai-adoption">AI adoption</Link>
             <Link to="/ai-academy">Academy</Link>
             <Link to="/ai-academy/certifications">Certifications</Link>
+            <Link to="/ai-academy/verify">Verify a credential</Link>
           </div>
           <div>
             <h2 className="footer-h">Company</h2>

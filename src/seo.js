@@ -43,6 +43,10 @@ export const ROUTE_META = {
     title: 'Courses, labs, guides and exam prep | CAID Academy',
     description: 'Search the CAID Academy catalog: free guides, templates, webinars and exam prep, plus courses and labs that come with a path enrollment.',
   },
+  '/ai-academy/verify': {
+    title: 'Verify a CAID certification | CAID Academy',
+    description: 'Check a CAID Academy credential by its ID: who holds it, when it was issued and whether it is still valid.',
+  },
   '/ai-academy/team': {
     title: 'How every person at CAID learns to build with AI | CAID Academy',
     description: 'A four-level path with labs, mentors and paid certification time that every analyst, engineer and lead at CAID completes.',

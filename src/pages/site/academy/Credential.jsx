@@ -1,4 +1,6 @@
+import { Link } from 'react-router-dom';
 import { TIERS } from '../../../content/academy.js';
+import { sampleId, VERIFY_PATH } from '../../../content/credentials.js';
 
 // What a learner receives on passing: a digital badge and a certificate with a verification link.
 // Both are drawn from the selected certification, so the preview changes as visitors pick one.
@@ -6,7 +8,6 @@ import { TIERS } from '../../../content/academy.js';
 // Ribbon color and its text for each tier, in the order of TIERS (the badge itself is navy).
 const RIBBON = ['var(--teal-wash)', 'var(--teal)', 'var(--amber)', '#fff'];
 const RIBBON_INK = ['var(--teal-deep)', '#fff', 'var(--ink)', 'var(--ink)'];
-const SAMPLE_ID = { Foundational: 'F', Associate: 'A', Professional: 'P', 'Product specialist': 'S' };
 
 export const shortName = (name) => name.replace(/^(CAID )?Certified /, '').replace(/, (Associate|Professional)$/, '');
 
@@ -18,7 +19,7 @@ function Mark() {
   );
 }
 
-function Badge({ cert }) {
+export function Badge({ cert }) {
   const i = TIERS.indexOf(cert.tier);
   const words = shortName(cert.name).split(' ');
   // Two balanced lines for the title on the badge.
@@ -42,12 +43,12 @@ function Badge({ cert }) {
 }
 
 export default function Credential({ cert }) {
-  const id = `CAID-${SAMPLE_ID[cert.tier]}${String(cert.questions).padStart(2, '0')}-0000-SAMPLE`;
+  const id = sampleId(cert);
   return (
     <div className="cred">
       <figure className="cred-badge-wrap">
         <Badge cert={cert} />
-        <figcaption>Digital badge for LinkedIn, email signatures and résumés</figcaption>
+        <figcaption>Digital badge, added to LinkedIn in one click from your verification page</figcaption>
       </figure>
       <figure className="cred-cert">
         <div className="cred-cert-inner">
@@ -66,10 +67,10 @@ export default function Credential({ cert }) {
           </dl>
           <div className="cred-verify">
             <span className="cred-seal" aria-hidden="true">✓</span>
-            <span>Anyone can check it on the CAID verification page using the credential ID</span>
+            <span>Anyone can check it on the <Link to={`${VERIFY_PATH}?id=${id}`}>CAID verification page</Link> with the credential ID</span>
           </div>
         </div>
-        <figcaption>Certificate, downloadable as a PDF, with a public verification page</figcaption>
+        <figcaption>Certificate as a PDF, plus a signed Open Badges 3.0 credential for any wallet</figcaption>
       </figure>
     </div>
   );

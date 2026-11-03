@@ -277,7 +277,7 @@ export const CERT_STEPS = [
   { title: 'Prepare', text: 'Follow the recommended path, read the exam guide and sit a practice exam.' },
   { title: 'Register', text: 'Book a free online exam slot. There is no fee for any CAID certification.' },
   { title: 'Take the exam', text: 'Sit the exam online from home or the office, with a remote proctor.' },
-  { title: 'Get your badge', text: 'Pass and receive a digital badge with a link anyone can use to verify it.' },
+  { title: 'Get your badge', text: 'Pass and receive a signed digital badge, a certificate and a verification link you can add to LinkedIn.' },
   { title: 'Stay current', text: 'Credentials last two years. Recertify with a shorter exam on what has changed.' },
 ];
 
@@ -285,7 +285,7 @@ export const CERT_FAQ = [
   { q: 'How are exams delivered?', a: 'Online, with a remote proctor watching through your webcam. You need a quiet room, a stable connection and photo ID. The Foundations exam is unproctored.' },
   { q: 'What if I do not pass?', a: 'You can retake an exam after 14 days. Every attempt is free, and your score report shows how you did in each domain.' },
   { q: 'How long does a certification last?', a: 'Two years. Before it expires you can sit a shorter recertification exam covering what has changed in the field and in our products.' },
-  { q: 'How do employers check a credential?', a: 'Every credential comes as a digital badge with a public verification link showing the holder, the certification and its expiry date.' },
+  { q: 'How do employers check a credential?', a: 'On the CAID verification page, using the credential ID on the certificate or LinkedIn profile. Each credential is also a signed Open Badges 3.0 credential that any compliant verifier can check.' },
   { q: 'What does certification cost?', a: 'Nothing. Every CAID certification exam, including retakes and recertification, is free. Instructor-led courses and labs can be bundled into client engagements and partner agreements.' },
   { q: 'Do you offer exam accommodations?', a: 'Yes. Extra time and other accommodations are available on request. Ask before you book so we can set them up.' },
 ];
