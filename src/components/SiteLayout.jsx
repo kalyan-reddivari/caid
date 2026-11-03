@@ -5,7 +5,7 @@ import { usePageMeta } from '../seo.js';
 import CallButton from './CallButton.jsx';
 import Wordmark from './Wordmark.jsx';
 
-// Five top-level items. Groups open as a menu on wide screens and list their links inline on phones.
+// Six top-level items. Groups open as a menu on wide screens and list their links inline on phones.
 const NAV = [
   { to: '/services', label: 'Services' },
   { to: '/process', label: 'Process' },
@@ -14,7 +14,15 @@ const NAV = [
     items: [
       { to: '/ai-engineering', label: 'How we build', note: 'AI in every phase, people at every gate' },
       { to: '/ai-adoption', label: 'AI adoption', note: 'From readiness assessment to production' },
-      { to: '/ai-academy', label: 'AI Academy', note: 'How our whole team is trained' },
+    ],
+  },
+  {
+    label: 'Academy',
+    items: [
+      { to: '/ai-academy', label: 'Overview', note: 'Learn, build and certify', end: true },
+      { to: '/ai-academy/paths', label: 'Learning paths', note: 'Role-based, beginner to advanced' },
+      { to: '/ai-academy/certifications', label: 'Certifications', note: 'Exams, tiers and badges' },
+      { to: '/ai-academy/resources', label: 'Resources', note: 'Courses, labs, guides and exam prep' },
     ],
   },
   {
@@ -63,7 +71,7 @@ function NavGroup({ group, pathname }) {
       <div className="nav-menu" id={id}>
         <span className="nav-menu-label" aria-hidden="true">{group.label}</span>
         {group.items.map((i) => (
-          <NavLink key={i.to} to={i.to}>
+          <NavLink key={i.to} to={i.to} end={i.end}>
             <b>{i.label}</b>
             <span>{i.note}</span>
           </NavLink>
@@ -162,7 +170,8 @@ export default function SiteLayout() {
             <h2 className="footer-h">AI</h2>
             <Link to="/ai-engineering">How we build</Link>
             <Link to="/ai-adoption">AI adoption</Link>
-            <Link to="/ai-academy">AI Academy</Link>
+            <Link to="/ai-academy">Academy</Link>
+            <Link to="/ai-academy/certifications">Certifications</Link>
           </div>
           <div>
             <h2 className="footer-h">Company</h2>

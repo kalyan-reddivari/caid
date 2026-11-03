@@ -4,8 +4,10 @@ import SiteLayout from './components/SiteLayout.jsx';
 import ProtectedRoute from './components/ProtectedRoute.jsx';
 
 import {
-  About, Academy, AIAdoption, AIEngineering, Careers, Contact, Home, Platform, Privacy, Process, Products, Services, Terms,
+  About, AcademyCertifications, AcademyOverview, AcademyPaths, AcademyResources, AcademyTeam,
+  AIAdoption, AIEngineering, Careers, Contact, Home, Platform, Privacy, Process, Products, Services, Terms,
 } from '@site-pages';
+import AcademyLayout from './pages/site/academy/AcademyLayout.jsx';
 import NotFound from './pages/NotFound.jsx';
 
 // The employee portal loads on demand, so visitors to the public site never download it.
@@ -36,7 +38,13 @@ export default function App() {
         <Route path="process" element={<Process />} />
         <Route path="ai-engineering" element={<AIEngineering />} />
         <Route path="ai-adoption" element={<AIAdoption />} />
-        <Route path="ai-academy" element={<Academy />} />
+        <Route path="ai-academy" element={<AcademyLayout />}>
+          <Route index element={<AcademyOverview />} />
+          <Route path="paths" element={<AcademyPaths />} />
+          <Route path="certifications" element={<AcademyCertifications />} />
+          <Route path="resources" element={<AcademyResources />} />
+          <Route path="team" element={<AcademyTeam />} />
+        </Route>
         <Route path="products" element={<Products />} />
         <Route path="platform" element={<Platform />} />
         <Route path="about" element={<About />} />

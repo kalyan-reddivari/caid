@@ -7,7 +7,7 @@ import SITE, { hasBooking } from '../../site.config.js';
 import { track, trackStart } from '../../utils/track.js';
 import DotTerrain from '../../components/fx/DotTerrain.jsx';
 
-const INTERESTS = ['Discovery call', 'Custom applications', 'Systems integration', 'New project brief', 'AI-native delivery', 'AI adoption', 'Product development', 'Products', 'Something else'];
+const INTERESTS = ['Discovery call', 'Custom applications', 'Systems integration', 'New project brief', 'AI-native delivery', 'AI adoption', 'Product development', 'Products', 'Academy and certification', 'Something else'];
 const EMPTY = { name: '', email: '', company: '', interest: INTERESTS[0], message: '' };
 const onStart = trackStart('contact');
 

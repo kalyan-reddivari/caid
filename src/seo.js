@@ -28,7 +28,23 @@ export const ROUTE_META = {
     description: 'Assess, pilot, integrate and scale AI against your own systems and data, with clear success measures. Ask about the six-week AI readiness assessment.',
   },
   '/ai-academy': {
-    title: 'CAID AI Academy: how every person at CAID learns to build with AI',
+    title: 'CAID Academy: AI learning paths, certifications and resources',
+    description: 'Role-based learning paths, hands-on labs and certifications for building and governing AI, taught by the people who build AI-native software every day.',
+  },
+  '/ai-academy/paths': {
+    title: 'Learning paths by role | CAID Academy',
+    description: 'Seven role-based paths, from AI Foundations to Generative AI Engineer and AI Governance, each an ordered set of courses and labs that leads to a certification.',
+  },
+  '/ai-academy/certifications': {
+    title: 'Certifications: Foundational, Associate, Professional and product specialist | CAID Academy',
+    description: 'Exam details, domain weightings, fees and how certification works for every CAID Academy credential, with verifiable digital badges.',
+  },
+  '/ai-academy/resources': {
+    title: 'Courses, labs, guides and exam prep | CAID Academy',
+    description: 'Search the CAID Academy catalog: free guides, templates, webinars and exam prep, plus courses and labs that come with a path enrollment.',
+  },
+  '/ai-academy/team': {
+    title: 'How every person at CAID learns to build with AI | CAID Academy',
     description: 'A four-level path with labs, mentors and paid certification time that every analyst, engineer and lead at CAID completes.',
   },
   '/products': {

@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ACADEMY_SESSION, AcademyArt, LEVELS, LevelBadge, SessionPlayer } from '../../components/AIGraphics.jsx';
-import { IconTile } from '../../components/Icons.jsx';
-import MediaClip from '../../components/MediaClip.jsx';
-import Reveal from '../../components/Reveal.jsx';
-import MEDIA from '../../media.js';
-import DotTerrain from '../../components/fx/DotTerrain.jsx';
+import { ACADEMY_SESSION, AcademyArt, LEVELS, LevelBadge, SessionPlayer } from '../../../components/AIGraphics.jsx';
+import { IconTile } from '../../../components/Icons.jsx';
+import MediaClip from '../../../components/MediaClip.jsx';
+import Reveal from '../../../components/Reveal.jsx';
+import MEDIA from '../../../media.js';
+import DotTerrain from '../../../components/fx/DotTerrain.jsx';
 
 const LEVEL_INFO = [
   { who: 'Everyone, first 30 days', text: 'How AI models work, where they fail, and our responsible-use policy. Safe prompting with approved tools.', proof: 'Policy quiz + 3 guided labs' },
@@ -54,10 +54,10 @@ const RHYTHM = [
   { icon: 'send', title: 'Monthly demo day', text: 'Teams show what AI changed in their work, including what did not work.' },
   { icon: 'bulb', title: 'Quarterly hack week', text: 'Build internal tools and accelerators that later speed up client delivery.' },
   { icon: 'book', title: 'Living playbooks', text: 'Prompt libraries, spec templates and review checklists kept current by champions.' },
-  { icon: 'grad', title: 'Certification support', text: 'Paid exam fees and study time for cloud AI certifications from the major providers.' },
+  { icon: 'grad', title: 'Certification support', text: 'Paid exam fees and study time for CAID Academy certifications and cloud AI certifications from the major providers.' },
 ];
 
-export default function Academy() {
+export default function Team() {
   const [track, setTrack] = useState(0);
   const t = TRACKS[track];
 
@@ -67,11 +67,12 @@ export default function Academy() {
         <DotTerrain />
         <div className="wrap">
           <div>
-            <span className="eyebrow">CAID AI Academy</span>
+            <span className="eyebrow">Academy · Our team</span>
             <h1>Every person at CAID is trained to work with AI</h1>
             <p>
               Not only engineers. Analysts, testers, designers and delivery leads all follow a four-level
-              path, so the whole team on your project speaks the same AI-native language.
+              internal path, then certify on the same Academy paths we teach clients, so the whole team on
+              your project speaks the same AI-native language.
             </p>
             <div className="hero-actions">
               <a className="btn btn-primary" href="#levels">See the levels</a>
