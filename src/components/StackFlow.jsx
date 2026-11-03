@@ -210,18 +210,20 @@ export default function StackFlow() {
 
   return (
     <div className="stack-flow" ref={ref}>
-      <div className="sf-tabs" role="tablist" aria-label="Walkthroughs">
-        {SCENARIOS.map((x, i) => (
-          <button key={x.id} role="tab" aria-selected={i === scenario} className={i === scenario ? 'is-on' : ''} onClick={() => choose(i)}>
-            {x.label}
-          </button>
-        ))}
+      <div className="sf-tabs">
+        <div className="sf-tablist" role="tablist" aria-label="Walkthroughs">
+          {SCENARIOS.map((x, i) => (
+            <button key={x.id} role="tab" aria-selected={i === scenario} className={i === scenario ? 'is-on' : ''} onClick={() => choose(i)}>
+              {x.label}
+            </button>
+          ))}
+        </div>
         <button className="sf-play" onClick={() => setPlaying(!playing)} aria-pressed={!playing}>
           {playing && !reduced ? 'Pause' : 'Play'}
         </button>
       </div>
 
-      <div className={`sf-canvas art-dark${visible ? ' is-in' : ''}`}>
+      <div className={`sf-canvas art-dark${visible ? ' is-in' : ''}`} tabIndex={0} aria-label="Walkthrough diagram, scrolls sideways on small screens">
         {motion && <div key={`${scenario}-${step}`} className="sf-timer" style={{ '--t': `${STEP_MS}ms` }} aria-hidden="true" />}
         <svg viewBox="0 0 1000 545" className="sf-svg" role="img"
           aria-label="The CAID stack: people and AI agents call Bridgehead, CAID Core checks identity, intent, policy and records receipts, Underwrit approves risky writes, and the systems of record are Salesforce, ServiceNow, Workday and SAP. Agentcraft Studio and Dryva design and rehearse workflows; Groundline, Driftwatch, Pagewise and Modelyard work alongside.">

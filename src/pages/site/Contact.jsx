@@ -94,7 +94,7 @@ export default function Contact() {
             )}
           </div>
 
-          <aside className="contact-side">
+          <div className="contact-side">
             {hasBooking() && (
               <div className="contact-option">
                 <h2>Pick a time yourself</h2>
@@ -116,7 +116,7 @@ export default function Contact() {
               <dt>Office</dt><dd>{SITE.city}, {SITE.region}</dd>
               <dt>Hours</dt><dd>{SITE.hours}</dd>
             </dl>
-          </aside>
+          </div>
         </div>
       </section>
     </>

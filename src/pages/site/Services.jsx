@@ -65,6 +65,7 @@ export default function Services() {
       </section>
       <section className="section">
         <div className="wrap">
+          <h2 className="sr-only">Our services</h2>
           {SERVICES.map((s) => (
             <Reveal as="article" key={s.title} className="product">
               <div className="product-head">

@@ -146,10 +146,10 @@ export default function SiteLayout() {
       </main>
 
       {!onContact && !open && (
-        <div className={`sticky-cta${scrolled ? ' shown' : ''}`}>
+        <aside className={`sticky-cta${scrolled ? ' shown' : ''}`} aria-label="Get in touch">
           <CallButton className="btn btn-primary" from="sticky-mobile">Book a free call</CallButton>
           <Link className="btn btn-ghost" to="/process#brief" data-track="brief:sticky-mobile">Project brief</Link>
-        </div>
+        </aside>
       )}
 
       <footer className="site-footer">

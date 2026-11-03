@@ -9,9 +9,16 @@
     <meta name="description" content="CAID connects the ERP, CRM, HR and finance systems you already run, builds the applications your teams need, and puts AI to work across them." />
     <!--head:end-->
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+    <!-- Fonts are self-hosted (latin subset, SIL Open Font License) and preloaded, so text paints in the
+         brand fonts without waiting on a third-party stylesheet. -->
+    <link rel="preload" href="/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/ibm-plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <style>
+      @font-face { font-family: 'Bricolage Grotesque'; font-style: normal; font-weight: 600 800; font-display: swap;
+        src: url(/fonts/bricolage-grotesque-latin.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+      @font-face { font-family: 'IBM Plex Sans'; font-style: normal; font-weight: 400 600; font-display: swap;
+        src: url(/fonts/ibm-plex-sans-latin.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+    </style>
     <!-- Scroll-in animations only hide content once JavaScript is known to be running. -->
     <script>document.documentElement.classList.add('js');</script>
   </head>

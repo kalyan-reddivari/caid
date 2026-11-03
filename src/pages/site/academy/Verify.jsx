@@ -110,6 +110,7 @@ export default function Verify() {
           )}
           {state.status === 'found' && <Result cred={state.cred} />}
 
+          <h2 className="sr-only">About CAID credentials</h2>
           <div className="verify-notes">
             <div>
               <h3>Open standard</h3>

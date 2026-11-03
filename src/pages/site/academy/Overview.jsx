@@ -32,7 +32,7 @@ export default function Overview() {
         </div>
       </section>
 
-      <section className="section">
+      <section className="section academy-facts-section">
         <div className="wrap">
           <dl className="facts four academy-facts">
             <div><dt>{PATHS.length}</dt><dd>role-based learning paths</dd></div>

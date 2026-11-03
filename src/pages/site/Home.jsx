@@ -116,8 +116,8 @@ export default function Home() {
             {[
               ['Design', 'Agentcraft Studio', 'Free'],
               ['Rehearse', 'Dryva', 'Release candidate'],
-              ['Approve and prove', 'Underwrit', 'Public beta'],
-              ['Run on your platform', 'Orbitward', 'Beta'],
+              ['Approve and prove', 'Underwrit', 'Available now'],
+              ['Run on your platform', 'Orbitward', 'Guided pilots'],
               ['Act on SAP, Salesforce, Workday', 'Bridgehead', 'In development'],
               ['Know, watch, fix, predict', 'Groundline · Driftwatch · Pagewise · Modelyard', 'In development'],
             ].map(([stage, name, state], i) => (

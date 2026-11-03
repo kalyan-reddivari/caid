@@ -305,7 +305,7 @@ export function SpecCard() {
           ))}
         </div>
       </div>
-      <pre key={file} role="tabpanel" aria-label={file}>
+      <pre key={file} role="tabpanel" aria-label={file} tabIndex={0}>
         {SPEC_FILES[file].map(([kind, text], i) => (
           <span key={i} className={`sl ${kind}`} style={{ '--i': i }}>{text || ' '}</span>
         ))}
@@ -376,19 +376,19 @@ export function SessionPlayer({ script, title }) {
           })}
           <div className="tl caret" />
         </div>
-        <aside className="player-side">
-          <h4>Workspace</h4>
+        <div className="player-side">
+          <p className="pside-h">Workspace</p>
           <ul className="pfiles">
             {shownFiles.map((f, i) => (
               <li key={f.name} className={i === shownFiles.length - 1 ? 'active' : ''}>{f.name}</li>
             ))}
           </ul>
-          <h4>{script.tasksLabel || 'Tasks'} <b>{doneTasks}/{tasks.length}</b></h4>
+          <p className="pside-h">{script.tasksLabel || 'Tasks'} <b>{doneTasks}/{tasks.length}</b></p>
           <div className="progress"><i style={{ width: `${(doneTasks / tasks.length) * 100}%` }} /></div>
           <ul className="ptasks">
             {tasks.map((k) => <li key={k.text} className={k.t <= now ? 'done' : ''}>{k.text}</li>)}
           </ul>
-        </aside>
+        </div>
       </div>
       <div className="player-controls">
         <button type="button" className="pbtn" onClick={toggle} aria-label={playing ? 'Pause' : 'Play'}>
@@ -507,7 +507,7 @@ export const STACKS = [
 
 export function StackBoard() {
   return (
-    <div className="stack-board">
+    <div className="stack-board" tabIndex={0} aria-label="Technologies by layer; swipe sideways on small screens">
       {STACKS.map((s, i) => (
         <div key={s.group} className={`stack-col${s.ai ? ' is-ai' : ''}`} style={{ '--c': i }}>
           <h3>{s.group}</h3>

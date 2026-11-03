@@ -55,6 +55,7 @@ export default function Certifications() {
 
       <section className="section">
         <div className="wrap">
+          <h2 className="sr-only">Certifications by tier</h2>
           <div className="ladder" role="list">
             {TIERS.map((tier) => (
               <div key={tier} className="ladder-col" role="listitem">

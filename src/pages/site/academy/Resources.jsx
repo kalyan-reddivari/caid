@@ -34,6 +34,7 @@ export default function Resources() {
 
       <section className="section academy-list">
         <div className="wrap">
+          <h2 className="sr-only">Browse resources</h2>
           <div className="filters">
             <div className="search-row">
               <label className="sr-only" htmlFor="res-search">Search resources</label>

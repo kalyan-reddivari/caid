@@ -145,8 +145,8 @@ export function OrbitwardArt() {
 
       <circle cx={cx} cy={cy} r="52" fill={SOLID} />
       <text x={cx} y={cy + 2} textAnchor="middle" fontSize="15" fontWeight="800" fill="#fff" style={DISPLAY}>Orbitward</text>
-      <rect x={cx - 20} y={cy + 12} width="40" height="17" rx="8.5" fill="var(--amber)" />
-      <text x={cx} y={cy + 24.5} textAnchor="middle" fontSize="10" fontWeight="700" fill="var(--ink)" style={FONT}>Beta</text>
+      <rect x={cx - 22} y={cy + 12} width="44" height="17" rx="8.5" fill="var(--amber)" />
+      <text x={cx} y={cy + 24.5} textAnchor="middle" fontSize="10" fontWeight="700" fill="var(--ink)" style={FONT}>Live</text>
     </svg>
   );
 }

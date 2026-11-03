@@ -62,21 +62,23 @@ const PROOF = [
 const WEEKS = [[2, 'Nov 2026'], [9], [16], [23], [30, 'Dec'], [7], [14], [21], [28], [4, 'Jan 2027'], [11], [18], [25]];
 const ROADMAP = [
   { name: 'CAID Core', note: 'shared platform', start: 0, end: 3, marks: [[3, 'foundation']] },
-  { name: 'Bridgehead', note: 'MCP connectors', start: 0, end: 6, marks: [[2, 'alpha'], [4, 'beta'], [6, 'GA']] },
-  { name: 'Groundline', note: 'permission-aware RAG', start: 2, end: 8, marks: [[4, 'alpha'], [6, 'beta'], [8, 'GA']] },
-  { name: 'Driftwatch', note: 'release contract tests', start: 3, end: 9, marks: [[5, 'alpha'], [7, 'beta'], [9, 'GA']] },
-  { name: 'Pagewise', note: 'incident agent', start: 5, end: 11, marks: [[7, 'alpha'], [9, 'beta'], [11, 'GA']] },
-  { name: 'Modelyard', note: 'ERP and CRM MLOps', start: 6, end: 12, marks: [[8, 'alpha'], [10, 'beta'], [12, 'GA']] },
+  { name: 'Bridgehead', note: 'MCP connectors', start: 0, end: 6, marks: [[2, 'preview'], [4, 'pilot'], [6, 'GA']] },
+  { name: 'Groundline', note: 'permission-aware RAG', start: 2, end: 8, marks: [[4, 'preview'], [6, 'pilot'], [8, 'GA']] },
+  { name: 'Driftwatch', note: 'release contract tests', start: 3, end: 9, marks: [[5, 'preview'], [7, 'pilot'], [9, 'GA']] },
+  { name: 'Pagewise', note: 'incident agent', start: 5, end: 11, marks: [[7, 'preview'], [9, 'pilot'], [11, 'GA']] },
+  { name: 'Modelyard', note: 'ERP and CRM MLOps', start: 6, end: 12, marks: [[8, 'preview'], [10, 'pilot'], [12, 'GA']] },
 ];
 
 function Roadmap() {
   return (
-    <Reveal className="roadmap">
+    <Reveal className="roadmap" tabIndex={0} aria-label="Product roadmap, scrolls sideways on small screens">
       <div className="roadmap-grid" role="table" aria-label="Product roadmap for the next three months, week by week, November 2026 to January 2027">
-        <div role="columnheader" />
-        {WEEKS.map(([day, month], i) => (
-          <div key={i} className={`roadmap-month${month ? ' is-month' : ''}`} role="columnheader">{month ? <b>{month}</b> : <br />}<br />{day}</div>
-        ))}
+        <div role="row" style={{ display: 'contents' }}>
+          <div role="columnheader"><span className="sr-only">Product</span></div>
+          {WEEKS.map(([day, month], i) => (
+            <div key={i} className={`roadmap-month${month ? ' is-month' : ''}`} role="columnheader">{month ? <b>{month}</b> : <br />}<br />{day}</div>
+          ))}
+        </div>
         <div className="roadmap-today" style={{ gridRow: `2 / ${ROADMAP.length + 2}`, gridColumn: 2 }} aria-hidden="true"><span>now</span></div>
         {ROADMAP.map((r, k) => (
           <div key={r.name} role="row" style={{ display: 'contents' }}>
@@ -93,7 +95,7 @@ function Roadmap() {
         ))}
       </div>
       <div className="roadmap-legend">
-        <span>Available now: Underwrit (public beta), Orbitward (beta), Agentcraft Studio (alpha, free), Dryva (release candidate).</span>
+        <span>Available now: Underwrit (free edition), Orbitward (guided pilots), Agentcraft Studio (free), Dryva (release candidate).</span>
         <span>Every product reaches general availability (GA) within the next three months. Dates are targets, shaped by design partners.</span>
       </div>
     </Reveal>
