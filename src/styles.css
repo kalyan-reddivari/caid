@@ -1778,3 +1778,42 @@ main:focus { outline: none; }
   .cert-detail, .domain-bar i { animation: none; }
   .path-teaser, .resource-card { transition: none; }
 }
+
+/* Credential preview: digital badge and certificate */
+.cred { display: grid; grid-template-columns: 300px 1fr; gap: 2.5rem; align-items: start; }
+.cred figure { margin: 0; }
+.cred figcaption { margin-top: .8rem; font-size: .85rem; color: var(--ink-soft); text-align: center; }
+.cred-badge { display: block; width: 100%; max-width: 260px; margin-inline: auto; filter: drop-shadow(0 24px 30px rgba(20, 33, 61, .28)); }
+.cred-badge-brand { font: 800 30px var(--font-display); fill: #fff; }
+.cred-badge-small { font: 600 11px var(--font-body); letter-spacing: .28em; fill: #aab4c8; }
+.cred-badge-title { font: 700 19px var(--font-display); fill: #fff; }
+.cred-badge-tier { font: 700 11px var(--font-body); letter-spacing: .12em; }
+.cred-cert {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: .7rem;
+  box-shadow: 0 30px 50px -40px rgba(20, 33, 61, .6);
+}
+.cred-cert-inner {
+  position: relative; display: grid; justify-items: center; text-align: center; gap: .35rem;
+  border: 2px solid var(--ink); border-radius: 8px; padding: 2rem 2rem 1.6rem;
+  background: linear-gradient(135deg, transparent 0 88%, var(--amber-wash) 88% 100%), var(--paper);
+}
+.cred-cert-inner::before { content: ''; position: absolute; inset: 6px; border: 1px solid var(--line); border-radius: 4px; pointer-events: none; }
+.cred-cert-top { width: 100%; display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+.cred-mark { font-size: 1.5rem; }
+.cred-sample { font-size: .7rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #8a5a10; background: var(--amber-wash); border: 1px solid var(--amber); padding: .15rem .5rem; border-radius: 4px; }
+.cred-label { font-size: .85rem; color: var(--ink-soft); letter-spacing: .04em; }
+.cred-holder { font: 800 clamp(1.6rem, 3.4vw, 2.2rem)/1.2 var(--font-display); color: var(--ink); border-bottom: 2px solid var(--amber); padding: 0 1.5rem .2rem; margin-bottom: .4rem; }
+.cred-title { font: 700 var(--t-md)/1.3 var(--font-display); color: var(--teal-deep); max-width: 30ch; }
+.cred-meta { display: grid; grid-template-columns: repeat(3, auto); gap: 1.6rem; margin: 1.4rem 0 1rem; }
+.cred-meta dt { font-size: .7rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-faint); }
+.cred-meta dd { margin: .15rem 0 0; font-size: .88rem; font-weight: 500; }
+.cred-verify { display: inline-flex; align-items: center; gap: .55rem; font-size: .85rem; color: var(--ink-soft); }
+.cred-seal { display: inline-grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: var(--teal); color: #fff; font-size: .8rem; font-weight: 700; }
+@media (max-width: 960px) {
+  .cred { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .cred-cert-inner { padding: 1.4rem 1rem 1.2rem; }
+  .cred-meta { grid-template-columns: 1fr; gap: .7rem; }
+  .cred-holder { padding-inline: .5rem; }
+}

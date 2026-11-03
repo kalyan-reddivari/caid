@@ -54,7 +54,7 @@ const RHYTHM = [
   { icon: 'send', title: 'Monthly demo day', text: 'Teams show what AI changed in their work, including what did not work.' },
   { icon: 'bulb', title: 'Quarterly hack week', text: 'Build internal tools and accelerators that later speed up client delivery.' },
   { icon: 'book', title: 'Living playbooks', text: 'Prompt libraries, spec templates and review checklists kept current by champions.' },
-  { icon: 'grad', title: 'Certification support', text: 'Paid exam fees and study time for CAID Academy certifications and cloud AI certifications from the major providers.' },
+  { icon: 'grad', title: 'Certification support', text: 'Study time for free CAID Academy certifications, plus paid exam fees for cloud AI certifications from the major providers.' },
 ];
 
 export default function Team() {

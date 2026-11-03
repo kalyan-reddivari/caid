@@ -1,5 +1,5 @@
 // CAID Academy catalogue: learning paths, certifications and resources.
-// Everything the Academy tabs show comes from here, so names, fees and exam details are edited in one place.
+// Everything the Academy tabs show comes from here, so names and exam details are edited in one place.
 
 export const ROLES = ['Everyone', 'Engineers', 'Integration', 'AI engineers', 'Security and risk', 'Platform and SRE', 'Delivery leads'];
 export const LEVELS = ['Beginner', 'Intermediate', 'Advanced'];
@@ -160,7 +160,7 @@ export const CERTS = [
     name: 'Certified AI-Native Developer, Associate',
     tier: 'Associate',
     audience: 'Software engineers building with coding agents',
-    questions: 45, minutes: 90, proctoring: 'Online, proctored', fee: '$200', validity: '2 years',
+    questions: 45, minutes: 90, proctoring: 'Online, proctored', fee: 'Free', validity: '2 years',
     prereq: '6 months building production software recommended',
     path: 'ai-native-developer',
     domains: [['Working with coding agents', 25], ['Spec-driven development', 25], ['Reviewing and testing AI-written code', 30], ['Production readiness', 20]],
@@ -170,7 +170,7 @@ export const CERTS = [
     name: 'Certified Integration Engineer, Associate',
     tier: 'Associate',
     audience: 'Engineers connecting systems and agents',
-    questions: 45, minutes: 90, proctoring: 'Online, proctored', fee: '$200', validity: '2 years',
+    questions: 45, minutes: 90, proctoring: 'Online, proctored', fee: 'Free', validity: '2 years',
     prereq: '6 months of integration work recommended',
     path: 'integration-engineer',
     domains: [['APIs and contracts', 25], ['Event-driven patterns', 20], ['MCP and agent tool use', 30], ['Security and observability', 25]],
@@ -180,7 +180,7 @@ export const CERTS = [
     name: 'Certified Generative AI Engineer, Associate',
     tier: 'Associate',
     audience: 'Engineers building retrieval and agent features',
-    questions: 45, minutes: 90, proctoring: 'Online, proctored', fee: '$200', validity: '2 years',
+    questions: 45, minutes: 90, proctoring: 'Online, proctored', fee: 'Free', validity: '2 years',
     prereq: 'Working Python and one shipped AI feature recommended',
     path: 'genai-engineer',
     domains: [['Retrieval design', 25], ['Agents and tool use', 25], ['Evaluation', 25], ['Guardrails and cost', 25]],
@@ -190,7 +190,7 @@ export const CERTS = [
     name: 'Certified Generative AI Engineer, Professional',
     tier: 'Professional',
     audience: 'Senior engineers who own AI systems in production',
-    questions: 60, minutes: 120, proctoring: 'Online, proctored', fee: '$300', validity: '2 years',
+    questions: 60, minutes: 120, proctoring: 'Online, proctored', fee: 'Free', validity: '2 years',
     prereq: 'Associate certification and a year running AI in production recommended',
     path: 'genai-engineer',
     domains: [['System design', 30], ['Evaluation at scale', 20], ['Security and prompt injection', 25], ['Operations and cost', 25]],
@@ -200,7 +200,7 @@ export const CERTS = [
     name: 'Certified AI Governance Practitioner, Associate',
     tier: 'Associate',
     audience: 'Security, compliance, audit and risk teams',
-    questions: 45, minutes: 90, proctoring: 'Online, proctored', fee: '$200', validity: '2 years',
+    questions: 45, minutes: 90, proctoring: 'Online, proctored', fee: 'Free', validity: '2 years',
     prereq: 'AI Foundations recommended',
     path: 'ai-governance',
     domains: [['Frameworks and regulation', 30], ['Policy design', 25], ['Approvals and controls', 20], ['Evidence and audit', 25]],
@@ -210,7 +210,7 @@ export const CERTS = [
     name: 'Certified AI Delivery Lead, Associate',
     tier: 'Associate',
     audience: 'Delivery leads, product owners and analysts',
-    questions: 40, minutes: 75, proctoring: 'Online, proctored', fee: '$200', validity: '2 years',
+    questions: 40, minutes: 75, proctoring: 'Online, proctored', fee: 'Free', validity: '2 years',
     prereq: 'AI Foundations recommended',
     path: 'delivery-lead',
     domains: [['Elaboration and specs', 30], ['Planning and estimating', 25], ['Risk and compliance', 20], ['Measuring outcomes', 25]],
@@ -220,7 +220,7 @@ export const CERTS = [
     name: 'Underwrit Certified Administrator',
     tier: 'Product specialist',
     audience: 'Teams deploying and running Underwrit',
-    questions: 40, minutes: 75, proctoring: 'Online, proctored', fee: '$150', validity: '2 years',
+    questions: 40, minutes: 75, proctoring: 'Online, proctored', fee: 'Free', validity: '2 years',
     prereq: 'Hands-on time with Underwrit recommended',
     path: 'ai-governance',
     domains: [['Deployment and integration', 25], ['Policies and templates', 30], ['Holds and approvals', 20], ['Records and verification', 25]],
@@ -230,7 +230,7 @@ export const CERTS = [
     name: 'Orbitward Certified Platform Engineer',
     tier: 'Product specialist',
     audience: 'Platform teams building on Orbitward',
-    questions: 40, minutes: 75, proctoring: 'Online, proctored', fee: '$150', validity: '2 years',
+    questions: 40, minutes: 75, proctoring: 'Online, proctored', fee: 'Free', validity: '2 years',
     prereq: 'Hands-on time with Orbitward recommended',
     path: 'platform-engineer',
     domains: [['Golden paths and templates', 25], ['Agent policy gates', 30], ['Observability and SLOs', 25], ['FinOps', 20]],
@@ -264,18 +264,18 @@ export const WAYS_TO_LEARN = [
   { icon: 'book', title: 'Self-paced', text: 'Short courses and readings you take when it suits you. Foundations content is free for everyone.' },
   { icon: 'users', title: 'Instructor-led', text: 'Live sessions with CAID practitioners, public or as a private cohort for your team.' },
   { icon: 'flask', title: 'Hands-on labs', text: 'Sandbox environments with real tools, so you practice the work, not just read about it.' },
-  { icon: 'grad', title: 'Certification', text: 'Proctored exams that prove the skills, with a verifiable digital badge when you pass.' },
+  { icon: 'grad', title: 'Certification', text: 'Free proctored exams that prove the skills, with a verifiable digital badge when you pass.' },
 ];
 
 export const AUDIENCES = [
   { icon: 'app', title: 'Client teams', text: 'Upskill the people who will own what we build with you, with private cohorts and seats bundled into engagements.' },
   { icon: 'link', title: 'Partners', text: 'Enablement and certification for firms that deliver alongside CAID or resell our products.' },
-  { icon: 'grad', title: 'Individuals', text: 'Free foundations, paid deep dives and certifications you can take on your own schedule.' },
+  { icon: 'grad', title: 'Individuals', text: 'Free foundations and free certifications you can take on your own schedule, plus deeper courses when you need them.' },
 ];
 
 export const CERT_STEPS = [
   { title: 'Prepare', text: 'Follow the recommended path, read the exam guide and sit a practice exam.' },
-  { title: 'Register', text: 'Book an online exam slot. Client and partner teams can use vouchers.' },
+  { title: 'Register', text: 'Book a free online exam slot. There is no fee for any CAID certification.' },
   { title: 'Take the exam', text: 'Sit the exam online from home or the office, with a remote proctor.' },
   { title: 'Get your badge', text: 'Pass and receive a digital badge with a link anyone can use to verify it.' },
   { title: 'Stay current', text: 'Credentials last two years. Recertify with a shorter exam on what has changed.' },
@@ -283,10 +283,10 @@ export const CERT_STEPS = [
 
 export const CERT_FAQ = [
   { q: 'How are exams delivered?', a: 'Online, with a remote proctor watching through your webcam. You need a quiet room, a stable connection and photo ID. The Foundations exam is unproctored.' },
-  { q: 'What if I do not pass?', a: 'You can retake an exam after 14 days. Each attempt is booked and paid for separately, and your score report shows how you did in each domain.' },
+  { q: 'What if I do not pass?', a: 'You can retake an exam after 14 days. Every attempt is free, and your score report shows how you did in each domain.' },
   { q: 'How long does a certification last?', a: 'Two years. Before it expires you can sit a shorter recertification exam covering what has changed in the field and in our products.' },
   { q: 'How do employers check a credential?', a: 'Every credential comes as a digital badge with a public verification link showing the holder, the certification and its expiry date.' },
-  { q: 'Can my team get vouchers?', a: 'Yes. Exam vouchers and seats on instructor-led courses can be bundled into client engagements and partner agreements. Contact us for details.' },
+  { q: 'What does certification cost?', a: 'Nothing. Every CAID certification exam, including retakes and recertification, is free. Instructor-led courses and labs can be bundled into client engagements and partner agreements.' },
   { q: 'Do you offer exam accommodations?', a: 'Yes. Extra time and other accommodations are available on request. Ask before you book so we can set them up.' },
 ];
 

@@ -80,9 +80,9 @@ export default function Resources() {
             </p>
           </div>
           <div className="access-list">
-            <div><b>Individuals</b><span>Enroll in a path and get every course, lab and one exam attempt.</span></div>
-            <div><b>Teams</b><span>Private cohorts on your schedule, with exam vouchers for each learner.</span></div>
-            <div><b>Clients and partners</b><span>Seats and vouchers bundled into engagements and partner agreements.</span></div>
+            <div><b>Individuals</b><span>Enroll in a path and get every course and lab. Certification exams are always free.</span></div>
+            <div><b>Teams</b><span>Private cohorts on your schedule, with free certification for each learner.</span></div>
+            <div><b>Clients and partners</b><span>Course seats bundled into engagements and partner agreements.</span></div>
             <Link className="btn btn-primary" to={CONTACT_ACADEMY}>Ask about access</Link>
           </div>
         </div>

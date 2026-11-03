@@ -38,7 +38,7 @@ export default function Overview() {
             <div><dt>{PATHS.length}</dt><dd>role-based learning paths</dd></div>
             <div><dt>{CERTS.length}</dt><dd>certifications across four tiers</dd></div>
             <div><dt>{free}</dt><dd>free resources to start with</dd></div>
-            <div><dt>2 years</dt><dd>credential validity, with recertification</dd></div>
+            <div><dt>Free</dt><dd>every certification exam, retakes included</dd></div>
           </dl>
         </div>
       </section>
@@ -137,7 +137,7 @@ export default function Overview() {
 
       <section className="cta-band">
         <div className="wrap">
-          <h2>Training a team? We run private cohorts with exam vouchers included.</h2>
+          <h2>Training a team? We run private cohorts, and every certification is free.</h2>
           <Link className="btn" to={CONTACT_ACADEMY}>Talk to us about team training</Link>
         </div>
       </section>

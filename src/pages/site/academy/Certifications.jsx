@@ -3,10 +3,11 @@ import { Link, useLocation } from 'react-router-dom';
 import DotTerrain from '../../../components/fx/DotTerrain.jsx';
 import Reveal from '../../../components/Reveal.jsx';
 import { CERT_FAQ, CERT_STEPS, certById, CERTS, pathById, TIERS } from '../../../content/academy.js';
+import Credential from './Credential.jsx';
 import { CONTACT_ACADEMY, TierMark } from './shared.jsx';
 
 const TIER_TEXT = {
-  Foundational: 'Core AI literacy for anyone. Free and unproctored.',
+  Foundational: 'Core AI literacy for anyone. Unproctored.',
   Associate: 'Proves you can do the job in your role, day to day.',
   Professional: 'For people who design and own AI systems in production.',
   'Product specialist': 'Deep, hands-on skill with Underwrit or Orbitward.',
@@ -46,8 +47,8 @@ export default function Certifications() {
           <span className="eyebrow">Certifications</span>
           <h1>Credentials that prove the work, not the reading</h1>
           <p>
-            Four tiers, from free Foundations to Professional and product specialist exams. Every credential
-            comes with a digital badge anyone can verify.
+            Four tiers, from Foundations to Professional and product specialist exams. Every certification is
+            free, and every credential comes with a digital badge anyone can verify.
           </p>
         </div>
       </section>
@@ -102,6 +103,18 @@ export default function Certifications() {
               </div>
             </div>
           </article>
+        </div>
+      </section>
+
+      <section className="section section-alt">
+        <div className="wrap">
+          <Reveal className="section-head">
+            <div>
+              <h2>What you receive</h2>
+              <p className="muted">Pass and you get a digital badge and a certificate, both verifiable by anyone. Shown here for the {c.name}.</p>
+            </div>
+          </Reveal>
+          <Credential cert={c} />
         </div>
       </section>
 

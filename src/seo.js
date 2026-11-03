@@ -37,7 +37,7 @@ export const ROUTE_META = {
   },
   '/ai-academy/certifications': {
     title: 'Certifications: Foundational, Associate, Professional and product specialist | CAID Academy',
-    description: 'Exam details, domain weightings, fees and how certification works for every CAID Academy credential, with verifiable digital badges.',
+    description: 'Every CAID Academy certification is free. Exam details, domain weightings and how certification works, with verifiable digital badges.',
   },
   '/ai-academy/resources': {
     title: 'Courses, labs, guides and exam prep | CAID Academy',
