@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Reveal from '../../components/Reveal.jsx';
 import StackFlow, { LifecycleLoop } from '../../components/StackFlow.jsx';
@@ -69,7 +70,17 @@ const ROADMAP = [
   { name: 'Modelyard', note: 'ERP and CRM MLOps', start: 6, end: 12, marks: [[8, 'preview'], [10, 'pilot'], [12, 'GA']] },
 ];
 
+// Which roadmap week today falls in (0 = the week of 2 November 2026), kept inside the chart.
+function currentWeek() {
+  const start = Date.UTC(2026, 10, 2);
+  const weeks = Math.floor((Date.now() - start) / (7 * 24 * 3600 * 1000));
+  return Math.min(Math.max(weeks, 0), WEEKS.length - 1);
+}
+
 function Roadmap() {
+  // The prerendered page marks the first week; the browser moves the marker to this week.
+  const [week, setWeek] = useState(0);
+  useEffect(() => setWeek(currentWeek()), []);
   return (
     <Reveal className="roadmap" tabIndex={0} aria-label="Product roadmap, scrolls sideways on small screens">
       <div className="roadmap-grid" role="table" aria-label="Product roadmap for the next three months, week by week, November 2026 to January 2027">
@@ -79,7 +90,7 @@ function Roadmap() {
             <div key={i} className={`roadmap-month${month ? ' is-month' : ''}`} role="columnheader">{month ? <b>{month}</b> : <br />}<br />{day}</div>
           ))}
         </div>
-        <div className="roadmap-today" style={{ gridRow: `2 / ${ROADMAP.length + 2}`, gridColumn: 2 }} aria-hidden="true"><span>now</span></div>
+        <div className="roadmap-today" style={{ gridRow: `2 / ${ROADMAP.length + 2}`, gridColumn: week + 2 }} aria-hidden="true"><span>now</span><i /></div>
         {ROADMAP.map((r, k) => (
           <div key={r.name} role="row" style={{ display: 'contents' }}>
             <div className="roadmap-name" role="rowheader" style={{ gridRow: k + 2, gridColumn: 1 }}>{r.name}<small>{r.note}</small></div>

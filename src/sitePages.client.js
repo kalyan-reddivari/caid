@@ -22,6 +22,8 @@ export const AcademyResources = page(() => import('./pages/site/academy/Resource
 export const AcademyTeam = page(() => import('./pages/site/academy/Team.jsx'));
 export const AcademyVerify = page(() => import('./pages/site/academy/Verify.jsx'));
 export const Products = page(() => import('./pages/site/Products.jsx'));
+export const Integrations = page(() => import('./pages/site/Integrations.jsx'));
+export const IntegrationGuide = page(() => import('./pages/site/Integrations.jsx'), (m) => m.IntegrationGuide);
 export const Platform = page(() => import('./pages/site/Platform.jsx'));
 export const About = page(() => import('./pages/site/About.jsx'));
 export const Careers = page(() => import('./pages/site/Careers.jsx'));

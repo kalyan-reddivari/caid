@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { AdoptionPathArt, NeuralArt } from '../../components/Graphics.jsx';
 import { IconTile } from '../../components/Icons.jsx';
+import ReadinessCheck from '../../components/ReadinessCheck.jsx';
 import Reveal from '../../components/Reveal.jsx';
 import DotTerrain from '../../components/fx/DotTerrain.jsx';
 
@@ -32,7 +33,7 @@ export default function AIAdoption() {
             <p>We connect AI to the systems and data your business already runs on, then measure whether it helps.</p>
             <div className="hero-actions">
               <Link className="btn btn-primary" to="/contact?interest=AI%20adoption#book" data-track="assessment:ai-hero">Ask about the readiness assessment</Link>
-              <a className="btn btn-ghost" href="#path">See the four stages</a>
+              <a className="btn btn-ghost" href="#check">Take the 2-minute self-check</a>
             </div>
           </div>
           <div className="hero-art"><NeuralArt /></div>
@@ -64,6 +65,20 @@ export default function AIAdoption() {
               </Reveal>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="section section-alt" id="check">
+        <div className="wrap rc-wrap">
+          <Reveal>
+            <span className="eyebrow">Self-check</span>
+            <h2>How ready is your organization for AI?</h2>
+            <p className="muted">
+              Eight questions, about two minutes. You get a result and a suggested first project straight away; the
+              six-week assessment goes much deeper.
+            </p>
+          </Reveal>
+          <ReadinessCheck />
         </div>
       </section>
 

@@ -59,6 +59,22 @@ export const ROUTE_META = {
     title: 'How the CAID stack works: agents on systems of record, with proof | CAID',
     description: 'See one request travel through the CAID stack: designed in Agentcraft Studio, rehearsed in Dryva, run through Bridgehead as the signed-in person, approved in Underwrit and recorded in a signed receipt.',
   },
+  '/integrations': {
+    title: 'Integration guides: SAP, Salesforce, Workday, NetSuite, ServiceNow, Jira | CAID',
+    description: 'How CAID connects the systems you already run: what moves between them, how we build and monitor it, and where AI helps once the data is connected.',
+  },
+  '/integrations/sap-salesforce': {
+    title: 'SAP and Salesforce integration: quote-to-cash without retyping | CAID',
+    description: 'Accounts, orders, prices, invoices and payment status moving between Salesforce and SAP S/4HANA or ECC, with monitoring, retries and daily reconciliation.',
+  },
+  '/integrations/workday-netsuite': {
+    title: 'Workday and NetSuite integration: HR and finance in step | CAID',
+    description: 'Employees, departments, cost centers and expenses flowing from Workday HCM into NetSuite, so HR and finance reports agree.',
+  },
+  '/integrations/servicenow-jira': {
+    title: 'ServiceNow and Jira integration: incidents linked to the fix | CAID',
+    description: 'Escalated ServiceNow incidents become linked Jira issues, with status, fix versions and resolution notes flowing back to support.',
+  },
   '/about': {
     title: 'About CAID, a systems integration and software firm in Atlanta',
     description: 'CAID LLC is a consulting and product development firm for organizations whose systems need to work together, with AI at the center of the work.',

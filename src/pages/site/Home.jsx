@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { LearnMiniArt, LoopMiniArt, SpecMiniArt, StackBoard } from '../../components/AIGraphics.jsx';
 import CallButton from '../../components/CallButton.jsx';
@@ -5,6 +6,7 @@ import { IconTile } from '../../components/Icons.jsx';
 import MediaClip from '../../components/MediaClip.jsx';
 import { ClientStrip, Testimonial } from '../../components/Proof.jsx';
 import Reveal from '../../components/Reveal.jsx';
+import ScrollStory from '../../components/ScrollStory.jsx';
 import StackMap from '../../components/StackMap.jsx';
 import NetworkGlobe from '../../components/fx/NetworkGlobe.jsx';
 import MEDIA, { hasMedia } from '../../media.js';
@@ -31,6 +33,43 @@ const AI_NATIVE = [
   { Art: LearnMiniArt, title: 'A trained team', text: 'Everyone at CAID, from analysts to engineers, climbs our four-level AI Academy.', to: '/ai-academy', cta: 'Visit the AI Academy' },
 ];
 
+// The highlighted words in the hero headline take turns on wider screens. Screen readers and the
+// prerendered page always get the first phrase; phones and reduced motion keep it fixed.
+const HERO_PHRASES = ['put AI to work', 'end the rekeying', 'prove every action'];
+
+function HeroPhrase() {
+  const [i, setI] = useState(-1); // -1: the first phrase, fixed (prerender, phones, reduced motion, too narrow)
+  const ref = useRef(null);
+  const fits = useRef(true);
+  useEffect(() => {
+    const still = window.matchMedia('(prefers-reduced-motion: reduce), (max-width: 759px)');
+    if (still.matches) return undefined;
+    setI(0);
+    const t = setInterval(() => setI((n) => (fits.current ? (n + 1) % HERO_PHRASES.length : -1)), 3200);
+    return () => clearInterval(t);
+  }, []);
+  // If the longest phrase would overflow the headline at this width, go back to the fixed first phrase.
+  useEffect(() => {
+    const el = ref.current;
+    if (el && el.offsetWidth > el.closest('h1').clientWidth) {
+      fits.current = false;
+      setI(-1);
+    }
+  }, [i]);
+  if (i < 0) return <span className="hl">{HERO_PHRASES[0]}</span>;
+  return (
+    <>
+      <span className="sr-only">{HERO_PHRASES[0]}</span>
+      {/* Every phrase sits in the same grid cell, so the headline keeps the width of the longest and never reflows. */}
+      <span className="hl-swap" aria-hidden="true" ref={ref}>
+        {HERO_PHRASES.map((p, k) => (
+          <span key={k === i ? `on-${i}` : p} className={k === i ? 'hl on' : 'hl'}>{p}</span>
+        ))}
+      </span>
+    </>
+  );
+}
+
 export default function Home() {
   return (
     <>
@@ -38,7 +77,7 @@ export default function Home() {
         <div className="wrap">
           <div className="hero-copy">
             <p className="eyebrow">Custom Application and Integration Development</p>
-            <h1>Connect the systems you already run. Then <span className="hl">put AI to work</span> across them.</h1>
+            <h1>Connect the systems you already run. Then <HeroPhrase /> across them.</h1>
             <p className="lede">
               CAID is an Atlanta software firm for companies whose ERP, CRM, HR and finance systems don't talk to
               each other. One in-house team integrates them, builds the apps your people need, and adds AI where it pays off.
@@ -56,6 +95,18 @@ export default function Home() {
           <div className="hero-globe"><NetworkGlobe /></div>
           <div className="hero-map-slot" id="map"><StackMap /></div>
           <ClientStrip />
+        </div>
+      </section>
+
+      <section className="section story-section">
+        <div className="wrap">
+          <Reveal className="section-head">
+            <div>
+              <h2>How it comes together</h2>
+              <p className="muted">From systems that don't talk to AI that acts with a person's approval, in four steps.</p>
+            </div>
+          </Reveal>
+          <ScrollStory />
         </div>
       </section>
 

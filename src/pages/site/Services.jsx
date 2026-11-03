@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import BeforeAfter from '../../components/BeforeAfter.jsx';
 import CallButton from '../../components/CallButton.jsx';
 import { FlowBand, ServicesArt } from '../../components/Graphics.jsx';
 import { IconTile } from '../../components/Icons.jsx';
@@ -45,6 +46,14 @@ const SERVICES = [
   },
 ];
 
+const FAQ = [
+  { q: 'Which systems do you integrate?', a: 'ERP, CRM, HR, finance and service systems such as SAP, Salesforce, Workday, NetSuite and ServiceNow, plus data platforms like Snowflake and older databases with no API. If a system has an API, a database or a file drop, we can connect it.' },
+  { q: 'Do we need MuleSoft or another integration platform?', a: 'No. We use the platform you already pay for when it fits, and build lightweight services with Spring Boot or Python when it does not. Either way you own the code and the run books.' },
+  { q: 'How long does a first integration take?', a: 'Weeks, not quarters. A first production flow, such as orders from Salesforce to SAP, ships with monitoring and retries, and larger programs are split into releases of that size. The Process page shows a typical first-release plan.' },
+  { q: 'Can AI be added later?', a: 'Yes, and it works better that way. Once data moves reliably, assistants and automations can read it and propose actions, with people approving anything risky.' },
+  { q: 'Who supports it after launch?', a: 'You choose: we hand over with documentation and training, or keep running it under a support agreement with agreed response times.' },
+];
+
 export default function Services() {
   return (
     <>
@@ -81,6 +90,19 @@ export default function Services() {
         </div>
       </section>
 
+      <section className="section section-alt">
+        <div className="wrap">
+          <Reveal className="section-head">
+            <div>
+              <h2>What changes when your systems are connected</h2>
+              <p className="muted">The same four systems, before and after an integration project. Flip the switch.</p>
+            </div>
+            <Link className="btn btn-ghost" to="/integrations">See integration guides</Link>
+          </Reveal>
+          <Reveal><BeforeAfter /></Reveal>
+        </div>
+      </section>
+
       <section className="section section-ink">
         <div className="wrap">
           <Reveal className="section-head">
@@ -88,6 +110,23 @@ export default function Services() {
             <p className="muted">One API and event layer between the systems you run and the places people use the data.</p>
           </Reveal>
           <Reveal delay={120}><FlowBand /></Reveal>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="wrap faq-wrap">
+          <Reveal>
+            <h2>Common questions</h2>
+            <p className="muted">Something else on your mind? <Link to="/contact">Ask us directly</Link>.</p>
+          </Reveal>
+          <div className="faq">
+            {FAQ.map((f) => (
+              <details key={f.q}>
+                <summary>{f.q}</summary>
+                <p>{f.a}</p>
+              </details>
+            ))}
+          </div>
         </div>
       </section>
 

@@ -1,7 +1,9 @@
+import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { IconTile } from '../../components/Icons.jsx';
 import { AgentcraftArt, DryvaArt, OrbitwardArt, ProductsHeroArt, UnderwritArt } from '../../components/ProductGraphics.jsx';
 import Reveal from '../../components/Reveal.jsx';
+import UnderwritDemo from '../../components/UnderwritDemo.jsx';
 import DotTerrain from '../../components/fx/DotTerrain.jsx';
 
 const PRODUCTS = [
@@ -185,7 +187,8 @@ export default function Products() {
       </section>
 
       {PRODUCTS.map((p, i) => (
-        <section key={p.id} id={p.id} className={`section${i % 2 ? ' section-alt' : ''}`}>
+        <Fragment key={p.id}>
+        <section id={p.id} className={`section${i % 2 ? ' section-alt' : ''}`}>
           <div className={`wrap showcase${i % 2 ? ' flip' : ''}`}>
             <div className="showcase-copy">
               <Reveal>
@@ -243,6 +246,22 @@ export default function Products() {
             </Reveal>
           </div>
         </section>
+        {p.id === 'underwrit' && (
+          <section className="section section-ink uw-demo-section" id="try-underwrit">
+            <div className="wrap uw-demo-wrap">
+              <Reveal>
+                <span className="eyebrow">Try it</span>
+                <h2>Approve an agent action yourself</h2>
+                <p className="muted">
+                  An AI agent wants to refund a customer. Watch Underwrit hold it, approve or deny it as the first
+                  approver, and see the signed record it keeps either way.
+                </p>
+              </Reveal>
+              <UnderwritDemo />
+            </div>
+          </section>
+        )}
+        </Fragment>
       ))}
 
       <section id="next" className="section section-alt">

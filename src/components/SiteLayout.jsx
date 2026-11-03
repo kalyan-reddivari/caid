@@ -84,6 +84,12 @@ function NavGroup({ group, pathname }) {
 export default function SiteLayout() {
   const [open, setOpen] = useState(false);
   const { pathname, hash } = useLocation();
+  // After the first page, each new section fades in. The first load never animates, so it paints at once.
+  const section = pathname.split('/')[1] || 'home';
+  const firstSection = useRef(section);
+  const moved = useRef(false);
+  if (section !== firstSection.current) moved.current = true;
+  const animate = moved.current;
   usePageMeta(pathname);
 
   // Scroll to #section links. Pages load on demand, so the target may appear a moment after
@@ -141,7 +147,9 @@ export default function SiteLayout() {
 
       <main id="main" tabIndex={-1}>
         <Suspense fallback={<div className="page-loading" aria-busy="true" />}>
-          <Outlet />
+          <div key={section} className={animate ? 'page-enter' : undefined}>
+            <Outlet />
+          </div>
         </Suspense>
       </main>
 
@@ -162,6 +170,7 @@ export default function SiteLayout() {
           <div>
             <h2 className="footer-h">What we do</h2>
             <Link to="/services">Services</Link>
+            <Link to="/integrations">Integration guides</Link>
             <Link to="/process">Process</Link>
             <Link to="/products">Products</Link>
             <Link to="/platform">How the stack works</Link>

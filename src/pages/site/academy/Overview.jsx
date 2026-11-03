@@ -3,6 +3,7 @@ import { AcademyArt } from '../../../components/AIGraphics.jsx';
 import { IconTile } from '../../../components/Icons.jsx';
 import DotTerrain from '../../../components/fx/DotTerrain.jsx';
 import Reveal from '../../../components/Reveal.jsx';
+import CountUp from '../../../components/CountUp.jsx';
 import { AUDIENCES, CERTS, PATHS, RESOURCES, TIERS, WAYS_TO_LEARN } from '../../../content/academy.js';
 import { CONTACT_ACADEMY, TierMark } from './shared.jsx';
 
@@ -35,9 +36,9 @@ export default function Overview() {
       <section className="section academy-facts-section">
         <div className="wrap">
           <dl className="facts four academy-facts">
-            <div><dt>{PATHS.length}</dt><dd>role-based learning paths</dd></div>
-            <div><dt>{CERTS.length}</dt><dd>certifications across four tiers</dd></div>
-            <div><dt>{free}</dt><dd>free resources to start with</dd></div>
+            <div><dt><CountUp value={PATHS.length} /></dt><dd>role-based learning paths</dd></div>
+            <div><dt><CountUp value={CERTS.length} /></dt><dd>certifications across four tiers</dd></div>
+            <div><dt><CountUp value={free} /></dt><dd>free resources to start with</dd></div>
             <div><dt>Free</dt><dd>every certification exam, retakes included</dd></div>
           </dl>
         </div>
