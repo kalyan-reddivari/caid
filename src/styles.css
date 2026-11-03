@@ -2078,3 +2078,6 @@ main:focus { outline: none; }
 }
 @media (prefers-reduced-motion: reduce) { .rc-ring, .rc-result { animation: none; } }
 .count-up { font-variant-numeric: tabular-nums; }
+
+/* Eyebrows on navy sections use the light teal, so they stay readable */
+.section-ink .eyebrow { color: #4fd1c5; }
