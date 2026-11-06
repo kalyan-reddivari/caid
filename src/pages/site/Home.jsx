@@ -9,6 +9,7 @@ import Reveal from '../../components/Reveal.jsx';
 import ScrollStory from '../../components/ScrollStory.jsx';
 import StackMap from '../../components/StackMap.jsx';
 import NetworkGlobe from '../../components/fx/NetworkGlobe.jsx';
+import HeroMedia from '../../components/HeroMedia.jsx';
 import MEDIA, { hasMedia } from '../../media.js';
 
 const SERVICES = [
@@ -92,7 +93,7 @@ export default function Home() {
               <li>You own all code</li>
             </ul>
           </div>
-          <div className="hero-globe"><NetworkGlobe /></div>
+          <div className="hero-globe"><HeroMedia className="hero-media-home" still="/media/hero-still" video="/media/hero-loop" position="62% 50%" fallback={<NetworkGlobe />} /></div>
           <div className="hero-map-slot" id="map"><StackMap /></div>
           <ClientStrip />
         </div>

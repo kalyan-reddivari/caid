@@ -5,10 +5,12 @@ import { AgentcraftArt, DryvaArt, OrbitwardArt, ProductsHeroArt, UnderwritArt } 
 import Reveal from '../../components/Reveal.jsx';
 import UnderwritDemo from '../../components/UnderwritDemo.jsx';
 import DotTerrain from '../../components/fx/DotTerrain.jsx';
+import HeroMedia from '../../components/HeroMedia.jsx';
 
 const PRODUCTS = [
   {
     id: 'underwrit',
+    photo: '/media/product-underwrit',
     name: 'Underwrit',
     url: 'https://underwrit.io',
     status: 'Available now · free edition',
@@ -32,6 +34,7 @@ const PRODUCTS = [
   },
   {
     id: 'orbitward',
+    photo: '/media/product-orbitward',
     name: 'Orbitward',
     url: 'https://orbitward.ai',
     status: 'Available now · guided pilots',
@@ -182,7 +185,7 @@ export default function Products() {
               <Link className="btn btn-ghost" to="/platform">How the stack works</Link>
             </div>
           </div>
-          <div className="hero-art art-dark"><ProductsHeroArt /></div>
+          <div className="hero-art hero-art-media"><HeroMedia still="/media/products-hero" position="78% 50%" fallback={<div className="art-dark"><ProductsHeroArt /></div>} /></div>
         </div>
       </section>
 
@@ -241,9 +244,19 @@ export default function Products() {
               </Reveal>
             </div>
 
-            <Reveal className="showcase-art art-dark" delay={120}>
-              <p.Art />
-            </Reveal>
+            <div className="showcase-side">
+              {p.photo && (
+                <Reveal className="showcase-photo" delay={60}>
+                  <picture>
+                    <source srcSet={`${p.photo}.webp`} type="image/webp" />
+                    <img src={`${p.photo}.jpg`} alt="" loading="lazy" decoding="async" width="1200" height="896" />
+                  </picture>
+                </Reveal>
+              )}
+              <Reveal className="showcase-art art-dark" delay={120}>
+                <p.Art />
+              </Reveal>
+            </div>
           </div>
         </section>
         {p.id === 'underwrit' && (

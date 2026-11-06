@@ -4,6 +4,9 @@ import { IconTile } from '../../../components/Icons.jsx';
 import DotTerrain from '../../../components/fx/DotTerrain.jsx';
 import Reveal from '../../../components/Reveal.jsx';
 import CountUp from '../../../components/CountUp.jsx';
+import HeroMedia from '../../../components/HeroMedia.jsx';
+import MediaClip from '../../../components/MediaClip.jsx';
+import MEDIA, { hasMedia } from '../../../media.js';
 import { AUDIENCES, CERTS, PATHS, RESOURCES, TIERS, WAYS_TO_LEARN } from '../../../content/academy.js';
 import { CONTACT_ACADEMY, TierMark } from './shared.jsx';
 
@@ -29,7 +32,7 @@ export default function Overview() {
               <Link className="btn btn-ghost" to="/ai-academy/certifications">See certifications</Link>
             </div>
           </div>
-          <div className="hero-art"><AcademyArt /></div>
+          <div className="hero-art hero-art-media"><HeroMedia still="/media/academy-hero" position="85% 50%" fallback={<AcademyArt />} /></div>
         </div>
       </section>
 
@@ -89,6 +92,20 @@ export default function Overview() {
           </div>
         </div>
       </section>
+
+      {hasMedia(MEDIA.academyLab) && (
+        <section className="section">
+          <div className="wrap">
+            <Reveal className="section-head">
+              <div>
+                <h2>Inside a lab</h2>
+                <p className="muted">Labs are hands-on: you work from a spec with a coach and an AI pair.</p>
+              </div>
+            </Reveal>
+            <Reveal><MediaClip {...MEDIA.academyLab} /></Reveal>
+          </div>
+        </section>
+      )}
 
       <section className="section section-ink">
         <div className="wrap">
