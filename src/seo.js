@@ -53,7 +53,7 @@ export const ROUTE_META = {
   },
   '/products': {
     title: 'Products by CAID: Underwrit, Orbitward, Agentcraft Studio, Dryva and more',
-    description: 'Underwrit approves and proves AI agent actions, Orbitward runs platform engineering with agents, Agentcraft Studio designs agent workflows for free, Dryva rehearses them against failures, and five more are in development.',
+    description: 'Underwrit approves and proves AI agent actions, Orbitward runs platform engineering with agents, Agentcraft Studio designs agent workflows for free, Dryva rehearses them against failures, and six more, including Tradewire for agents that work across company lines, are in development.',
   },
   '/platform': {
     title: 'How the CAID stack works: agents on systems of record, with proof | CAID',

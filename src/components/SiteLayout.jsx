@@ -29,6 +29,7 @@ const NAV = [
     label: 'Products',
     items: [
       { to: '/products', label: 'All products', note: 'Live, free and in development' },
+      { to: '/products#tradewire', label: 'Tradewire', note: 'Agents that work across company lines' },
       { to: '/platform', label: 'How the stack works', note: 'One request, step by step' },
     ],
   },

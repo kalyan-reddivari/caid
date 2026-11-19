@@ -10,6 +10,7 @@ import ScrollStory from '../../components/ScrollStory.jsx';
 import StackMap from '../../components/StackMap.jsx';
 import NetworkGlobe from '../../components/fx/NetworkGlobe.jsx';
 import MEDIA, { hasMedia } from '../../media.js';
+import { HOME_STACK } from '../../content/products.js';
 
 const SERVICES = [
   { icon: 'app', title: 'Custom applications', text: 'Web, mobile and internal tools designed around how your teams already work.' },
@@ -164,14 +165,7 @@ export default function Home() {
             <Link className="btn btn-ghost" to="/platform" data-track="home:stack">See how the stack works</Link>
           </Reveal>
           <div className="home-stack">
-            {[
-              ['Design', 'Agentcraft Studio', 'Free'],
-              ['Rehearse', 'Dryva', 'Release candidate'],
-              ['Approve and prove', 'Underwrit', 'Available now'],
-              ['Run on your platform', 'Orbitward', 'Guided pilots'],
-              ['Act on SAP, Salesforce, Workday', 'Bridgehead', 'In development'],
-              ['Know, watch, fix, predict', 'Groundline · Driftwatch · Pagewise · Modelyard', 'In development'],
-            ].map(([stage, name, state], i) => (
+            {HOME_STACK.map(([stage, name, state], i) => (
               <Reveal key={name} className="home-stack-step" delay={(i % 3) * 90}>
                 <span className="home-stack-n">{i + 1}</span>
                 <div>

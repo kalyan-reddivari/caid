@@ -2081,3 +2081,18 @@ main:focus { outline: none; }
 
 /* Eyebrows on navy sections use the light teal, so they stay readable */
 .section-ink .eyebrow { color: #4fd1c5; }
+
+/* ==========================================================================
+   Product catalog grids (src/content/products.js)
+   Rows stay full as products are added: the last card takes the leftover row.
+   ========================================================================== */
+.layer-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+.int-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.int-grid > :last-child:nth-child(3n + 1) { grid-column: 1 / -1; }
+.home-stack-step:last-child:nth-child(3n + 1) { grid-column: 1 / -1; }
+@media (max-width: 1000px) {
+  .int-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .int-grid > :last-child:nth-child(3n + 1) { grid-column: auto; }
+  .int-grid > :last-child:nth-child(2n + 1) { grid-column: 1 / -1; }
+}
+@media (max-width: 640px) { .int-grid { grid-template-columns: 1fr; } }
