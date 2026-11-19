@@ -20,10 +20,10 @@ const MEDIA = {
 
   // AI Academy: "Inside a lab"
   academyLab: {
-    src: '/media/academy-lab.mp4',
-    webm: '/media/academy-lab.webm',
+    src: '', // e.g. '/media/academy-lab.mp4'
+    webm: '',
     gif: '',
-    poster: '/media/academy-lab-poster.jpg',
+    poster: '',
     ratio: '16 / 9',
     caption: 'A trainee working through a spec-driven lab with a coach and an AI pair.',
   },

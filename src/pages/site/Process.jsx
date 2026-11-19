@@ -8,7 +8,6 @@ import { track, trackStart } from '../../utils/track.js';
 import { IconTile } from '../../components/Icons.jsx';
 import { JourneyArt, PlanGantt } from '../../components/ProcessGraphics.jsx';
 import Reveal from '../../components/Reveal.jsx';
-import HeroMedia from '../../components/HeroMedia.jsx';
 import DotTerrain from '../../components/fx/DotTerrain.jsx';
 
 const STAGES = [
@@ -268,7 +267,7 @@ export default function Process() {
               <CallButton className="btn btn-ghost" from="process-hero">Book a call instead</CallButton>
             </div>
           </div>
-          <div className="hero-art hero-art-media"><HeroMedia still="/media/delivery-demo-poster" video="/media/delivery-demo" position="60% 50%" fallback={<JourneyArt />} /></div>
+          <div className="hero-art"><JourneyArt /></div>
         </div>
       </section>
 
