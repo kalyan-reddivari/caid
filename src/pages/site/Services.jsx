@@ -3,7 +3,7 @@ import { AgentServicesArt, AgentStack } from '../../components/AgentGraphics.jsx
 import CallButton from '../../components/CallButton.jsx';
 import { IconTile } from '../../components/Icons.jsx';
 import Reveal from '../../components/Reveal.jsx';
-import DotTerrain from '../../components/fx/DotTerrain.jsx';
+import { NodeFieldBackdrop } from '../../components/fx/ThreeScenes.jsx';
 
 // AI and agents first: each service is something we build, run or govern for AI that does real work.
 const SERVICES = [
@@ -67,7 +67,7 @@ export default function Services() {
   return (
     <>
       <section className="page-hero has-art">
-        <DotTerrain />
+        <NodeFieldBackdrop />
         <div className="wrap">
           <div>
             <span className="eyebrow">Services</span>

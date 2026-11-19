@@ -2151,3 +2151,24 @@ main:focus { outline: none; }
   .int-grid > :last-child:nth-child(2n + 1) { grid-column: 1 / -1; }
 }
 @media (max-width: 640px) { .int-grid { grid-template-columns: 1fr; } }
+
+/* ==========================================================================
+   three.js scenes (src/components/fx/three). The Canvas 2D drawings stay underneath until WebGL is ready.
+   ========================================================================== */
+.globe-host { position: absolute; inset: 0; }
+.globe-gl, .node-field-gl { position: absolute; inset: 0; width: 100% !important; height: 100% !important; display: block; animation: gl-in 900ms var(--ease-out) both; }
+@keyframes gl-in { from { opacity: 0; } to { opacity: 1; } }
+.globe-labels { position: absolute; inset: 0; pointer-events: none; overflow: visible; }
+.globe-label { position: absolute; left: 0; top: 0; padding: .2rem .55rem; border-radius: 999px; background: rgba(255, 255, 255, .92);
+  border: 1px solid rgba(14, 124, 115, .45); color: var(--ink); font: 600 12px var(--font-body); white-space: nowrap; will-change: transform, opacity; }
+.node-field { position: absolute; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+.node-field .dot-terrain { z-index: auto; }
+.node-field.is-ready { -webkit-mask-image: linear-gradient(to right, transparent 46%, #000 72%); mask-image: linear-gradient(to right, transparent 46%, #000 72%); }
+@media (prefers-reduced-motion: reduce) { .globe-gl, .node-field-gl { animation: none; } }
+
+/* Rendered explainer videos (Remotion, see video/) */
+.video-feature { margin: 0 0 2rem; }
+.video-feature .media-clip, .video-feature figure { margin: 0; }
+.video-split { margin: 2.5rem 0 0; display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.4fr); gap: 2rem; align-items: center; }
+.video-split h3 { font-size: var(--t-lg); margin: .3rem 0 .5rem; }
+@media (max-width: 900px) { .video-split { grid-template-columns: 1fr; } }

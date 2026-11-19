@@ -8,7 +8,7 @@ import { ClientStrip, Testimonial } from '../../components/Proof.jsx';
 import Reveal from '../../components/Reveal.jsx';
 import ScrollStory from '../../components/ScrollStory.jsx';
 import StackMap from '../../components/StackMap.jsx';
-import NetworkGlobe from '../../components/fx/NetworkGlobe.jsx';
+import { GlobeHero } from '../../components/fx/ThreeScenes.jsx';
 import MEDIA, { hasMedia } from '../../media.js';
 import { HOME_STACK } from '../../content/products.js';
 
@@ -93,7 +93,7 @@ export default function Home() {
               <li>You own all code</li>
             </ul>
           </div>
-          <div className="hero-globe"><NetworkGlobe /></div>
+          <div className="hero-globe"><GlobeHero /></div>
           <div className="hero-map-slot" id="map"><StackMap /></div>
           <ClientStrip />
         </div>
@@ -164,6 +164,11 @@ export default function Home() {
             </div>
             <Link className="btn btn-ghost" to="/platform" data-track="home:stack">See how the stack works</Link>
           </Reveal>
+          {hasMedia(MEDIA.agentRequest) && (
+            <Reveal className="video-feature">
+              <MediaClip {...MEDIA.agentRequest} alt="Animation: a refund request goes from Slack through the agent, Salesforce and SAP to an approval and a signed record" />
+            </Reveal>
+          )}
           <div className="home-stack">
             {HOME_STACK.map(([stage, name, state], i) => (
               <Reveal key={name} className="home-stack-step" delay={(i % 3) * 90}>

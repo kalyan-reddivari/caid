@@ -79,9 +79,9 @@ export function AgentServicesArt() {
       <g transform="translate(348 216)">
         <rect width="156" height="104" rx="14" {...card} />
         <text x="16" y="26" style={{ font: '700 12px var(--font-body)', fill: 'var(--ink)' }}>Evaluations</text>
-        {[44, 52, 49, 58, 62].map((h, i) => (
-          <rect key={i} className="grow-y" x={18 + i * 18} y={92 - h * 0.8} width="11" height={h * 0.8} rx="2.5"
-            fill={i === 4 ? 'var(--amber)' : 'var(--teal)'} style={{ '--d': `${i * 0.15}s` }} />
+        {[44, 52, 58, 64].map((h, i) => (
+          <rect key={i} className="grow-y" x={18 + i * 16} y={92 - h * 0.8} width="11" height={h * 0.8} rx="2.5"
+            fill={i === 3 ? 'var(--amber)' : 'var(--teal)'} style={{ '--d': `${i * 0.15}s` }} />
         ))}
         <text x="140" y="56" textAnchor="end" style={{ font: '800 16px var(--font-display)', fill: 'var(--ink)' }}>98%</text>
         <text x="140" y="70" textAnchor="end" style={{ font: '500 9px var(--font-body)', fill: 'var(--ink-soft)' }}>cases pass</text>

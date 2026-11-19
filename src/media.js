@@ -10,12 +10,32 @@
 const MEDIA = {
   // How we build: "Watch a feature go from spec to staging"
   deliveryDemo: {
-    src: '', // e.g. '/media/delivery-demo.mp4'
-    webm: '',
+    src: '/media/delivery-demo.mp4', // rendered with Remotion from video/src/SpecToStaging.jsx
+    webm: '/media/delivery-demo.webm',
     gif: '',
-    poster: '',
+    poster: '/media/delivery-demo-poster.jpg',
     ratio: '16 / 9',
     caption: 'A feature going from spec to staging with our AI-driven lifecycle.',
+  },
+
+  // Home: one request, start to finish (Remotion, video/src/AgentRequest.jsx)
+  agentRequest: {
+    src: '/media/agent-request.mp4',
+    webm: '/media/agent-request.webm',
+    gif: '',
+    poster: '/media/agent-request-poster.jpg',
+    ratio: '16 / 9',
+    caption: 'A refund asked for in Slack: the agent reads Salesforce and SAP as the person asking, the finance lead approves the exact amount, and a signed record is kept.',
+  },
+
+  // Products: Tradewire in 18 seconds (Remotion, video/src/TradewireFlow.jsx)
+  tradewireFlow: {
+    src: '/media/tradewire-flow.mp4',
+    webm: '/media/tradewire-flow.webm',
+    gif: '',
+    poster: '/media/tradewire-flow-poster.jpg',
+    ratio: '16 / 9',
+    caption: 'Two companies sign one agreement, an agent opens an incident at its provider, both sides check it, and both keep one signed record.',
   },
 
   // AI Academy: "Inside a lab"

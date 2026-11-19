@@ -4,7 +4,9 @@ import { IconTile } from '../../components/Icons.jsx';
 import { AgentcraftArt, DryvaArt, OrbitwardArt, ProductsHeroArt, UnderwritArt } from '../../components/ProductGraphics.jsx';
 import Reveal from '../../components/Reveal.jsx';
 import UnderwritDemo from '../../components/UnderwritDemo.jsx';
-import DotTerrain from '../../components/fx/DotTerrain.jsx';
+import MediaClip from '../../components/MediaClip.jsx';
+import MEDIA, { hasMedia } from '../../media.js';
+import { NodeFieldBackdrop } from '../../components/fx/ThreeScenes.jsx';
 import { PIPELINE, PRODUCTS, countWord } from '../../content/products.js';
 
 const ART = { underwrit: UnderwritArt, orbitward: OrbitwardArt, agentcraft: AgentcraftArt, dryva: DryvaArt };
@@ -13,7 +15,7 @@ export default function Products() {
   return (
     <>
       <section className="page-hero has-art">
-        <DotTerrain />
+        <NodeFieldBackdrop />
         <div className="wrap">
           <div>
             <span className="eyebrow">Products</span>
@@ -141,6 +143,17 @@ export default function Products() {
               </Reveal>
             ))}
           </div>
+          {hasMedia(MEDIA.tradewireFlow) && (
+            <Reveal className="video-feature video-split">
+              <div>
+                <span className="eyebrow">Tradewire in 18 seconds</span>
+                <h3>Agents that work across company lines</h3>
+                <p className="muted">Two companies sign one agreement. When one company&apos;s agent asks the other for work, the broker and the receiving company each check it, and both keep the same signed record.</p>
+                <Link to="/contact?interest=Products#book" data-track="product-partner:tradewire-video">Become a Tradewire design partner →</Link>
+              </div>
+              <MediaClip {...MEDIA.tradewireFlow} alt="Animation: Acme and Northwind sign an agreement, Acme's agent opens an incident at Northwind through Tradewire, and both keep one signed record" />
+            </Reveal>
+          )}
         </div>
       </section>
 
