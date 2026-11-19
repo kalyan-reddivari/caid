@@ -12,8 +12,8 @@ export const ROUTE_META = {
     description: 'CAID connects the ERP, CRM, HR and finance systems you already run, builds the applications your teams need, and puts AI to work across them. Free 30-minute first call.',
   },
   '/services': {
-    title: 'Custom software and systems integration services | CAID',
-    description: 'Custom applications, ERP and CRM integration, AI adoption, product development, cloud and DevOps, and technology consulting from one in-house team.',
+    title: 'AI agent and agentic workflow services | CAID',
+    description: 'Agentic workflow engineering, AI strategy and adoption, agent-ready integration with SAP, Salesforce and Workday, permission-aware retrieval, AI governance and AgentOps from one in-house team.',
   },
   '/process': {
     title: 'How a software project with CAID works, stage by stage | CAID',
