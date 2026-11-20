@@ -33,15 +33,15 @@ export const ROUTE_META = {
   },
   '/ai-academy/paths': {
     title: 'Learning paths by role | CAID Academy',
-    description: 'Seven role-based paths, from AI Foundations to Generative AI Engineer and AI Governance, each an ordered set of courses and labs that leads to a certification.',
+    description: 'Twelve role-based paths, from AI Foundations to agent harness and gateway engineering, AI SRE, MLOps, AI security and enterprise AI integration, each leading to a free certification.',
   },
   '/ai-academy/certifications': {
     title: 'Certifications: Foundational, Associate, Professional and product specialist | CAID Academy',
-    description: 'Every CAID Academy certification is free. Exam details, domain weightings and how certification works, with verifiable digital badges.',
+    description: 'Seventeen free CAID Academy certifications, from AI Foundations to Agent Platform Engineer and AI Security Engineer. Exam details, sample questions, study plans, role roadmaps and verifiable digital badges.',
   },
   '/ai-academy/resources': {
     title: 'Courses, labs, guides and exam prep | CAID Academy',
-    description: 'Search the CAID Academy catalog: free guides, templates, webinars and exam prep, plus courses and labs that come with a path enrollment.',
+    description: 'Search the CAID Academy catalog: free exam prep, guides, templates, webinars and an open reading list of AI, platform and security standards, plus courses and labs.',
   },
   '/ai-academy/verify': {
     title: 'Verify a CAID certification | CAID Academy',

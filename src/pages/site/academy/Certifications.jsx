@@ -2,15 +2,54 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import DotTerrain from '../../../components/fx/DotTerrain.jsx';
 import Reveal from '../../../components/Reveal.jsx';
-import { CERT_FAQ, CERT_STEPS, certById, CERTS, pathById, TIERS } from '../../../content/academy.js';
+import { CERT_FAQ, CERT_STEPS, certById, CERTS, pathById, resourcesFor, ROADMAPS, studyWeeks, TIERS } from '../../../content/academy.js';
 import Credential from './Credential.jsx';
-import { CONTACT_ACADEMY, TierMark } from './shared.jsx';
+import { CONTACT_ACADEMY, ResourceLink, TierMark } from './shared.jsx';
+
+const LETTERS = ['A', 'B', 'C', 'D'];
+
+// Exam-style practice questions. Picking an option shows whether it was right and why.
+function SampleQuestions({ cert }) {
+  const [picks, setPicks] = useState({});
+  return (
+    <div className="sample-qs">
+      {cert.sample.map((s, n) => {
+        const pick = picks[n];
+        const done = pick !== undefined;
+        return (
+          <fieldset key={s.q} className="sample-q">
+            <legend><span className="sample-n">Question {n + 1}</span>{s.q}</legend>
+            <div className="sample-options">
+              {s.options.map((o, i) => {
+                const state = !done ? '' : i === s.answer ? ' right' : i === pick ? ' wrong' : '';
+                return (
+                  <button key={o} type="button" className={`sample-opt${state}`} aria-pressed={pick === i}
+                    disabled={done} onClick={() => setPicks({ ...picks, [n]: i })}>
+                    <b aria-hidden="true">{LETTERS[i]}</b>{o}
+                  </button>
+                );
+              })}
+            </div>
+            {done && (
+              <p className="sample-why" role="status">
+                <strong>{pick === s.answer ? 'Correct.' : `Not quite. The answer is ${LETTERS[s.answer]}.`}</strong> {s.why}
+              </p>
+            )}
+          </fieldset>
+        );
+      })}
+      {Object.keys(picks).length > 0 && (
+        <button type="button" className="link-btn" onClick={() => setPicks({})}>Try again</button>
+      )}
+    </div>
+  );
+}
 
 const TIER_TEXT = {
   Foundational: 'Core AI literacy for anyone. Unproctored.',
   Associate: 'Proves you can do the job in your role, day to day.',
   Professional: 'For people who design and own AI systems in production.',
-  'Product specialist': 'Deep, hands-on skill with Underwrit or Orbitward.',
+  'Product specialist': 'Deep, hands-on skill with Underwrit, Orbitward or Agentcraft Studio.',
 };
 
 export default function Certifications() {
@@ -38,6 +77,8 @@ export default function Certifications() {
 
   const c = certById(selected);
   const path = pathById(c.path);
+  const prep = resourcesFor(c.id);
+  const weeks = studyWeeks(path.hours);
 
   return (
     <>
@@ -47,8 +88,9 @@ export default function Certifications() {
           <span className="eyebrow">Certifications</span>
           <h1>Credentials that prove the work, not the reading</h1>
           <p>
-            Four tiers, from Foundations to Professional and product specialist exams. Every certification is
-            free, and every credential comes with a digital badge anyone can verify.
+            {CERTS.length} certifications in four tiers, from Foundations to Professional and product specialist
+            exams. Every one is free, each comes with sample questions and a study plan, and every credential is a
+            digital badge anyone can verify.
           </p>
         </div>
       </section>
@@ -75,7 +117,7 @@ export default function Certifications() {
             <div className="cert-detail-head">
               <span className="pill">{c.tier}</span>
               <h2>{c.name}</h2>
-              <p className="muted">For {c.audience.toLowerCase()}.</p>
+              <p className="muted">For {c.audience.charAt(0).toLowerCase() + c.audience.slice(1)}.</p>
             </div>
             <div className="cert-detail-body">
               <dl className="exam-facts">
@@ -103,11 +145,62 @@ export default function Certifications() {
                 </div>
               </div>
             </div>
+
+            <div className="cert-prep">
+              <div>
+                <h3 className="mini-head">Try sample questions</h3>
+                <SampleQuestions key={c.id} cert={c} />
+              </div>
+              <div>
+                <h3 className="mini-head">Study plan</h3>
+                <p className="prep-plan">
+                  <b>About {weeks} weeks</b> at four hours a week: the {path.hours}-hour{' '}
+                  <Link to={`/ai-academy/paths#${path.id}`}>{path.title}</Link> path, then a practice exam.
+                </p>
+                <h3 className="mini-head">Free prep for this exam</h3>
+                <ul className="prep-list">
+                  {prep.filter((r) => r.free).sort((a, b) => a.certs.includes('*') - b.certs.includes('*')).slice(0, 7).map((r) => (
+                    <li key={r.title}><ResourceLink r={r} /><span>{r.type}</span></li>
+                  ))}
+                </ul>
+                <Link className="more-link" to={`/ai-academy/resources?cert=${c.id}`}>All {prep.length} resources for this exam</Link>
+              </div>
+            </div>
           </article>
         </div>
       </section>
 
       <section className="section section-alt">
+        <div className="wrap">
+          <Reveal className="section-head">
+            <div>
+              <h2>Roadmaps by role</h2>
+              <p className="muted">A suggested order of certifications for the work you do. Start anywhere your experience allows.</p>
+            </div>
+          </Reveal>
+          <div className="roadmaps">
+            {ROADMAPS.map((r) => (
+              <div key={r.role} className="roadmap">
+                <h3>{r.role}</h3>
+                <ol>
+                  {r.steps.map((id) => {
+                    const x = certById(id);
+                    return (
+                      <li key={id}>
+                        <button type="button" className={x.id === selected ? 'on' : ''} onClick={() => { choose(x.id); detail.current?.scrollIntoView({ block: 'start' }); }}>
+                          <TierMark tier={x.tier} />{x.name}
+                        </button>
+                      </li>
+                    );
+                  })}
+                </ol>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
         <div className="wrap">
           <Reveal className="section-head">
             <div>

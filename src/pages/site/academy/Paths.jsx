@@ -2,7 +2,7 @@ import DotTerrain from '../../../components/fx/DotTerrain.jsx';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { IconTile } from '../../../components/Icons.jsx';
-import { FORMATS, formatMins, LEVELS, PATHS, ROLES } from '../../../content/academy.js';
+import { FORMATS, formatMins, LEVELS, PATHS, ROLES, studyWeeks } from '../../../content/academy.js';
 import { CertLink, CONTACT_ACADEMY, FilterChips } from './shared.jsx';
 
 const ALL = 'All';
@@ -20,8 +20,9 @@ export default function Paths() {
           <span className="eyebrow">Learning paths</span>
           <h1>From first prompt to production, by role</h1>
           <p>
-            Pick the path for the work you do. Each one is an ordered set of self-paced courses, live sessions
-            and labs, and ends with the certification that proves it.
+            {PATHS.length} paths for the work you do, from platform engineering, SRE and MLOps to agent gateways,
+            AI security and enterprise integration. Each one is an ordered set of self-paced courses, live sessions
+            and labs, and ends with a free certification that proves it.
           </p>
         </div>
       </section>
@@ -48,7 +49,7 @@ export default function Paths() {
                   <div className="path-head">
                     <IconTile name={p.icon} tone="ink" />
                     <div>
-                      <span className="path-meta">{p.role} · {p.level} · {p.hours} hours</span>
+                      <span className="path-meta">{p.role} · {p.level} · {p.hours} hours, about {studyWeeks(p.hours)} weeks part time</span>
                       <h2>{p.title}</h2>
                     </div>
                   </div>

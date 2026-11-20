@@ -7,7 +7,7 @@ import CountUp from '../../../components/CountUp.jsx';
 import { AUDIENCES, CERTS, PATHS, RESOURCES, TIERS, WAYS_TO_LEARN } from '../../../content/academy.js';
 import { CONTACT_ACADEMY, TierMark } from './shared.jsx';
 
-const FEATURED = ['ai-foundations', 'genai-engineer', 'ai-governance'];
+const FEATURED = ['ai-foundations', 'agent-platform-engineer', 'mlops-engineer'];
 
 export default function Overview() {
   const free = RESOURCES.filter((r) => r.free).length;

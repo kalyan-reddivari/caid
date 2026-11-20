@@ -30,3 +30,15 @@ export function FilterChips({ label, options, value, onChange }) {
     </div>
   );
 }
+
+// A resource title: external open references open in a new tab; Academy items open the catalog on them.
+export function ResourceLink({ r }) {
+  if (r.href) {
+    return (
+      <a href={r.href} target="_blank" rel="noopener noreferrer">
+        {r.title}<span className="sr-only"> (opens {r.source} in a new tab)</span><span aria-hidden="true"> ↗</span>
+      </a>
+    );
+  }
+  return <Link to={`/ai-academy/resources?q=${encodeURIComponent(r.title)}`}>{r.title}</Link>;
+}

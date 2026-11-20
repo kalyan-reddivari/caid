@@ -1781,6 +1781,68 @@ main:focus { outline: none; }
 .access-list div { display: grid; gap: .15rem; border-left: 3px solid var(--teal); padding-left: .9rem; }
 .access-list span { color: var(--ink-soft); font-size: .95rem; }
 
+/* Certification prep: sample questions, study plan and prep links */
+.cert-prep { display: grid; grid-template-columns: 1.3fr 1fr; gap: 2.5rem; margin-top: 2rem; padding-top: 1.8rem; border-top: 1px solid var(--line); }
+.sample-qs { display: grid; gap: 1rem; justify-items: start; }
+.sample-q { border: 1px solid var(--line); border-radius: 12px; padding: 1rem 1.1rem; margin: 0; width: 100%; background: var(--paper); }
+.sample-q legend { float: left; width: 100%; padding: 0; font-weight: 600; margin-bottom: .7rem; }
+.sample-n { display: block; font-size: .75rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--teal-deep); margin-bottom: .2rem; }
+.sample-options { clear: both; display: grid; gap: .4rem; }
+.sample-opt {
+  display: flex; gap: .6rem; align-items: baseline; text-align: left; font: 400 .93rem/1.4 var(--font-body); color: var(--ink);
+  background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: .5rem .7rem; cursor: pointer;
+  transition: border-color .15s, background-color .15s;
+}
+.sample-opt b { font-family: var(--font-display); color: var(--ink-faint); }
+.sample-opt:hover:not(:disabled) { border-color: var(--teal); }
+.sample-opt:disabled { cursor: default; color: var(--ink-soft); }
+.sample-opt.right { border-color: var(--teal); background: var(--teal-wash); color: var(--ink); }
+.sample-opt.right b { color: var(--teal-deep); }
+.sample-opt.wrong { border-color: var(--danger); background: var(--danger-wash); color: var(--ink); }
+.sample-why { margin: .7rem 0 0; font-size: .92rem; color: var(--ink-soft); }
+.sample-why strong { color: var(--ink); }
+.prep-plan { margin: 0 0 1.4rem; font-size: .95rem; color: var(--ink-soft); }
+.prep-plan b { color: var(--ink); }
+.prep-list { list-style: none; margin: 0 0 1rem; padding: 0; display: grid; gap: .1rem; }
+.prep-list li { display: flex; justify-content: space-between; gap: 1rem; align-items: baseline; padding: .45rem 0; border-bottom: 1px solid var(--line); font-size: .93rem; }
+.prep-list a { font-weight: 500; text-decoration: none; color: var(--ink); }
+.prep-list a:hover { color: var(--teal-deep); text-decoration: underline; }
+.prep-list li::before { display: none; }
+.prep-list a { flex: 1; text-align: left; }
+.prep-list li > span { font-size: .75rem; color: var(--ink-faint); white-space: nowrap; }
+.more-link { font-weight: 600; font-size: .93rem; }
+
+/* Roadmaps by role */
+.roadmaps { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; }
+.roadmap { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 1.2rem; }
+.roadmap h3 { font-size: 1.05rem; margin-bottom: .8rem; }
+.roadmap ol { list-style: none; margin: 0; padding: 0; display: grid; gap: .35rem; position: relative; }
+.roadmap li { position: relative; padding-left: 1.1rem; }
+.roadmap li::before { content: ''; position: absolute; left: 3px; top: 0; bottom: -.35rem; width: 2px; background: var(--line); }
+.roadmap li:last-child::before { bottom: 50%; }
+.roadmap li:first-child::before { top: 50%; }
+.roadmap li:only-child::before { display: none; }
+.roadmap button {
+  display: flex; align-items: center; width: 100%; text-align: left; font: 500 .88rem/1.35 var(--font-body); color: var(--ink);
+  background: var(--paper); border: 1px solid transparent; border-radius: 8px; padding: .45rem .6rem; cursor: pointer;
+  transition: border-color .15s;
+}
+.roadmap button:hover, .roadmap button.on { border-color: var(--teal); }
+
+/* Resource cards: what they prepare for, and open references */
+.res-type.rt-7 { color: var(--teal); }
+.resource-card.is-open { border-style: dashed; }
+.resource-card.is-open:hover { border-style: solid; }
+.resource-card h3 a { color: inherit; text-decoration: none; }
+.resource-card h3 a:hover { color: var(--teal-deep); text-decoration: underline; }
+.res-prepares { display: grid; gap: .35rem; margin: 0 0 1rem; font-size: .78rem; font-weight: 600; color: var(--ink-faint); text-transform: uppercase; letter-spacing: .04em; }
+.res-prepares .cert-link { font-size: .78rem; padding: .25rem .5rem; text-transform: none; letter-spacing: 0; }
+.res-source { color: var(--teal-deep); }
+
+@media (max-width: 960px) {
+  .cert-prep { grid-template-columns: 1fr; gap: 1.5rem; }
+}
+
 /* Responsive */
 @media (max-width: 1100px) {
   .academy-ways { grid-template-columns: 1fr 1fr; }

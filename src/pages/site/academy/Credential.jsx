@@ -9,7 +9,8 @@ import { sampleId, VERIFY_PATH } from '../../../content/credentials.js';
 const RIBBON = ['var(--teal-wash)', 'var(--teal)', 'var(--amber)', '#fff'];
 const RIBBON_INK = ['var(--teal-deep)', '#fff', 'var(--ink)', 'var(--ink)'];
 
-export const shortName = (name) => name.replace(/^(CAID )?Certified /, '').replace(/, (Associate|Professional)$/, '');
+// The badge already says CERTIFIED and shows the tier, so both come out of the title.
+export const shortName = (name) => name.replace(/^(CAID )?Certified /, '').replace(/ Certified /, ' ').replace(/, (Associate|Professional)$/, '');
 
 function Mark() {
   return (
