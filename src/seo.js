@@ -12,8 +12,8 @@ export const ROUTE_META = {
     description: 'CAID connects the ERP, CRM, HR and finance systems you already run, builds the applications your teams need, and puts AI to work across them. Free 30-minute first call.',
   },
   '/services': {
-    title: 'Custom software and systems integration services | CAID',
-    description: 'Custom applications, ERP and CRM integration, AI adoption, product development, cloud and DevOps, and technology consulting from one in-house team.',
+    title: 'AI agent and agentic workflow services | CAID',
+    description: 'Agentic workflow engineering, AI strategy and adoption, agent-ready integration with SAP, Salesforce and Workday, permission-aware retrieval, AI governance and AgentOps from one in-house team.',
   },
   '/process': {
     title: 'How a software project with CAID works, stage by stage | CAID',
@@ -28,16 +28,52 @@ export const ROUTE_META = {
     description: 'Assess, pilot, integrate and scale AI against your own systems and data, with clear success measures. Ask about the six-week AI readiness assessment.',
   },
   '/ai-academy': {
-    title: 'CAID AI Academy: how every person at CAID learns to build with AI',
+    title: 'CAID Academy: AI learning paths, certifications and resources',
+    description: 'Role-based learning paths, hands-on labs and certifications for building and governing AI, taught by the people who build AI-native software every day.',
+  },
+  '/ai-academy/paths': {
+    title: 'Learning paths by role | CAID Academy',
+    description: 'Twelve role-based paths, from AI Foundations to agent harness and gateway engineering, AI SRE, MLOps, AI security and enterprise AI integration, each leading to a free certification.',
+  },
+  '/ai-academy/certifications': {
+    title: 'Certifications: Foundational, Associate, Professional and product specialist | CAID Academy',
+    description: 'Seventeen free CAID Academy certifications, from AI Foundations to Agent Platform Engineer and AI Security Engineer. Exam details, sample questions, study plans, role roadmaps and verifiable digital badges.',
+  },
+  '/ai-academy/resources': {
+    title: 'Courses, labs, guides and exam prep | CAID Academy',
+    description: 'Search the CAID Academy catalog: free exam prep, guides, templates, webinars and an open reading list of AI, platform and security standards, plus courses and labs.',
+  },
+  '/ai-academy/verify': {
+    title: 'Verify a CAID certification | CAID Academy',
+    description: 'Check a CAID Academy credential by its ID: who holds it, when it was issued and whether it is still valid.',
+  },
+  '/ai-academy/team': {
+    title: 'How every person at CAID learns to build with AI | CAID Academy',
     description: 'A four-level path with labs, mentors and paid certification time that every analyst, engineer and lead at CAID completes.',
   },
   '/products': {
     title: 'Products by CAID: Underwrit, Orbitward, Agentcraft Studio, Dryva and more',
-    description: 'Underwrit approves and proves AI agent actions, Orbitward runs platform engineering with agents, Agentcraft Studio designs agent workflows for free, Dryva rehearses them against failures, and five more are in development.',
+    description: 'Underwrit approves and proves AI agent actions, Orbitward runs platform engineering with agents, Agentcraft Studio designs agent workflows for free, Dryva rehearses them against failures, and six more, including Tradewire for agents that work across company lines, are in development.',
   },
   '/platform': {
     title: 'How the CAID stack works: agents on systems of record, with proof | CAID',
     description: 'See one request travel through the CAID stack: designed in Agentcraft Studio, rehearsed in Dryva, run through Bridgehead as the signed-in person, approved in Underwrit and recorded in a signed receipt.',
+  },
+  '/integrations': {
+    title: 'Integration guides: SAP, Salesforce, Workday, NetSuite, ServiceNow, Jira | CAID',
+    description: 'How CAID connects the systems you already run: what moves between them, how we build and monitor it, and where AI helps once the data is connected.',
+  },
+  '/integrations/sap-salesforce': {
+    title: 'SAP and Salesforce integration: quote-to-cash without retyping | CAID',
+    description: 'Accounts, orders, prices, invoices and payment status moving between Salesforce and SAP S/4HANA or ECC, with monitoring, retries and daily reconciliation.',
+  },
+  '/integrations/workday-netsuite': {
+    title: 'Workday and NetSuite integration: HR and finance in step | CAID',
+    description: 'Employees, departments, cost centers and expenses flowing from Workday HCM into NetSuite, so HR and finance reports agree.',
+  },
+  '/integrations/servicenow-jira': {
+    title: 'ServiceNow and Jira integration: incidents linked to the fix | CAID',
+    description: 'Escalated ServiceNow incidents become linked Jira issues, with status, fix versions and resolution notes flowing back to support.',
   },
   '/about': {
     title: 'About CAID, a systems integration and software firm in Atlanta',

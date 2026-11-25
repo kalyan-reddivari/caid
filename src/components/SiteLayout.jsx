@@ -5,7 +5,7 @@ import { usePageMeta } from '../seo.js';
 import CallButton from './CallButton.jsx';
 import Wordmark from './Wordmark.jsx';
 
-// Five top-level items. Groups open as a menu on wide screens and list their links inline on phones.
+// Six top-level items. Groups open as a menu on wide screens and list their links inline on phones.
 const NAV = [
   { to: '/services', label: 'Services' },
   { to: '/process', label: 'Process' },
@@ -14,13 +14,22 @@ const NAV = [
     items: [
       { to: '/ai-engineering', label: 'How we build', note: 'AI in every phase, people at every gate' },
       { to: '/ai-adoption', label: 'AI adoption', note: 'From readiness assessment to production' },
-      { to: '/ai-academy', label: 'AI Academy', note: 'How our whole team is trained' },
+    ],
+  },
+  {
+    label: 'Academy',
+    items: [
+      { to: '/ai-academy', label: 'Overview', note: 'Learn, build and certify', end: true },
+      { to: '/ai-academy/paths', label: 'Learning paths', note: 'Role-based, beginner to advanced' },
+      { to: '/ai-academy/certifications', label: 'Certifications', note: 'Exams, tiers and badges' },
+      { to: '/ai-academy/resources', label: 'Resources', note: 'Courses, labs, guides and exam prep' },
     ],
   },
   {
     label: 'Products',
     items: [
       { to: '/products', label: 'All products', note: 'Live, free and in development' },
+      { to: '/products#tradewire', label: 'Tradewire', note: 'Agents that work across company lines' },
       { to: '/platform', label: 'How the stack works', note: 'One request, step by step' },
     ],
   },
@@ -63,7 +72,7 @@ function NavGroup({ group, pathname }) {
       <div className="nav-menu" id={id}>
         <span className="nav-menu-label" aria-hidden="true">{group.label}</span>
         {group.items.map((i) => (
-          <NavLink key={i.to} to={i.to}>
+          <NavLink key={i.to} to={i.to} end={i.end}>
             <b>{i.label}</b>
             <span>{i.note}</span>
           </NavLink>
@@ -76,6 +85,12 @@ function NavGroup({ group, pathname }) {
 export default function SiteLayout() {
   const [open, setOpen] = useState(false);
   const { pathname, hash } = useLocation();
+  // After the first page, each new section fades in. The first load never animates, so it paints at once.
+  const section = pathname.split('/')[1] || 'home';
+  const firstSection = useRef(section);
+  const moved = useRef(false);
+  if (section !== firstSection.current) moved.current = true;
+  const animate = moved.current;
   usePageMeta(pathname);
 
   // Scroll to #section links. Pages load on demand, so the target may appear a moment after
@@ -133,15 +148,17 @@ export default function SiteLayout() {
 
       <main id="main" tabIndex={-1}>
         <Suspense fallback={<div className="page-loading" aria-busy="true" />}>
-          <Outlet />
+          <div key={section} className={animate ? 'page-enter' : undefined}>
+            <Outlet />
+          </div>
         </Suspense>
       </main>
 
       {!onContact && !open && (
-        <div className={`sticky-cta${scrolled ? ' shown' : ''}`}>
+        <aside className={`sticky-cta${scrolled ? ' shown' : ''}`} aria-label="Get in touch">
           <CallButton className="btn btn-primary" from="sticky-mobile">Book a free call</CallButton>
           <Link className="btn btn-ghost" to="/process#brief" data-track="brief:sticky-mobile">Project brief</Link>
-        </div>
+        </aside>
       )}
 
       <footer className="site-footer">
@@ -154,6 +171,7 @@ export default function SiteLayout() {
           <div>
             <h2 className="footer-h">What we do</h2>
             <Link to="/services">Services</Link>
+            <Link to="/integrations">Integration guides</Link>
             <Link to="/process">Process</Link>
             <Link to="/products">Products</Link>
             <Link to="/platform">How the stack works</Link>
@@ -162,7 +180,9 @@ export default function SiteLayout() {
             <h2 className="footer-h">AI</h2>
             <Link to="/ai-engineering">How we build</Link>
             <Link to="/ai-adoption">AI adoption</Link>
-            <Link to="/ai-academy">AI Academy</Link>
+            <Link to="/ai-academy">Academy</Link>
+            <Link to="/ai-academy/certifications">Certifications</Link>
+            <Link to="/ai-academy/verify">Verify a credential</Link>
           </div>
           <div>
             <h2 className="footer-h">Company</h2>

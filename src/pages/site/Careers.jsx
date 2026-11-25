@@ -73,7 +73,7 @@ export default function Careers() {
               <h2>You will be trained to work with AI, whatever your role</h2>
               <p>Every hire joins the CAID AI Academy: a four-level path with labs, mentors and paid certification time.</p>
             </div>
-            <Link className="btn btn-ink" to="/ai-academy">See the Academy</Link>
+            <Link className="btn btn-ink" to="/ai-academy/team">See the Academy</Link>
           </div>
         </div>
       </section>

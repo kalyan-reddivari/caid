@@ -81,7 +81,7 @@ export const PLAN = [
 export function PlanGantt() {
   const pct = (w) => `${((w - 1) / WEEKS) * 100}%`;
   return (
-    <div className="gantt" role="table" aria-label="Example plan for a first release of about twelve weeks">
+    <div className="gantt" role="table" tabIndex={0} aria-label="Example plan for a first release of about twelve weeks">
       <div className="gantt-row gantt-head" role="row">
         <span role="columnheader">Phase</span>
         <div className="gantt-track" aria-hidden="true">

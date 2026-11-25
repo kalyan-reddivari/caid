@@ -1,53 +1,9 @@
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Reveal from '../../components/Reveal.jsx';
 import StackFlow, { LifecycleLoop } from '../../components/StackFlow.jsx';
 import DotTerrain from '../../components/fx/DotTerrain.jsx';
-
-const LAYERS = [
-  {
-    kicker: 'Design and rehearse',
-    name: 'Agentcraft Studio and Dryva',
-    text: 'Build agent workflows visually, then prove they leave the business in a correct state before they ship.',
-    points: ['Visual workflow designer on LangGraph, free and open source', 'Fault rehearsals: timeouts, duplicates, outages, denied permissions', 'Release passports that pin the version that passed'],
-  },
-  {
-    kicker: 'Act',
-    name: 'Bridgehead on CAID Core',
-    text: 'Governed MCP tools for twelve business systems, from Salesforce and SAP to Dynamics 365, Oracle and Zendesk, that act as the signed-in person.',
-    points: ['Token exchange per person and system, no shared account', 'Risk tiers set by the values in each call', 'Vendor MCP servers wrapped under the same policy'],
-  },
-  {
-    kicker: 'Approve and prove',
-    name: 'Underwrit and signed receipts',
-    text: 'Risky actions wait for a person who sees exactly what changes, and every write leaves proof anyone can check.',
-    points: ['The record before and after, the blast radius, the user\'s request', 'Approvals bound to the exact values, used once', 'Receipts signed with the customer\'s own key'],
-  },
-  {
-    kicker: 'Alongside every call',
-    name: 'Groundline, Driftwatch, Pagewise, Modelyard',
-    text: 'The rest of the life of an integration: what agents may know, what vendors change, what breaks, what to predict.',
-    points: ['Answers filtered by what every reader may see', 'Contract tests against vendor preview releases', 'Incident evidence and approved runbooks', 'Predictions written back with approval'],
-  },
-];
-
-// What each product connects to today, built and tested in each product's own repository.
-const INTEGRATIONS = [
-  { name: 'Act on systems of record', product: 'Bridgehead', items: ['Salesforce', 'ServiceNow', 'Workday', 'SAP S/4HANA',
-    'Microsoft Dynamics 365', 'Oracle Fusion Cloud ERP', 'Oracle NetSuite', 'SAP SuccessFactors', 'HubSpot', 'Coupa',
-    'Jira Service Management', 'Zendesk', 'Any vendor MCP server'] },
-  { name: 'Ground answers in permitted data', product: 'Groundline', items: ['Salesforce', 'ServiceNow knowledge',
-    'Confluence', 'SharePoint and OneDrive', 'Google Drive', 'Box', 'Notion', 'Jira', 'Snowflake tables'] },
-  { name: 'Test vendor releases', product: 'Driftwatch', items: ['Salesforce', 'Workday', 'ServiceNow', 'SAP OData services',
-    'Any OpenAPI spec', 'MuleSoft', 'Boomi', 'Informatica'] },
-  { name: 'Gather incident evidence', product: 'Pagewise', items: ['SAP IDocs, jobs and dumps', 'SAP Integration Suite',
-    'MuleSoft', 'Kafka', 'GitHub', 'Argo CD', 'Prometheus', 'Tempo', 'Datadog', 'Splunk', 'Dynatrace', 'New Relic',
-    'Azure Monitor', 'Amazon CloudWatch', 'Alerts from PagerDuty, Opsgenie, Datadog and Azure Monitor'] },
-  { name: 'Predict where people work', product: 'Modelyard', items: ['Databricks', 'Snowflake', 'Salesforce Data Cloud',
-    'MLflow', 'Amazon SageMaker', 'Vertex AI', 'Write-back to Salesforce and SAP'] },
-  { name: 'Run in your estate', product: 'CAID Core', items: ['Okta', 'Microsoft Entra ID', 'PingOne and PingFederate',
-    'Google Workspace', 'AWS KMS', 'Azure Key Vault', 'Google Cloud KMS', 'HashiCorp Vault', 'Audit to Splunk, Sentinel and Datadog',
-    'Approvals in Slack and Teams'] },
-];
+import { LAYERS, PRODUCTS, ROADMAP, STACK_INTEGRATIONS as INTEGRATIONS, WEEKS } from '../../content/products.js';
 
 const PROOF = [
   { title: 'Acts as the person', text: 'Every call uses the signed-in person\'s own access in the source system. Their sharing rules and field security still apply.' },
@@ -58,26 +14,27 @@ const PROOF = [
   { title: 'Tested against attacks', text: 'A red-team suite of 19 attack types runs on every change, from tool poisoning to replayed approvals. All 19 are blocked today.' },
 ];
 
-// The next three months, week by week: weeks start on Mondays, from 2 November 2026 (index 0) to 25 January 2027 (12).
-const WEEKS = [[2, 'Nov 2026'], [9], [16], [23], [30, 'Dec'], [7], [14], [21], [28], [4, 'Jan 2027'], [11], [18], [25]];
-const ROADMAP = [
-  { name: 'CAID Core', note: 'shared platform', start: 0, end: 3, marks: [[3, 'foundation']] },
-  { name: 'Bridgehead', note: 'MCP connectors', start: 0, end: 6, marks: [[2, 'alpha'], [4, 'beta'], [6, 'GA']] },
-  { name: 'Groundline', note: 'permission-aware RAG', start: 2, end: 8, marks: [[4, 'alpha'], [6, 'beta'], [8, 'GA']] },
-  { name: 'Driftwatch', note: 'release contract tests', start: 3, end: 9, marks: [[5, 'alpha'], [7, 'beta'], [9, 'GA']] },
-  { name: 'Pagewise', note: 'incident agent', start: 5, end: 11, marks: [[7, 'alpha'], [9, 'beta'], [11, 'GA']] },
-  { name: 'Modelyard', note: 'ERP and CRM MLOps', start: 6, end: 12, marks: [[8, 'alpha'], [10, 'beta'], [12, 'GA']] },
-];
+// Which roadmap week today falls in (0 = the week of 2 November 2026), kept inside the chart.
+function currentWeek() {
+  const start = Date.UTC(2026, 10, 2);
+  const weeks = Math.floor((Date.now() - start) / (7 * 24 * 3600 * 1000));
+  return Math.min(Math.max(weeks, 0), WEEKS.length - 1);
+}
 
 function Roadmap() {
+  // The prerendered page marks the first week; the browser moves the marker to this week.
+  const [week, setWeek] = useState(0);
+  useEffect(() => setWeek(currentWeek()), []);
   return (
-    <Reveal className="roadmap">
+    <Reveal className="roadmap" tabIndex={0} aria-label="Product roadmap, scrolls sideways on small screens">
       <div className="roadmap-grid" role="table" aria-label="Product roadmap for the next three months, week by week, November 2026 to January 2027">
-        <div role="columnheader" />
-        {WEEKS.map(([day, month], i) => (
-          <div key={i} className={`roadmap-month${month ? ' is-month' : ''}`} role="columnheader">{month ? <b>{month}</b> : <br />}<br />{day}</div>
-        ))}
-        <div className="roadmap-today" style={{ gridRow: `2 / ${ROADMAP.length + 2}`, gridColumn: 2 }} aria-hidden="true"><span>now</span></div>
+        <div role="row" style={{ display: 'contents' }}>
+          <div role="columnheader"><span className="sr-only">Product</span></div>
+          {WEEKS.map(([day, month], i) => (
+            <div key={i} className={`roadmap-month${month ? ' is-month' : ''}`} role="columnheader">{month ? <b>{month}</b> : <br />}<br />{day}</div>
+          ))}
+        </div>
+        <div className="roadmap-today" style={{ gridRow: `2 / ${ROADMAP.length + 2}`, gridColumn: week + 2 }} aria-hidden="true"><span>now</span><i /></div>
         {ROADMAP.map((r, k) => (
           <div key={r.name} role="row" style={{ display: 'contents' }}>
             <div className="roadmap-name" role="rowheader" style={{ gridRow: k + 2, gridColumn: 1 }}>{r.name}<small>{r.note}</small></div>
@@ -93,7 +50,7 @@ function Roadmap() {
         ))}
       </div>
       <div className="roadmap-legend">
-        <span>Available now: Underwrit (public beta), Orbitward (beta), Agentcraft Studio (alpha, free), Dryva (release candidate).</span>
+        <span>Available now: {PRODUCTS.map((p) => `${p.name} (${p.short})`).join(', ')}.</span>
         <span>Every product reaches general availability (GA) within the next three months. Dates are targets, shaped by design partners.</span>
       </div>
     </Reveal>
